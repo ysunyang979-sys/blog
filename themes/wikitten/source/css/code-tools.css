@@ -1,0 +1,68 @@
+/* 代码块相对定位，方便放按钮 */
+pre {
+    position: relative;
+    transition: max-height 0.3s ease;
+}
+
+/* 复制按钮 */
+.btn-copy {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    z-index: 10;
+    font-size: 12px;
+    color: #ccc;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    padding: 3px 8px;
+    cursor: pointer;
+}
+.btn-copy:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* 折叠状态 */
+.code-collapsed {
+    max-height: 300px;
+    overflow: hidden !important;
+}
+
+/* 展开按钮容器 */
+.btn-expand-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(45, 45, 45, 0.9));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9;
+    cursor: pointer;
+}
+
+/* 展开按钮本身 */
+.btn-expand {
+    background: #66d9ef;
+    color: #333;
+    font-size: 12px;
+    padding: 4px 15px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* 隐藏时间轴竖线 (你之前要求的) */
+.timeline:before, 
+.timeline .article-meta:before,
+.archive-article:before {
+    display: none !important;
+}
+.timeline .archive-article {
+    border-left: none !important;
+    padding-left: 0 !important;
+}
