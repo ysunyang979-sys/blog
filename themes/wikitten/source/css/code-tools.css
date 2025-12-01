@@ -1,10 +1,48 @@
-/* 代码块相对定位，方便放按钮 */
-pre {
+/* 代码块容器，用于包裹 pre */
+.code-wrapper {
     position: relative;
-    transition: max-height 0.3s ease;
+    margin-bottom: 1.5em;
+    /* 保持原有间距 */
+    transition: height 0.3s ease;
+    box-sizing: border-box;
 }
 
-/* 复制按钮 */
+/* 代码块本身 */
+pre {
+    position: relative;
+    margin: 0 !important;
+    /* 去除 pre 的 margin，由 wrapper 控制 */
+    overflow-x: auto;
+    /* 允许横向滚动 */
+    overflow-y: hidden;
+    /* 默认隐藏竖向滚动，由 wrapper 控制高度时开启 */
+    scrollbar-width: thin;
+    scrollbar-color: #888 transparent;
+    scroll-behavior: smooth;
+    /* 丝滑滚动 */
+    box-sizing: border-box;
+}
+
+/* Webkit 滚动条样式 */
+pre::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+pre::-webkit-scrollbar-thumb {
+    background-color: rgba(136, 136, 136, 0.5);
+    border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(136, 136, 136, 0.8);
+}
+
+pre::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* 复制按钮 (放在 wrapper 中) */
 .btn-copy {
     position: absolute;
     top: 5px;
@@ -17,16 +55,29 @@ pre {
     border-radius: 4px;
     padding: 3px 8px;
     cursor: pointer;
+    opacity: 0;
+    /* 默认隐藏，hover显示 */
+    transition: opacity 0.2s;
 }
+
+.code-wrapper:hover .btn-copy {
+    opacity: 1;
+}
+
 .btn-copy:hover {
     color: #fff;
     background: rgba(255, 255, 255, 0.2);
 }
 
 /* 折叠状态 */
-.code-collapsed {
-    max-height: 300px;
-    overflow: hidden !important;
+.code-wrapper.collapsed {
+    height: 300px;
+}
+
+.code-wrapper.collapsed pre {
+    height: 100%;
+    overflow-y: auto;
+    /* 折叠时允许竖向滚动 */
 }
 
 /* 展开按钮容器 */
@@ -36,12 +87,15 @@ pre {
     left: 0;
     width: 100%;
     height: 50px;
-    background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(45, 45, 45, 0.9));
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(45, 45, 45, 0.9));
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9;
     cursor: pointer;
+    border-bottom-left-radius: 4px;
+    /* 适配圆角 */
+    border-bottom-right-radius: 4px;
 }
 
 /* 展开按钮本身 */
@@ -54,14 +108,16 @@ pre {
     border: none;
     cursor: pointer;
     font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-/* 隐藏时间轴竖线 (你之前要求的) */
-.timeline:before, 
+/* 隐藏时间轴竖线 */
+.timeline:before,
 .timeline .article-meta:before,
 .archive-article:before {
     display: none !important;
 }
+
 .timeline .archive-article {
     border-left: none !important;
     padding-left: 0 !important;

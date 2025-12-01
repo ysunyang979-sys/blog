@@ -43,7 +43,7 @@ render_drafts: false
 post_asset_folder: false
 relative_link: false
 future: true
-syntax_highlighter: highlight.js
+syntax_highlighter: ''
 highlight:
   enable: false
   line_number: true
@@ -51,11 +51,7 @@ highlight:
   tab_replace: ''
   wrap: true
   hljs: false
-prism_plugin:
-  mode: 'preprocess'
-  theme: 'okaidia'      # <--- 把 tomorrow-night 改成 okaidia
-  line_number: true
-  custom_css:
+
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -100,6 +96,19 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: wikitten
 
+# Security
+encrypt:
+  enable: true
+
+theme_config:
+  comment:
+    disqus: false
+    duoshuo: false
+    facebook: false
+    isso: false
+    changyan: false
+    # 如果该主题还需要其他配置，可能也需要在这里补全，但先修复报错最重要
+
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
@@ -116,3 +125,5 @@ menu:
   Categories: /categories    # 对应刚才创建的 source/categories
   Tags: /tags                # 对应刚才创建的 source/tags
   About: /about              # 对应刚才创建的 source/about
+  加密: /tags/encrypted
+

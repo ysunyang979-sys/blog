@@ -1,0 +1,49 @@
+/* PDF 容器 */
+.pdf-wrapper {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    /* 默认高度 */
+    transition: height 0.5s ease;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 展开状态 */
+.pdf-wrapper.expanded {
+    height: 100vh;
+    /* 铺满屏幕高度 */
+    max-height: 1200px;
+    /* 限制最大高度，防止过高 */
+}
+
+/* PDF 嵌入元素 */
+.pdf-wrapper embed {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* 展开/收起按钮 */
+.btn-expand-pdf {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    z-index: 20;
+    padding: 8px 15px;
+    background: rgba(50, 50, 50, 0.8);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    backdrop-filter: blur(4px);
+    transition: all 0.3s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-expand-pdf:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: translateY(-2px);
+}

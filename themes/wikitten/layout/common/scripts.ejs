@@ -1,9 +1,30 @@
 <%- partial('comment/scripts', { page: page }) %>
-<%- partial('plugin/scripts') %>
+    <%- partial('plugin/scripts') %>
 
-<!-- Custom Scripts -->
-<%- js('js/main') %>
+        <!-- Custom Scripts -->
+        <%- js('js/main') %>
 
-<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script>
-<script src="<%- url_for('/js/code-tools.js') %>"></script>
-<link rel="stylesheet" href="<%- url_for('/css/code-tools.css') %>">
+            <!-- PrismJS Support -->
+            <script>
+                document.querySelectorAll('pre code').forEach((block) => {
+                    // Add line-numbers class to pre
+                    block.parentElement.classList.add('line-numbers');
+
+                    // Ensure language class has 'language-' prefix
+                    block.classList.forEach((cls) => {
+                        if (!cls.startsWith('language-') && cls !== 'hljs') {
+                            block.classList.add('language-' + cls);
+                        }
+                    });
+                });
+            </script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+            <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+            <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+            <script src="/js/pdf-tools.js"></script>
+
+            <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script>
+            <script src="<%- url_for('/js/code-tools.js') %>"></script>
+            <link rel="stylesheet" href="<%- url_for('/css/code-tools.css') %>">

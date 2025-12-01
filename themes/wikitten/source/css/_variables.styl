@@ -16,10 +16,19 @@ color-widget-background = #ddd
 color-widget-border = #ccc
 
 // Fonts
-font-sans = "open sans", "Helvetica Neue", "Microsoft Yahei", Helvetica, Arial, sans-serif
-font-serif = Georgia, "Times New Roman", "Microsoft Yahei", serif
-font-mono = "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace
-font-size = 14px
+// 1. 正文：使用系统原生字体栈（最舒适、加载最快）
+font-sans = -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif
+
+// 2. 衬线体：通常用于引用，保持原样即可，稍微优化了 fallback
+font-serif = Georgia, "Times New Roman", "Microsoft YaHei", serif
+
+// 3. 代码块：使用程序员最熟悉的 Monaco/Consolas 组合
+font-mono = "Menlo", "Monaco", "Consolas", "Courier New", monospace
+
+// 4. 字号：强烈建议由 14px 改为 16px，提升阅读体验
+font-size = 16px
+
+// 行高：保持 1.6 即可，阅读很舒服
 line-height = 1.6em
 line-height-title = 1.3em
 
