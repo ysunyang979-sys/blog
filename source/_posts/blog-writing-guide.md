@@ -61,27 +61,6 @@ def long_function_name_to_test_horizontal_scrolling(parameter_one, parameter_two
 
 ---
 
-## 3. PDF 文件嵌入
-
-要在文章中嵌入 PDF 文件，请使用我们新增的 `pdf-wrapper` 容器。
-
-### 语法
-```html
-<div class="pdf-wrapper">
-    <embed src="/pdfs/ccc.pdf" type="application/pdf" />
-</div>
-```
-
-### 示例
-<div class="pdf-wrapper">
-    <embed src="/pdfs/ccc.pdf" type="application/pdf" />
-</div>
-
-### 特性
-- **默认高度**：600px。
-- **展开按钮**：右下角点击 "⤢ 展开 PDF" 可全屏查看。
-
----
 
 ## 4. 增强样式 (New Styles)
 
