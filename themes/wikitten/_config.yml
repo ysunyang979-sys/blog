@@ -39,7 +39,7 @@ widgets: # default use category only
   # - archive
   # - tag
   # - tagcloud
-  # - links
+  #- links
 
 # Excerpt
 ## Auto creat excerpt with not <!--more-->
@@ -89,3 +89,5 @@ miscellaneous:
     twitter_id:
     google_plus:
   links:
+    谷歌: https://www.google.com/search?q=&sca_esv=233e60072d3234a0&sxsrf=AE3TifOw6Q8lXXZcbtY868xdcsYYMlV2XQ%3A1764644280560&source=hp&ei=uFUuaYTfIKmei-gPudXNwAo&iflsig=AOw8s4IAAAAAaS5jyAlCdT5VYSTJoKc_HQMXLLFGBT9m&aep=22&udm=50&ved=0ahUKEwiEm_yb9J2RAxUpzwIHHblqE6gQteYPCBI&oq=&gs_lp=Egdnd3Mtd2l6IgBIAFAAWABwAHgAkAEAmAEAoAEAqgEAuAEByAEAmAIAoAIAmAMAkgcAoAcAsgcAuAcAwgcAyAcA&sclient=gws-wiz
+    另一个朋友的博客: https://ysbk.vercel.app/
