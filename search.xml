@@ -13,6 +13,8 @@
       
       <categories>
           
+          <category> unity </category>
+          
           <category> 四部曲 </category>
           
           <category> 入门 </category>
@@ -33,6 +35,8 @@
       
       
       <categories>
+          
+          <category> unity </category>
           
           <category> 四部曲 </category>
           
@@ -55,6 +59,8 @@
       
       <categories>
           
+          <category> unity </category>
+          
           <category> 四部曲 </category>
           
           <category> 入门 </category>
@@ -75,6 +81,8 @@
       
       
       <categories>
+          
+          <category> unity </category>
           
           <category> 四部曲 </category>
           
@@ -97,6 +105,8 @@
       
       <categories>
           
+          <category> unity </category>
+          
           <category> 四部曲 </category>
           
           <category> 入门 </category>
@@ -117,6 +127,8 @@
       
       
       <categories>
+          
+          <category> unity </category>
           
           <category> 四部曲 </category>
           
@@ -139,6 +151,8 @@
       
       <categories>
           
+          <category> unity </category>
+          
           <category> 四部曲 </category>
           
           <category> 入门 </category>
@@ -160,6 +174,8 @@
       
       <categories>
           
+          <category> unity </category>
+          
           <category> 四部曲 </category>
           
           <category> 入门 </category>
@@ -180,6 +196,8 @@
       
       
       <categories>
+          
+          <category> unity </category>
           
           <category> 四部曲 </category>
           
@@ -239,6 +257,39 @@
         <tags>
             
             <tag> 加密文章 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>unity字体TMP设置</title>
+      <link href="/2024/05/21/unity%E5%AD%97%E4%BD%93%E8%AE%BE%E7%BD%AE/"/>
+      <url>/2024/05/21/unity%E5%AD%97%E4%BD%93%E8%AE%BE%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Unity-TextMeshPro-TMP-设置"><a href="#Unity-TextMeshPro-TMP-设置" class="headerlink" title="Unity TextMeshPro (TMP) 设置"></a>Unity TextMeshPro (TMP) 设置</h1><h2 id="1-环境准备-首次使用必做"><a href="#1-环境准备-首次使用必做" class="headerlink" title="1. 环境准备 (首次使用必做)"></a>1. 环境准备 (首次使用必做)</h2><p>如果是新项目，必须导入 TMP 基础资源，否则无法正常使用。</p><ol><li>菜单栏点击 <strong>Window</strong> &gt; <strong>TextMeshPro</strong> &gt; <strong>Import TMP Essential Resources</strong>。</li><li>在弹窗中点击 <strong>Import</strong>。</li></ol><h2 id="2-创建-TMP-对象"><a href="#2-创建-TMP-对象" class="headerlink" title="2. 创建 TMP 对象"></a>2. 创建 TMP 对象</h2><ul><li><strong>UI 文本 (最常用):</strong> <ul><li>在 Hierarchy 面板右键 &gt; <strong>UI</strong> &gt; <strong>Text - TextMeshPro</strong>。</li></ul></li><li><strong>3D 世界文本 (头顶血条等):</strong> <ul><li>在 Hierarchy 面板右键 &gt; <strong>3D Object</strong> &gt; <strong>Text - TextMeshPro</strong>。</li></ul></li></ul><hr><h2 id="3-Inspector-面板核心设置"><a href="#3-Inspector-面板核心设置" class="headerlink" title="3. Inspector 面板核心设置"></a>3. Inspector 面板核心设置</h2><p>选中 TMP 对象，在 Inspector 中找到 <code>TextMeshPro UGUI</code> 组件进行设置：</p><h3 id="A-文本与字体-Main-Settings"><a href="#A-文本与字体-Main-Settings" class="headerlink" title="A. 文本与字体 (Main Settings)"></a>A. 文本与字体 (Main Settings)</h3><ul><li><strong>Text Input:</strong> 输入文字区域。支持富文本（如 <code>&lt;color=red&gt;红&lt;/color&gt;</code>）。</li><li><strong>Font Asset:</strong> 字体资产文件（默认不支持中文，需自制，详见第5节）。</li><li><strong>Font Style:</strong> <code>B</code>(粗体), <code>I</code>(斜体), <code>U</code>(下划线), <code>S</code>(删除线), <code>ab</code>(全大写)。</li><li><strong>Vertex Color:</strong> 文本的主体颜色。</li><li><strong>Color Gradient:</strong> 勾选后可设置四角渐变色。</li></ul><h3 id="B-排版与布局-Paragraph-Settings"><a href="#B-排版与布局-Paragraph-Settings" class="headerlink" title="B. 排版与布局 (Paragraph Settings)"></a>B. 排版与布局 (Paragraph Settings)</h3><ul><li><strong>Alignment:</strong> 对齐方式（左中右，上中下）。</li><li><strong>Wrapping (换行):</strong> <ul><li><em>Enabled:</em> 宽度不够时自动换行。</li><li><em>Disabled:</em> 不换行，文字一直向后延伸。</li></ul></li><li><strong>Overflow (溢出):</strong><ul><li><em>Overflow:</em> 超出框体继续显示。</li><li><em>Ellipsis:</em> 超出部分显示省略号 (…)。</li><li><em>Truncate:</em> 直接截断不显示。</li></ul></li></ul><h3 id="C-性能优化-Extra-Settings"><a href="#C-性能优化-Extra-Settings" class="headerlink" title="C. 性能优化 (Extra Settings)"></a>C. 性能优化 (Extra Settings)</h3><ul><li><strong>Raycast Target:</strong> 如果这只是纯展示文本（不需要点击交互），<strong>请取消勾选</strong>，可提升 UI 性能。</li></ul><hr><h2 id="4-特效设置-Material-Shader"><a href="#4-特效设置-Material-Shader" class="headerlink" title="4. 特效设置 (Material &#x2F; Shader)"></a>4. 特效设置 (Material &#x2F; Shader)</h2><p>在组件最下方的材质球（Material）折叠栏中，可以开启强大的视觉特效：</p><ul><li><strong>Outline (描边):</strong> 勾选后调节 <code>Thickness</code> (厚度) 和 <code>Color</code>。</li><li><strong>Underlay (阴影&#x2F;投影):</strong> 勾选后调节 <code>Offset X/Y</code> (偏移) 和 <code>Dilate</code> (模糊)。</li><li><strong>Glow (外发光):</strong> 制作霓虹灯效果。</li></ul><hr><h2 id="5-解决中文乱码-制作中文字体"><a href="#5-解决中文乱码-制作中文字体" class="headerlink" title="5. 解决中文乱码 (制作中文字体)"></a>5. 解决中文乱码 (制作中文字体)</h2><p>默认字体不包含中文。你需要制作 Font Asset：</p><ol><li>准备一个 <code>.ttf</code> 或 <code>.otf</code> 中文字体文件放入 Unity。</li><li>点击菜单 <strong>Window</strong> &gt; <strong>TextMeshPro</strong> &gt; <strong>Font Asset Creator</strong>。</li><li><strong>Source Font File:</strong> 拖入你的中文字体。</li><li><strong>Atlas Resolution:</strong> 设为 <code>2048x2048</code> 或 <code>4096x4096</code> (取决于字数)。</li><li><strong>Character Set:</strong> 选 <code>Custom Range</code>，填入常用汉字范围（如下方代码块）。</li><li>点击 <strong>Generate Font Atlas</strong>，生成后点击 <strong>Save</strong>。</li><li>ttf文件的命名为<strong>小写英文符号，不可有空格等特殊符号</strong></li></ol><p><strong>常用汉字 Unicode 范围 (复制填入 Custom Range):</strong></p><h4 id="32-126-8200-9999-19968-40869-65281-65374"><a href="#32-126-8200-9999-19968-40869-65281-65374" class="headerlink" title="32-126,8200-9999,19968-40869,65281-65374"></a><code>32-126,8200-9999,19968-40869,65281-65374</code></h4><h2 id="6-代码控制-C-脚本"><a href="#6-代码控制-C-脚本" class="headerlink" title="6. 代码控制 (C# 脚本)"></a>6. 代码控制 (C# 脚本)</h2><p>在脚本中操作 TMP，必须引用 TMPro 命名空间。</p><pre><code class="csharp">using UnityEngine;using TMPro; // 1. 必须引用这个命名空间public class TextController : MonoBehaviour&#123;    // 2. 在 Inspector 中将 TMP 对象拖入此变量    [SerializeField] private TextMeshProUGUI myText;     void Start()    &#123;        // 设置文本内容        myText.text = &quot;Hello, Unity!&quot;;        // 设置颜色        myText.color = new Color(1f, 0.5f, 0f); // 橙色        // 设置字体大小        myText.fontSize = 48;        // 使用富文本 (Rich Text)        myText.text = &quot;获得物品: &lt;color=yellow&gt;传说之剑&lt;/color&gt;&quot;;    &#125;    // 动态更新分数的示例    public void UpdateScore(int score)    &#123;        // SetText 比 text = string 性能更好，因为它避免了产生垃圾内存(GC)        myText.SetText(&quot;当前分数: &#123;0&#125;&quot;, score);    &#125;&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> unity </category>
+          
+          <category> 教程 </category>
+          
+          <category> TMP设置 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> guide </tag>
+            
+            <tag> efficiency </tag>
+            
+            <tag> markdown </tag>
             
         </tags>
       
