@@ -13,7 +13,7 @@ slug: unity3d-model
 >*用于场景中的一些道具等物品*
 
 准备工作：
-- <a href="github.com/2dust/v2rayN/releases/tag/7.16.4" class="btn">V2ray下载</a>
+- <a href="https://github.com/2dust/v2rayN/releases/" class="btn">V2ray下载</a>
 - <a href="https://www.linshiyouxiang.net/" class="btn">临时邮箱</a>
 - <a href="https://studio.tripo3d.ai/" class="btn">Tripo3D</a>
 - <a href="https://www.blender.org/download/" class="btn">BLender下载</a>
