@@ -16,7 +16,7 @@
                         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
                         <meta property="og:type" content="website">
 <meta property="og:title" content="ysun &amp; Blog">
-<meta property="og:url" content="url:https://ysunyang979-sys.github.io/archives/index.html">
+<meta property="og:url" content="https://ysunyang979-sys.github.io/archives/index.html">
 <meta property="og:site_name" content="ysun &amp; Blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="ysun">
@@ -205,9 +205,18 @@
                         <a href="#" data-role="directory">
                             <i class="fa fa-folder"></i>
                             &nbsp;
-                            教程
+                            效率/技巧
                         </a>
                          <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            3D建模
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/unity3d-model/">unity3D模型处理</a></li>  </ul> 
+                    </li> 
+                    
                     <li class="directory">
                         <a href="#" data-role="directory">
                             <i class="fa fa-folder"></i>
@@ -216,18 +225,27 @@
                         </a>
                          <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/unity%E5%AD%97%E4%BD%93%E8%AE%BE%E7%BD%AE/">unity字体TMP设置</a></li>  </ul> 
                     </li> 
-                     </ul> 
-                    </li> 
-                     </ul> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            写文章
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/Guide/">Guide</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
                         <a href="#" data-role="directory">
                             <i class="fa fa-folder"></i>
                             &nbsp;
-                            写文章指南
+                            插件
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/blog-writing-guide/">博客写作效率指南</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/unityplug/">unity插件</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -236,7 +254,16 @@
                             &nbsp;
                             加密文章
                         </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            网站
+                        </a>
                          <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/ip/">Secret</a></li>  </ul> 
+                    </li> 
+                     </ul> 
                     </li> 
                      </ul> 
     </div>
@@ -458,7 +485,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2024/05/21/blog-writing-guide/">博客写作效率指南</a>
+            <a class="timeline-article-title" href="/2024/05/21/Guide/">Guide</a>
         </h1>
     
 
@@ -480,8 +507,7 @@
         </div>
     </div>
 </footer>
-        
-    
+         
     
         
 <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
@@ -541,35 +567,40 @@
 
 
 
-        <!-- Custom Scripts -->
-        
+<!-- Custom Scripts -->
+
 <script src="/js/main.js"></script>
 
 
-            <!-- PrismJS Support -->
-            <script>
-                document.querySelectorAll('pre code').forEach((block) => {
-                    // Add line-numbers class to pre
-                    block.parentElement.classList.add('line-numbers');
+<!-- PrismJS Support -->
+<script>
+  document.querySelectorAll("pre code").forEach((block) => {
+    // Add line-numbers class to pre
+    block.parentElement.classList.add("line-numbers");
 
-                    // Ensure language class has 'language-' prefix
-                    block.classList.forEach((cls) => {
-                        if (!cls.startsWith('language-') && cls !== 'hljs') {
-                            block.classList.add('language-' + cls);
-                        }
-                    });
-                });
-            </script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-            <script
-                src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
-            <script
-                src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
-            <script src="/js/pdf-tools.js"></script>
+    // Ensure language class has 'language-' prefix
+    block.classList.forEach((cls) => {
+      if (!cls.startsWith("language-") && cls !== "hljs") {
+        block.classList.add("language-" + cls);
+      }
+    });
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script src="/js/pdf-tools.js"></script>
 
-            <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script>
             <script src="/js/code-tools.js"></script>
             <link rel="stylesheet" href="/css/code-tools.css">
+            
+            <!-- Image Collapsible Support -->
+            <link rel="stylesheet" href="/css/image-collapsible.css">
+            <script src="/js/image-collapsible.js"></script>
+
+
+
     </div>
 </body>
 </html>
