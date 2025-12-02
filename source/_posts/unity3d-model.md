@@ -13,10 +13,7 @@ slug: unity3d-model
 >*用于场景中的一些道具等物品*
 
 准备工作：
-- <a href="https://github.com/2dust/v2rayN/releases/" class="btn">V2ray下载</a>
-- <a href="https://www.linshiyouxiang.net/" class="btn">临时邮箱</a>
-- <a href="https://studio.tripo3d.ai/" class="btn">Tripo3D</a>
-- <a href="https://www.blender.org/download/" class="btn">BLender下载</a>
+- <a href="https://github.com/2dust/v2rayN/releases/" class="btn">V2ray下载</a><a href="https://www.linshiyouxiang.net/" class="btn">临时邮箱</a><a href="https://studio.tripo3d.ai/" class="btn">Tripo3D</a><a href="https://www.blender.org/download/" class="btn">BLender下载</a>
 
 设置好V2ray代理后，进入到临时邮箱，复制一个邮箱后进入到Tripo3D中，进行注册，每次注册送**300**积分大概可以生成**5-6**个比较完整的模型
 
