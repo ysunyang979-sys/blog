@@ -4,7 +4,7 @@ date: 2024-05-21 18:00:00
 tags: [guide, efficiency, markdown]
 categories: 
     - unity
-    - 教程
+    - 效率/技巧
     - TMP设置
 ---
 # Unity TextMeshPro (TMP) 设置

@@ -1,8 +1,11 @@
 ---
-title: 博客写作效率指南
+title: Guide
 date: 2024-05-21 18:00:00
 tags: [guide, efficiency, markdown]
-categories: [写文章指南]
+categories: 
+    - unity
+    - 效率/技巧
+    - 写文章
 ---
 
 这篇文章旨在帮助你更高效地撰写博客文章，涵盖了 Markdown 基础、代码块使用、PDF 嵌入以及新增的样式工具（按钮、提示框、颜色）。
@@ -62,11 +65,11 @@ def long_function_name_to_test_horizontal_scrolling(parameter_one, parameter_two
 ---
 
 
-## 4. 增强样式 (New Styles)
+## 3. 增强样式 (New Styles)
 
 为了让文章更生动，我们添加了一些自定义样式类。你可以直接在 Markdown 中使用 HTML 标签来调用它们。
 
-### 4.1 按钮 (Buttons)
+### 3.1 按钮 (Buttons)
 
 使用 `<a class="btn ...">` 或 `<span class="btn ...">`。
 
@@ -88,7 +91,7 @@ def long_function_name_to_test_horizontal_scrolling(parameter_one, parameter_two
 <a href="#" class="btn btn-warning">Warning</a>
 <a href="#" class="btn btn-info">Info</a>
 
-### 4.2 提示框 (Alerts)
+### 3.2 提示框 (Alerts)
 
 用于突出显示重要信息。
 
@@ -114,7 +117,7 @@ def long_function_name_to_test_horizontal_scrolling(parameter_one, parameter_two
     <strong>Error:</strong> 发生了一个错误。
 </div>
 
-### 4.3 文字颜色与背景
+### 3.3 文字颜色与背景
 
 **语法：**
 ```html
@@ -130,7 +133,7 @@ def long_function_name_to_test_horizontal_scrolling(parameter_one, parameter_two
 
 ---
 
-## 5. VS Code 效率插件与代码片段
+## 4. VS Code 效率插件与代码片段
 
 我们在 `.vscode/blog.code-snippets` 中配置了快捷指令：
 
