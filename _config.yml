@@ -111,7 +111,8 @@ theme_config:
     facebook: false
     isso: false
     changyan: false
-    # 如果该主题还需要其他配置，可能也需要在这里补全，但先修复报错最重要
+  customize:
+    favicon: /favicon.png
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
