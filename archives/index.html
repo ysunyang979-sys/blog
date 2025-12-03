@@ -168,106 +168,140 @@
         
     <div class="widget-wrap" id='categories'>
         <h3 class="widget-title">
-            <span>分类</span>
-            &nbsp;
-            <a id='allExpand' href="#">
+            <span id="tab-category" class="widget-tab active">分类</span>
+            <span id="tab-links" class="widget-tab">
+                <i class="fa fa-link"></i>
+            </span>
+            <a id='allExpand' href="#" style="float: right;">
                 <i class="fa fa-angle-double-down fa-2x"></i>
             </a>
         </h3>
         
-        
-        
-         <ul class="unstyled" id="tree" > 
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            unity
-                        </a>
-                         <ul class="unstyled" id="tree" > 
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            四部曲
-                        </a>
-                         <ul class="unstyled" id="tree" > 
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            入门
-                        </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/1If/">if</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/2Switch/">Switch</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/3While/">While</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/4Do%20While/">Do While</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/5For/">For</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/6%E6%8E%A7%E5%88%B6%E5%8F%B0/">控制台</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/7%E6%9C%BA%E6%95%B0/">随机数</a></li>  <li class="file"><a href="/2024/11/01/%E5%9B%9B%E9%83%A8%E6%9B%B2/8%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/">项目调试</a></li>  <li class="file"><a href="/2024/11/01/%E5%9B%9B%E9%83%A8%E6%9B%B2/9%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/">需求分析</a></li>  </ul> 
-                    </li> 
-                     </ul> 
-                    </li> 
+        <div id="content-category">
+            
+            
+             <ul class="unstyled" id="tree" > 
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                unity
+                            </a>
+                             <ul class="unstyled" id="tree" > 
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                四部曲
+                            </a>
+                             <ul class="unstyled" id="tree" > 
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                入门
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/1If/">if</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/2Switch/">Switch</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/3While/">While</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/4Do%20While/">Do While</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/5For/">For</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/6%E6%8E%A7%E5%88%B6%E5%8F%B0/">控制台</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/7%E6%9C%BA%E6%95%B0/">随机数</a></li>  <li class="file"><a href="/2024/11/01/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/8%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/">项目调试</a></li>  <li class="file"><a href="/2024/11/01/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/9%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/">需求分析</a></li>  </ul> 
+                        </li> 
+                         </ul> 
+                        </li> 
+                        
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                效率/技巧
+                            </a>
+                             <ul class="unstyled" id="tree" > 
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                3D建模
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/unity3d-model/">unity3D模型处理</a></li>  </ul> 
+                        </li> 
+                        
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                TMP设置
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/unity%E5%AD%97%E4%BD%93%E8%AE%BE%E7%BD%AE/">unity字体TMP设置</a></li>  </ul> 
+                        </li> 
+                        
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                写文章
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/Guide/">Guide</a></li>  </ul> 
+                        </li> 
+                        
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                插件
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/unityplug/">unity插件</a></li>  </ul> 
+                        </li> 
+                        
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                电脑软件
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/%E7%94%B5%E8%84%91%E8%BD%AF%E4%BB%B6/">电脑软件</a></li>  </ul> 
+                        </li> 
+                         </ul> 
+                        </li> 
+                         </ul> 
+                        </li> 
+                        
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                加密文章
+                            </a>
+                             <ul class="unstyled" id="tree" > 
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                网站
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/ip/">Secret</a></li>  </ul> 
+                        </li> 
+                         </ul> 
+                        </li> 
+                         </ul> 
+        </div>
+
+        <div id="content-links" style="display: none;">
+            <ul class="unstyled">
+                
                     
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            效率/技巧
-                        </a>
-                         <ul class="unstyled" id="tree" > 
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            3D建模
-                        </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/unity3d-model/">unity3D模型处理</a></li>  </ul> 
-                    </li> 
+                        <li style="padding: 5px 0;">
+                            <a href="https://www.google.com/search?q=&sca_esv=233e60072d3234a0&sxsrf=AE3TifOw6Q8lXXZcbtY868xdcsYYMlV2XQ%3A1764644280560&source=hp&ei=uFUuaYTfIKmei-gPudXNwAo&iflsig=AOw8s4IAAAAAaS5jyAlCdT5VYSTJoKc_HQMXLLFGBT9m&aep=22&udm=50&ved=0ahUKEwiEm_yb9J2RAxUpzwIHHblqE6gQteYPCBI&oq=&gs_lp=Egdnd3Mtd2l6IgBIAFAAWABwAHgAkAEAmAEAoAEAqgEAuAEByAEAmAIAoAIAmAMAkgcAoAcAsgcAuAcAwgcAyAcA&sclient=gws-wiz" target="_blank">
+                                <i class="fa fa-link"></i>&nbsp;谷歌
+                            </a>
+                        </li>
                     
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            TMP设置
-                        </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/unity%E5%AD%97%E4%BD%93%E8%AE%BE%E7%BD%AE/">unity字体TMP设置</a></li>  </ul> 
-                    </li> 
+                        <li style="padding: 5px 0;">
+                            <a href="https://ysbk.vercel.app/" target="_blank">
+                                <i class="fa fa-link"></i>&nbsp;另一个朋友的博客
+                            </a>
+                        </li>
                     
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            写文章
-                        </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/Guide/">Guide</a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            插件
-                        </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/unityplug/">unity插件</a></li>  </ul> 
-                    </li> 
-                     </ul> 
-                    </li> 
-                     </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            加密文章
-                        </a>
-                         <ul class="unstyled" id="tree" > 
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            网站
-                        </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/ip/">Secret</a></li>  </ul> 
-                    </li> 
-                     </ul> 
-                    </li> 
-                     </ul> 
+                
+            </ul>
+        </div>
+
     </div>
     <script>
         $(document).ready(function() {
@@ -275,6 +309,24 @@
             var iconFolderCloseClass = 'fa-folder';
             var iconAllExpandClass = 'fa-angle-double-down';
             var iconAllPackClass = 'fa-angle-double-up';
+            
+            // Tab switching logic
+            $('#tab-category').click(function() {
+                $('#content-category').show();
+                $('#content-links').hide();
+                $('#allExpand').show(); // Show expand button for category
+                $(this).addClass('active');
+                $('#tab-links').removeClass('active');
+            });
+
+            $('#tab-links').click(function() {
+                $('#content-category').hide();
+                $('#content-links').show();
+                $('#allExpand').hide(); // Hide expand button for links
+                $(this).addClass('active');
+                $('#tab-category').removeClass('active');
+            });
+
             // Handle directory-tree expansion:
             // 左键单独展开目录
             $(document).on('click', '#categories a[data-role="directory"]', function (event) {
@@ -356,7 +408,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2024/11/01/%E5%9B%9B%E9%83%A8%E6%9B%B2/9%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/">需求分析</a>
+            <a class="timeline-article-title" href="/2024/11/01/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/9%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/">需求分析</a>
         </h1>
     
 
@@ -370,7 +422,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2024/11/01/%E5%9B%9B%E9%83%A8%E6%9B%B2/8%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/">项目调试</a>
+            <a class="timeline-article-title" href="/2024/11/01/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/8%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/">项目调试</a>
         </h1>
     
 
@@ -384,7 +436,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/7%E6%9C%BA%E6%95%B0/">随机数</a>
+            <a class="timeline-article-title" href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/7%E6%9C%BA%E6%95%B0/">随机数</a>
         </h1>
     
 
@@ -398,7 +450,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/6%E6%8E%A7%E5%88%B6%E5%8F%B0/">控制台</a>
+            <a class="timeline-article-title" href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/6%E6%8E%A7%E5%88%B6%E5%8F%B0/">控制台</a>
         </h1>
     
 
@@ -412,7 +464,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/5For/">For</a>
+            <a class="timeline-article-title" href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/5For/">For</a>
         </h1>
     
 
@@ -426,7 +478,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/4Do%20While/">Do While</a>
+            <a class="timeline-article-title" href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/4Do%20While/">Do While</a>
         </h1>
     
 
@@ -440,7 +492,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/3While/">While</a>
+            <a class="timeline-article-title" href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/3While/">While</a>
         </h1>
     
 
@@ -454,7 +506,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/2Switch/">Switch</a>
+            <a class="timeline-article-title" href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/2Switch/">Switch</a>
         </h1>
     
 
@@ -468,7 +520,7 @@
                 
     
         <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/1If/">if</a>
+            <a class="timeline-article-title" href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/1If/">if</a>
         </h1>
     
 
