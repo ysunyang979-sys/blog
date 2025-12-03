@@ -8,6 +8,5 @@ comments: true
 
 这里记录了我的学习历程。
 
-*   **职业**：程序员
-*   **爱好**：写代码、摸鱼
-*   **联系方式**：xxxx@gmail.com
+*   **喜欢名言**：Good good study,Day day up!
+*   **联系方式**：ysun74480@gmail.com
