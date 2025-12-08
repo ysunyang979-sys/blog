@@ -10,6 +10,14 @@
                         <%- partial('post/category') %>
                         <%- partial('post/tag') %>
                         <%- partial('post/date', { class_name: 'article-date', date_format: null }) %>
+                        <div class="article-meta-wordcount">
+                            <i class="fa fa-file-word-o"></i>&nbsp;
+                            <span class="post-count"><%= (typeof symbolsCount === 'function') ? symbolsCount(post) : '0' %> words</span>
+                        </div>
+                        <div class="article-meta-min2read">
+                            <i class="fa fa-clock-o"></i>&nbsp;
+                            <span class="post-count"><%= (typeof min2read === 'function') ? min2read(post) : '1' %> min</span>
+                        </div>
                         <% if (theme.plugins.busuanzi_count) { %>
                             <i class="fa fa-bar-chart"></i>
                             <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    

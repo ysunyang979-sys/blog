@@ -1,6 +1,22 @@
 #sidebar
     @media mq-normal
         column(sidebar-column)
+        position: sticky
+        top: 20px
+        max-height: calc(100vh - 40px)
+        overflow-y: auto
+        overflow-x: hidden
+        /* Custom scrollbar for glassmorphism effect */
+        &::-webkit-scrollbar
+            width: 6px
+        &::-webkit-scrollbar-track
+            background: rgba(255,255,255,0.1)
+            border-radius: 10px
+        &::-webkit-scrollbar-thumb
+            background: rgba(0,0,0,0.2)
+            border-radius: 10px
+            &:hover
+                background: rgba(0,0,0,0.3)
     @media mq-tablet
         column(sidebar-column-tablet)
 
@@ -40,23 +56,46 @@
 
 .widget-wrap
     margin: block-margin 0
-    background-color: color-widget-background
-    border: 1px solid color-widget-border
-    border-radius: 8px
+    /* Glassmorphism Effect */
+    background: rgba(255, 255, 255, 0.7)
+    backdrop-filter: blur(10px) saturate(180%)
+    -webkit-backdrop-filter: blur(10px) saturate(180%)
+    border: 1px solid rgba(255, 255, 255, 0.3)
+    border-radius: 16px
     padding: 20px
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05)
-    transition: all 0.3s ease
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1)
+    position: relative
+    overflow: hidden
+    /* Glass reflection effect */
+    &:before
+        content: ''
+        position: absolute
+        top: 0
+        left: -100%
+        width: 100%
+        height: 100%
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)
+        transition: left 0.5s
     &:hover
-        box-shadow: 0 8px 20px rgba(0,0,0,0.1)
-        transform: translateY(-2px)
+        background: rgba(255, 255, 255, 0.85)
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.06)
+        transform: translateY(-4px) scale(1.02)
+        border-color: rgba(255, 255, 255, 0.5)
+        &:before
+            left: 100%
     h3
         line-height: 20px
-        background: #f9f9f9
+        background: linear-gradient(135deg, rgba(249, 249, 249, 0.8), rgba(255, 255, 255, 0.6))
+        backdrop-filter: blur(5px)
         margin: -21px -21px 10px -21px
         padding: 15px 20px
         line-height: 30px
-        border-bottom: 1px solid color-widget-border
-        border-radius: 8px 8px 0 0
+        border-bottom: 1px solid rgba(255, 255, 255, 0.4)
+        border-radius: 16px 16px 0 0
+        font-weight: 600
+        color: #2c3e50
+        text-shadow: 0 1px 2px rgba(255,255,255,0.8)
         a
             margin-top: 5px
             float: right
@@ -65,22 +104,26 @@
             display: inline-block
             padding: 5px 15px
             border-radius: 20px
-            background: transparent
+            background: rgba(255, 255, 255, 0.5)
+            backdrop-filter: blur(5px)
             margin-right: 5px
             font-size: 14px
             font-weight: 600
             color: #7f8c8d
             transition: all 0.3s ease
+            border: 1px solid rgba(255,255,255,0.3)
             &.active
-                background: color-link
+                background: linear-gradient(135deg, color-link, lighten(color-link, 10%))
                 color: white
-                box-shadow: 0 2px 5px rgba(0,0,0,0.1)
+                box-shadow: 0 4px 12px rgba(color-link, 0.3)
+                border-color: transparent
             &:hover
                 color: color-link
-                background: rgba(0,0,0,0.05)
+                background: rgba(255, 255, 255, 0.8)
+                transform: translateY(-2px)
             &.active:hover
                 color: white
-                background: color-link
+                background: linear-gradient(135deg, color-link, lighten(color-link, 10%))
         a
             color: #7f8c8d
             &:hover

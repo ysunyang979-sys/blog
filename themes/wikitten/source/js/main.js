@@ -91,4 +91,13 @@
     $(document).on('click', 'input[type="checkbox"]', function (event) {
         event.preventDefault();
     });
+    // Timeline Card Click
+    $('.timeline-row .content').css('cursor', 'pointer').on('click', function(e) {
+        if (!$(e.target).is('a') && !$(e.target).closest('a').length) {
+            var url = $(this).find('.timeline-article-title a').attr('href');
+            if (url) {
+                window.location.href = url;
+            }
+        }
+    });
 })(jQuery);
