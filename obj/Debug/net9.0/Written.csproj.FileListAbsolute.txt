@@ -1,0 +1,15 @@
+E:\Tools\Written\bin\Debug\net9.0\Written.exe
+E:\Tools\Written\bin\Debug\net9.0\Written.deps.json
+E:\Tools\Written\bin\Debug\net9.0\Written.runtimeconfig.json
+E:\Tools\Written\bin\Debug\net9.0\Written.dll
+E:\Tools\Written\bin\Debug\net9.0\Written.pdb
+E:\Tools\Written\obj\Debug\net9.0\Written.GeneratedMSBuildEditorConfig.editorconfig
+E:\Tools\Written\obj\Debug\net9.0\Written.AssemblyInfoInputs.cache
+E:\Tools\Written\obj\Debug\net9.0\Written.AssemblyInfo.cs
+E:\Tools\Written\obj\Debug\net9.0\Written.csproj.CoreCompileInputs.cache
+E:\Tools\Written\obj\Debug\net9.0\Written.sourcelink.json
+E:\Tools\Written\obj\Debug\net9.0\Written.dll
+E:\Tools\Written\obj\Debug\net9.0\refint\Written.dll
+E:\Tools\Written\obj\Debug\net9.0\Written.pdb
+E:\Tools\Written\obj\Debug\net9.0\Written.genruntimeconfig.cache
+E:\Tools\Written\obj\Debug\net9.0\ref\Written.dll

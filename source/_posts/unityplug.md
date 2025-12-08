@@ -10,7 +10,7 @@ categories:
 # unity 自建插件
 
 >共7个插件，UI插件，轴心插件，镜像插件，阵列插件，脚本信息插件，快速浏览插件（小型project窗口，更加方便），插件管理器（插件）
-
+<!-- more -->   
 UI插件，按下按键归位锚点（AltShiftA, AltZ, AltA在tools中修改）
 ```csharp 
 // 位置：Assets/Editor/UIAnchorTool_Pro.cs

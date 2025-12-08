@@ -3,8 +3,8 @@ title: AI绘画提示词
 date: 2024-05-21 18:00:00
 tags: [guide, efficiency, markdown]
 categories: 
-    - unity
-    - 效率/技巧
+    - 个人
+    - AI提示词
     - AI绘画
 ---
 # AI绘画提示词
@@ -16,7 +16,7 @@ categories:
 放一个形象进去，就可以做出各种不同的连环画动漫效果。
 
 ![自制漫画](http://www.faxianai.com/wp-content/uploads/2025/11/1764222742-xw_20251124133906.png)
-
+<!-- more -->   
 **提示词：**
 ```text
 把这个图片里的人物保持原来的形象，并且按照海贼王的漫画风格画一个拯救公主的连环画
@@ -558,4 +558,3 @@ Create a cartoon-style hand-drawn infographic with the rules above, using nano b
 
 {{USER_INPUT}}
 ```
-
