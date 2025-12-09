@@ -23,7 +23,7 @@ description: 本文介绍了如何在博客文章中直接嵌入和阅读 PDF �
 
 下面是一个嵌入的 PDF 示例：
 
-{% pdf https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf %}
+{% pdf /downloads/filename.pdf %}
 
 > [!NOTE]
 > 如果你看不到上面的 PDF，可能是因为网络原因无法访问 PDF 源文件。

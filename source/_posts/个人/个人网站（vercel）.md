@@ -4,7 +4,7 @@ date: 2024-05-20 18:00:00
 tags: [guide, efficiency, markdown]
 categories: 
     - 个人
-    - 网站
+    - 便捷
 ---
 # 快捷地址
 
