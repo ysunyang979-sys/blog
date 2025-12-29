@@ -1,5 +1,5 @@
 ---
-title: 永远不要把希望
+title: ysunの感悟
 date: 2024-05-20 18:00:00
 tags: [guide, efficiency, markdown]
 password: 359755Oo

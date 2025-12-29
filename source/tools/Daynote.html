@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的感悟笔记</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+        }
+
+        /* 折叠框样式 */
+        details {
+            background: var(--card-bg);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        details[open] {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* 标题栏样式 */
+        summary {
+            padding: 15px 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            cursor: pointer;
+            list-style: none; /* 隐藏默认箭头 */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            outline: none;
+            user-select: none;
+        }
+
+        /* 自定义箭头 */
+        summary::after {
+            content: "＋";
+            color: var(--primary-color);
+            transition: transform 0.3s;
+        }
+
+        details[open] summary::after {
+            content: "－";
+            transform: rotate(180deg);
+        }
+
+        summary:hover {
+            background-color: #f0f7ff;
+        }
+
+        /* 内容区样式 */
+        .content {
+            padding: 0 20px 20px 20px;
+            border-top: 1px solid #eee;
+            color: #555;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* 时间戳样式 */
+        .date {
+            font-size: 0.8rem;
+            color: #999;
+            font-weight: normal;
+        }
+
+        /* 密码遮罩层 */
+        #password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .login-box h2 {
+            margin-top: 0;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .login-box input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .login-box button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        .login-box button:hover {
+            background: #357abd;
+        }
+
+        .container {
+            filter: blur(5px);
+            transition: filter 0.5s;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 密码输入框 -->
+    <div id="password-overlay">
+        <div class="login-box">
+            <h2>🔒 私密日记</h2>
+            <p style="color: #666; margin-bottom: 20px;">请输入密码查看内容</p>
+            <input type="password" id="password-input" placeholder="输入访问密码" onkeypress="if(event.keyCode==13) checkPassword()">
+            <button onclick="checkPassword()">解锁 Access</button>
+            <p id="error-msg" style="color: red; margin-top: 10px; display: none; font-size: 14px;">密码错误，请重试</p>
+        </div>
+    </div>
+
+    <div class="container" id="main-content">
+        <header>
+            <h1>YSunの日记</h1>
+            <p>记录生活中的点滴思考与成长</p>
+        </header>
+
+        <!-- 感悟条目 1 -->
+        <details open>
+            <summary>
+                <span>关于坚持的意义 <span class="date">2023-10-25</span></span>
+            </summary>
+            <div class="content">
+                <p>今天读到一句话：坚持不一定是为了看到结果，而是为了让自己在回首往事时，不会因为当初的轻易放弃而后悔。</p>
+                <p>很多时候我们努力了很久没有反馈，其实是在扎根。就像毛竹一样，前四年只长3厘米，第五年开始以每天30厘米的速度疯狂生长。那四年，它是在地下延伸了几百平米的根系。</p>
+            </div>
+        </details>
+
+        <!-- 感悟条目 2 -->
+        <details>
+            <summary>
+                <span>阅读与独处 <span class="date">2023-10-20</span></span>
+            </summary>
+            <div class="content">
+                <p>在这个碎片化信息的时代，能静下心来读完一本书变得格外奢侈。</p>
+                <p>独处不是孤独，而是一种自我修复的过程。在书里，我可以跨越时空与伟大的灵魂对话。这种深度的输入，比刷短视频带来的即时快感要持久得多。</p>
+            </div>
+        </details>
+
+        <!-- 感悟条目 3 -->
+        <details>
+            <summary>
+                <span>如何面对焦虑 <span class="date">2023-10-15</span></span>
+            </summary>
+            <div class="content">
+                <p>焦虑的核心在于：想得太多，做得太少。</p>
+                <ul>
+                    <li>设定一个小目标，立刻去执行。</li>
+                    <li>关注当下，而不是未知的未来。</li>
+                    <li>接受自己的不完美。</li>
+                </ul>
+                <p>行动是击碎焦虑最有效的武器。</p>
+            </div>
+        </details>
+
+        <!-- 你可以照着上面的格式继续添加 -->
+        <!-- 
+        <details>
+            <summary>标题 <span class="date">日期</span></summary>
+            <div class="content">内容</div>
+        </details> 
+        -->
+
+    </div>
+
+    <footer>
+        &copy; 2025 YSunの日记 &copy;
+    </footer>
+
+    <script>
+        const CORRECT_PASSWORD = "358966OoOo";
+        const SESSION_KEY = "daynote_unlocked";
+
+        if (sessionStorage.getItem(SESSION_KEY) === "true") {
+            unlockPage();
+        }
+
+        function checkPassword() {
+            const input = document.getElementById('password-input');
+            const errorMsg = document.getElementById('error-msg');
+            
+            if (input.value === CORRECT_PASSWORD) {
+                sessionStorage.setItem(SESSION_KEY, "true");
+                unlockPage();
+            } else {
+                errorMsg.style.display = 'block';
+                input.value = '';
+                input.focus();
+                
+                // 震动效果
+                const box = document.querySelector('.login-box');
+                box.style.transform = 'translateX(10px)';
+                setTimeout(() => box.style.transform = 'translateX(-10px)', 100);
+                setTimeout(() => box.style.transform = 'translateX(0)', 200);
+            }
+        }
+
+        function unlockPage() {
+            const overlay = document.getElementById('password-overlay');
+            const content = document.getElementById('main-content');
+            
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                content.style.filter = 'none';
+            }, 500);
+        }
+    </script>
+</body>
+</html>
