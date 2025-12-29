@@ -1,0 +1,833 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusTwin | The Future of Digital Infrastructure</title>
+    <!-- Google Fonts for High-Tech feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00f3ff;
+            --primary-dim: rgba(0, 243, 255, 0.1);
+            --secondary: #7000ff;
+            --accent: #ff0055;
+            --bg-dark: #030b14;
+            --bg-panel: rgba(10, 25, 47, 0.7);
+            --text-main: #e6f1ff;
+            --text-muted: #8892b0;
+            --border: rgba(0, 243, 255, 0.3);
+            --neon-glow: 0 0 10px rgba(0, 243, 255, 0.5), 0 0 20px rgba(0, 243, 255, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Exo 2', sans-serif;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(112, 0, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 20%);
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, .logo span {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Utility */
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .highlight {
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
+        }
+
+        /* Header */
+        header {
+            background: rgba(3, 11, 20, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: var(--primary);
+            font-size: 1.8rem;
+            filter: drop-shadow(0 0 5px var(--primary));
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--primary);
+            text-shadow: 0 0 8px var(--primary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .btn {
+            display: inline-block;
+            background: transparent;
+            color: var(--primary);
+            padding: 0.8rem 2.5rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: 1px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            color: var(--bg-dark);
+            box-shadow: var(--neon-glow);
+        }
+
+        .btn-fill {
+            background: var(--primary);
+            color: var(--bg-dark);
+        }
+        
+        .btn-fill:hover {
+            background: var(--text-main);
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+            border-color: var(--text-main);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, var(--bg-dark) 0%, rgba(3, 11, 20, 0.7) 100%), 
+                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+        }
+
+        /* Grid Overlay */
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 1;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+
+        .hero-content {
+            z-index: 3;
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--secondary);
+            background: rgba(112, 0, 255, 0.1);
+            color: var(--secondary);
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            border-left: 3px solid var(--primary);
+            padding-left: 1.5rem;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        /* 3D Elements Placeholder or CSS Shapes */
+        .hero-visual {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 500px;
+            height: 500px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .circle-ring {
+            position: absolute;
+            border: 2px solid var(--primary-dim);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .c1 { width: 300px; height: 300px; border-top-color: var(--primary); animation: spin 10s linear infinite; }
+        .c2 { width: 400px; height: 400px; border-bottom-color: var(--secondary); animation: spin-rev 15s linear infinite; }
+        .c3 { width: 200px; height: 200px; border-left-color: var(--accent); animation: spin 5s linear infinite; }
+
+        @keyframes spin { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+        @keyframes spin-rev { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(-360deg); } }
+
+        /* Section Styling */
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin-top: 10px;
+            box-shadow: var(--neon-glow);
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-top: 1rem;
+        }
+
+        /* Features/About Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--bg-panel);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-dim);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .feature-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Digital Map Section */
+        .digital-map {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .map-visual {
+            flex: 1;
+            position: relative;
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .map-visual img {
+            width: 100%;
+            display: block;
+            opacity: 0.8;
+            transition: all 0.5s ease;
+        }
+        
+        .map-visual:hover img {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, var(--bg-dark), transparent);
+        }
+
+        .map-content {
+            flex: 1;
+        }
+
+        .map-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-row {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1.5rem;
+            border-left: 2px solid var(--secondary);
+            flex: 1;
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            color: var(--text-main);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Products/Showcase */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .showcase-item {
+            position: relative;
+            height: 300px;
+            background: #000;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .showcase-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            filter: grayscale(80%) contrast(120%);
+        }
+
+        .showcase-item:hover img {
+            transform: scale(1.1);
+            filter: grayscale(0%) contrast(100%);
+        }
+
+        .showcase-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(to top, #000, transparent);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .showcase-item:hover .showcase-info {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(90deg, #050b14, #0a192f);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Footer */
+        footer {
+            background: #02060a;
+            padding: 4rem 0 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-family: 'Exo 2', sans-serif;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-col p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links li {
+            list-style: none;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        }
+
+        .social-icons a:hover {
+            background: var(--primary);
+            color: #000;
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.8rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-container { flex-direction: column; gap: 1rem; }
+            nav ul { gap: 1rem; font-size: 0.8rem; }
+            .digital-map { flex-direction: column; }
+            .showcase-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .hero-visual { display: none; }
+        }
+
+        /* Glitch Effect Class */
+        .glitch {
+            position: relative;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-cube"></i>
+                <span>NEXUS<span class="highlight">TWIN</span></span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#platform">Platform</a></li>
+                    <li><a href="#solutions">Solutions</a></li>
+                    <li><a href="#data">Analytics</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="btn hidden-mobile">Access Console</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="grid-overlay"></div>
+        <div class="hero-visual">
+            <div class="circle-ring c1"></div>
+            <div class="circle-ring c2"></div>
+            <div class="circle-ring c3"></div>
+        </div>
+        <div class="container hero-content">
+            <span class="hero-badge"><i class="fas fa-microchip"></i> SYSTEM ONLINE V2.4</span>
+            <h1>Convergence of<br> <span class="highlight text-glitch">Digital & Physical</span></h1>
+            <p>NexusTwin empowers industries to predict, optimize, and control physical assets through hyper-realistic digital counterparts fueled by real-time AI analytics.</p>
+            <div class="hero-btns">
+                <a href="#platform" class="btn btn-fill">Initialize Demo</a>
+                <a href="#solutions" class="btn">View Blueprint</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform / Features -->
+    <section id="platform">
+        <div class="container">
+            <div class="section-title">
+                <h2>The Core Engine</h2>
+                <p>Built on advanced neural rendering and physics engines to deliver sub-millimeter accuracy.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-network-wired"></i></div>
+                    <h3>IoT Integration</h3>
+                    <p>Seamlessly ingest terabytes of sensor data from thousands of endpoints in milliseconds directly into the unified data lake.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
+                    <h3>Multi-Layer Simulation</h3>
+                    <p>Simulate thermal, structural, and fluid dynamics simultaneously to predict points of failure before they occur.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                    <h3>Predictive AI</h3>
+                    <p>Our proprietary neural networks look for patterns across historical and real-time data to optimize operational efficiency.</p>
+                </div>
+            </div>
+
+            <!-- Deep Dive Feature -->
+            <div class="digital-map">
+                <div class="map-visual">
+                    <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2069&auto=format&fit=crop" alt="Smart City Visualization">
+                    <div class="map-overlay"></div>
+                </div>
+                <div class="map-content">
+                    <h3><span class="highlight">Smart City</span> Architecture</h3>
+                    <p>Monitor energy consumption, traffic flow, and emergency response systems in a single pane of glass. Visualizations update at 60Hz offering situational awareness like never before.</p>
+                    
+                    <div class="stat-row">
+                        <div class="stat-box">
+                            <span class="stat-number count" data-target="98">0</span>
+                            <span class="stat-label">% Accuracy</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number count" data-target="450">0</span>
+                            <span class="stat-label">Data Points (TB)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions / Visual Showcase -->
+    <section id="solutions" style="background: rgba(255,255,255,0.01);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sector Solutions</h2>
+                <p>Deployed across mission-critical industries globally.</p>
+            </div>
+
+            <div class="showcase-grid">
+                <div class="showcase-item">
+                    <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?q=80&w=2070&auto=format&fit=crop" alt="Industrial">
+                    <div class="showcase-info">
+                        <h3>Industrial Manufacturing</h3>
+                        <p>Real-time assembly line optimization and predictive maintenance.</p>
+                    </div>
+                </div>
+                <div class="showcase-item">
+                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop" alt="Tech">
+                    <div class="showcase-info">
+                        <h3>Data Centers</h3>
+                        <p>Thermal management and server load balancing visualizations.</p>
+                    </div>
+                </div>
+                <div class="showcase-item">
+                    <img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2070&auto=format&fit=crop" alt="Urban">
+                    <div class="showcase-info">
+                        <h3>Urban Planning</h3>
+                        <p>Traffic simulation and infrastructure development modeling.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="data">
+        <div class="container cta-content">
+            <h2>Ready to Digitize Your Reality?</h2>
+            <p>Join the Fortune 500 companies already using NexusTwin to secure their assets and optimize their future.</p>
+            <br>
+            <a href="#" class="btn btn-fill">Schedule Consultation</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo" style="margin-bottom: 1rem; display: inline-flex;">
+                        <i class="fas fa-cube"></i>
+                        <span>NEXUS<span class="highlight">TWIN</span></span>
+                    </a>
+                    <p>The world's leading digital twin platform. We bridge the gap between physical operations and digital intelligence.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Core Analysis</a></li>
+                        <li><a href="#">3D Rendering</a></li>
+                        <li><a href="#">IoT Connectors</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Partners</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">support@nexustwin.io</a></li>
+                        <li><a href="#">+1 (555) 019-2834</a></li>
+                        <li><br><a href="#" class="btn" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Status: Operational</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy;  NexusTwin Technologies. All Rights Reserved. System Version 2.4.1</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tech Loader / Scroll interactions
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Counter Animation
+            const counters = document.querySelectorAll('.count');
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const speed = 200;
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 20);
+                    } else {
+                        counter.innerText = target;
+                        // Add symbols for flair
+                        if(target > 100) counter.innerText += 'K+';
+                        else counter.innerText += '%';
+                    }
+                };
+                
+                // Simple observer to trigger when in view
+                let observer = new IntersectionObserver((entries) => {
+                    if(entries[0].isIntersecting) {
+                        updateCount();
+                        observer.disconnect();
+                    }
+                });
+                
+                observer.observe(counter);
+            });
+
+            // Smooth Scroll with high-tech feeling (optional extra behavior)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Random stick effect for "High Tech" vibe
+            setInterval(() => {
+                const visual = document.querySelector('.hero-visual');
+                if(visual) {
+                    visual.style.filter = `hue-rotate(${Math.random() * 20}deg)`;
+                }
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

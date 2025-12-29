@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinity Bookmark · 数智图书馆</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            /* 米白色主题 (Cream/Off-White) */
+            --bg-body: #f9f9f6;
+            --bg-sidebar: #f2f2ee;
+            --bg-card: rgba(255, 255, 255, 0.7);
+            --bg-card-hover: #ffffff;
+            --border-color: rgba(0, 0, 0, 0.06);
+            --text-main: #2c3e50;
+            --text-sub: #64748b;
+            --accent-color: #10b981; 
+            --accent-gradient: linear-gradient(135deg, #10b981, #34d399);
+            --glass-blur: blur(20px);
+            --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+            /* 柔和的背景纹理 */
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.03), transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(52, 211, 153, 0.03), transparent 40%);
+        }
+        
+        /* 滚动条美化 (Light) */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+
+        /* 侧边栏 */
+        .sidebar {
+            width: 250px;
+            background: var(--bg-sidebar);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            padding: 24px 0;
+            z-index: 10;
+        }
+
+        .logo {
+            padding: 0 24px 24px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-menu {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px 16px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 16px;
+            margin-bottom: 4px;
+            border-radius: 8px;
+            color: var(--text-sub);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(0, 0, 0, 0.04);
+            color: var(--text-main);
+        }
+        
+        .nav-item.active {
+            background: rgba(16, 185, 129, 0.08);
+            color: var(--accent-color);
+        }
+        
+        .cat-count {
+            font-size: 0.75rem;
+            background: rgba(0, 0, 0, 0.05);
+            padding: 1px 7px;
+            border-radius: 10px;
+            color: var(--text-sub);
+        }
+
+        /* 主内容区 */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0 48px 48px;
+            position: relative;
+            scroll-behavior: smooth;
+        }
+
+        /* 顶部搜索栏 */
+        .header {
+            position: sticky;
+            top: 0;
+            padding: 32px 0 24px;
+            background: linear-gradient(to bottom, var(--bg-body) 80%, rgba(249, 249, 246, 0.5));
+            z-index: 20;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(8px);
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .search-box input {
+            width: 100%;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            padding: 14px 20px 14px 48px;
+            border-radius: 12px;
+            color: var(--text-main);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-card);
+        }
+
+        .search-box input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+        }
+        
+        .search-box input::placeholder {
+            color: #9ca3af;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            font-size: 1rem;
+        }
+
+        /* 分类区块 */
+        .category-section {
+            margin-bottom: 56px;
+            scroll-margin-top: 100px;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        .category-header h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            letter-spacing: -0.02em;
+        }
+        
+        .category-header h2::before {
+            content: '#';
+            margin-right: 8px;
+            color: var(--accent-color);
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        /* 卡片网格 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            gap: 16px;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            box-shadow: var(--shadow-card);
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            background: var(--bg-card-hover);
+            border-color: rgba(16, 185, 129, 0.3);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            object-fit: contain;
+            background: #f1f5f9;
+            padding: 6px;
+            flex-shrink: 0;
+        }
+
+        .card-content {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-url {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            opacity: 0.7;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            body { flex-direction: column; overflow-y: auto; }
+            .sidebar { 
+                width: 100%; 
+                height: 64px; 
+                flex: 0 0 auto;
+                flex-direction: row; 
+                align-items: center; 
+                padding: 0 20px;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                position: sticky;
+                top: 0;
+                z-index: 50;
+            }
+            .logo { padding: 0; margin-right: 20px; font-size: 1.2rem; }
+            .nav-menu { display: none; } 
+            .main-content { padding: 0 20px 40px; overflow: visible; }
+            .header { top: 64px; padding: 20px 0; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-infinity"></i> Ysun の 书签
+        </div>
+        <div class="nav-menu" id="nav-container">
+            <!-- 导航 -->
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <header class="header">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Search resources...">
+            </div>
+        </header>
+
+        <div id="bookmarks-container">
+            <!-- 内容 -->
+        </div>
+    </main>
+
+    <script>
+        // 数据源
+        const data = [
+
+  {
+    "category": "AI 对话 & 智能助手",
+    "items": [
+      { "name": "ChatGPT", "url": "https://chatgpt.com/" },
+      { "name": "Claude", "url": "https://claude.ai/new" },
+      { "name": "DeepSeek", "url": "https://chat.deepseek.com/" },
+      { "name": "Gemini", "url": "https://gemini.google.com/" },
+      { "name": "Grok", "url": "https://grok.com/" },
+      { "name": "Mistral", "url": "https://chat.mistral.ai/" },
+      { "name": "Copilot", "url": "https://copilot.microsoft.com/" },
+      { "name": "DuckDuckGo AI", "url": "https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat" },
+      { "name": "Character.ai", "url": "https://character.ai/" },
+      { "name": "Google AI Studio", "url": "https://aistudio.google.com/" }
+    ]
+  },
+  {
+    "category": "AI 搜索 & 效率写作",
+    "items": [
+      { "name": "Perplexity", "url": "https://www.perplexity.ai/" },
+      { "name": "Felo Search", "url": "https://felo.ai/" },
+      { "name": "Phind", "url": "https://www.phind.com/" },
+      { "name": "NotebookLM", "url": "https://notebooklm.google.com/" },
+      { "name": "Napkin AI (图文写作)", "url": "https://app.napkin.ai/" },
+      { "name": "Lumona Search", "url": "https://www.lumona.ai/" },
+      { "name": "XAnswer AI", "url": "https://www.xanswer.com/" },
+      { "name": "Noiz Studio", "url": "https://noiz.ai/" },
+      { "name": "Farfalle", "url": "https://www.farfalle.dev/" },
+      { "name": "Elicit (科研辅助)", "url": "https://elicit.com/" },
+      { "name": "Connected Papers", "url": "https://www.connectedpapers.com/" }
+    ]
+  },
+  {
+    "category": "设计素材 & 图像处理",
+    "items": [
+      { "name": "Pikwizard (免版税图库)", "url": "https://pikwizard.com/" },
+      { "name": "CleanPNG", "url": "https://www.cleanpng.com/" },
+      { "name": "Hyvector (矢量图)", "url": "https://www.hyvector.com/" },
+      { "name": "Mixkit (视频音频素材)", "url": "https://mixkit.co/" },
+      { "name": "Remove.photos (AI去背)", "url": "https://remove.photos/" },
+      { "name": "RevizePic (图片修复)", "url": "https://revizepic.toolooz.com/" },
+      { "name": "Toolooz (在线设计工具)", "url": "https://toolooz.com/" },
+      { "name": "Open Stickers (贴纸)", "url": "https://openstickers.craftwork.design/" },
+      { "name": "字体库 (zitiku)", "url": "https://zitiku.org/" },
+      { "name": "Calligraphy Generator", "url": "https://calligraphyfontgenerator.org/" },
+      { "name": "Funny Emoji", "url": "https://funnyemoji.com/" },
+      { "name": "Dotown (像素艺术)", "url": "https://dotown.maeda-design.net/" },
+      { "name": "Free Paper Texture (材质)", "url": "https://free-paper-texture.com/" },
+      { "name": "AutoDraw", "url": "https://www.autodraw.com/" },
+      { "name": "Palette.fm (上色)", "url": "https://palette.fm/" },
+      { "name": "HivisionIDPhotos (证件照)", "url": "https://huggingface.co/spaces/TheEeeeLin/HivisionIDPhotos" },
+      { "name": "InstantIR (图片清晰)", "url": "https://huggingface.co/spaces/JOY-Huang/InstantIR" },
+      { "name": "Artbreeder", "url": "https://www.artbreeder.com/" },
+      { "name": "Sketchfab (3D模型)", "url": "https://sketchfab.com/" }
+    ]
+  },
+  {
+    "category": "学习、语言 & 文献",
+    "items": [
+      { "name": "2study (词文记)", "url": "https://2study.top/words" },
+      { "name": "单词森林", "url": "https://wordforest.cn/" },
+      { "name": "新概念英语点读", "url": "https://nce.ichochy.com/" },
+      { "name": "英语小说网", "url": "https://yingyuxiaoshuo.com/" },
+      { "name": "OceanofPDF (电子书)", "url": "https://oceanofpdf.com/" },
+      { "name": "WeLib 电子书", "url": "https://welib.org/" },
+      { "name": "Mathcheap (数学)", "url": "https://mathcheap.xyz/" },
+      { "name": "Learn Prompting", "url": "https://learnprompting.thinkific.com/" },
+      { "name": "高等院校三千所", "url": "https://laosheng.top/" }
+    ]
+  },
+  {
+    "category": "影视、音乐 & 媒体",
+    "items": [
+      { "name": "YouTube", "url": "https://www.youtube.com/" },
+      { "name": "Bilibili", "url": "https://www.bilibili.com/" },
+      { "name": "AcFun", "url": "https://www.acfun.cn/" },
+      { "name": "MissEvan (M站)", "url": "https://www.missevan.com/" },
+      { "name": "免费无损音乐 (isflac)", "url": "https://www.isflac.com/" },
+      { "name": "23ape (音乐下载)", "url": "https://www.23ape.net/" },
+      { "name": "歌曲海 (gequhai)", "url": "https://www.gequhai.com/" },
+      { "name": "Video Game Music", "url": "https://downloads.khinsider.com/" },
+      { "name": "Ambiphone (环境音)", "url": "https://ambiph.one/" }
+    ]
+  },
+  {
+    "category": "资源下载 & 系统工具",
+    "items": [
+      { "name": "FMHY (资源大合集)", "url": "https://fmhy.net/" },
+      { "name": "CrxDL (插件下载)", "url": "https://crxdl.com/" },
+      { "name": "FOSSHUB (开源软件)", "url": "https://www.fosshub.com/" },
+      { "name": "装个机 (系统重装)", "url": "https://zhuangit.ababtools.com/" },
+      { "name": "IIICE 资源", "url": "https://www.iiice.cn/" },
+      { "name": "创业大全", "url": "https://cy.urongda.com/" },
+      { "name": "CDNJS 镜像", "url": "https://cdnjs.znnu.com/" }
+    ]
+  },
+  {
+    "category": "开发、编程 & 博客",
+    "items": [
+      { "name": "CodePen", "url": "https://codepen.io/" },
+      { "name": "稀土掘金", "url": "https://juejin.cn/" },
+      { "name": ".NET Fiddle", "url": "https://dotnetfiddle.net/" },
+      { "name": "PlantText UML", "url": "https://www.planttext.com/" },
+      { "name": "RSSHub", "url": "https://rsshub.netlify.app/" },
+      { "name": "GitStar", "url": "https://ghubstar.com/" },
+      { "name": "Chunkr (文档智能)", "url": "https://www.chunkr.ai/" },
+      { "name": "Free LLM API Resources", "url": "https://jscheah.me/free-llm-api-resources/" },
+      { "name": "Oimo.io (作品展示)", "url": "https://oimo.io/works" },
+      { "name": "Masterpiece X (AI 3D)", "url": "https://app.masterpiecex.com/" }
+    ]
+  },
+  {
+    "category": "效率生活 & 服务",
+    "items": [
+      { "name": "一饭封神 (AI菜谱)", "url": "https://eat.lz-t.top/" },
+      { "name": "懒人Excel", "url": "https://www.lanrenexcel.com/" },
+      { "name": "Todo List Online", "url": "https://todo.uiineed.com/" },
+      { "name": "Proton Mail", "url": "https://mail.proton.me/" },
+      { "name": "Slack", "url": "https://slack.com/" },
+      { "name": "Draw.io", "url": "https://app.diagrams.net/" },
+      { "name": "国际学生证生成器", "url": "https://student.frp.gs/" },
+      { "name": "Qwant Junior", "url": "https://www.qwantjunior.com/" }
+    ]
+  },
+  {
+    "category": "综合导航 & 社交社区",
+    "items": [
+      { "name": "老王导航", "url": "https://nav.eooce.com/" },
+      { "name": "Telegram Group 合集", "url": "https://github.com/AZeC4/TelegramGroup" },
+      { "name": "Newlearner (Telegram频道)", "url": "https://www.newlearner.site/" },
+      { "name": "图标搜索工具", "url": "https://icontool.pages.dev/" },
+      { "name": "机场VPN导航", "url": "https://jichangvpn.github.io/" },
+      { "name": "Civitai (AI模型社区)", "url": "https://civitai.com/" },
+      { "name": "DeviantArt", "url": "https://www.deviantart.com/" },
+      { "name": "E-Hentai", "url": "https://e-hentai.org/" },
+      { "name": "Iwara", "url": "https://www.iwara.tv/" },
+      { "name": "Gelbooru", "url": "https://gelbooru.com/" },
+      { "name": "Konachan", "url": "https://konachan.com/" },
+      { "name": "xbookcn (成人文学)", "url": "https://www.xbookcn.net/" }
+    ]
+
+  }
+];
+
+        const navContainer = document.getElementById('nav-container');
+        const container = document.getElementById('bookmarks-container');
+        const searchInput = document.getElementById('searchInput');
+
+        function getFavicon(item) {
+            // 优先使用导入的 icon (base64)
+            if (item.icon && item.icon.length > 50) return item.icon;
+            try {
+                const host = new URL(item.url).hostname;
+                return `https://www.google.com/s2/favicons?sz=64&domain=${host}`;
+            } catch(e) {
+                return 'https://via.placeholder.com/64?text=?';
+            }
+        }
+
+        function render() {
+            navContainer.innerHTML = '';
+            container.innerHTML = '';
+
+            data.forEach((cat, index) => {
+                // 忽略空分类
+                if (!cat.items || cat.items.length === 0) return;
+
+                // 侧边栏
+                const nav = document.createElement('div');
+                nav.className = 'nav-item';
+                nav.innerHTML = `
+                    <span>${cat.category}</span>
+                    <span class="cat-count">${cat.items.length}</span>
+                `;
+                nav.onclick = () => {
+                    document.getElementById('cat-' + index).scrollIntoView({ behavior: 'smooth' });
+                    document.querySelectorAll('.nav-item').forEach(e => e.classList.remove('active'));
+                    nav.classList.add('active');
+                };
+                navContainer.appendChild(nav);
+
+                // 内容区
+                const section = document.createElement('div');
+                section.className = 'category-section';
+                section.id = 'cat-' + index;
+                
+                // 标题
+                const header = document.createElement('div');
+                header.className = 'category-header';
+                header.innerHTML = `<h2>${cat.category}</h2>`;
+                section.appendChild(header);
+
+                // 网格
+                const grid = document.createElement('div');
+                grid.className = 'grid';
+
+                cat.items.forEach(item => {
+                    const card = document.createElement('a');
+                    card.href = item.url;
+                    card.className = 'card';
+                    card.target = '_blank';
+                    
+                    const iconSrc = getFavicon(item);
+                    
+                    card.innerHTML = `
+                        <img src="${iconSrc}" class="card-icon" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNTU1IiBzdHJva2Utd2lkdGg9IjIiPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjEwIi8+PC9zdmc+'">
+                        <div class="card-content">
+                            <div class="card-title">${item.name}</div>
+                            <div class="card-url">${item.url.replace(/^https?:\/\//, '').replace(/\/.*$/, '')}</div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+                
+                section.appendChild(grid);
+                container.appendChild(section);
+            });
+        }
+
+        // 搜索
+        searchInput.addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase();
+            const sections = document.querySelectorAll('.category-section');
+            
+            sections.forEach(sec => {
+                const cards = sec.querySelectorAll('.card');
+                let hasVisible = false;
+                cards.forEach(card => {
+                    const title = card.querySelector('.card-title').textContent.toLowerCase();
+                    const url = card.querySelector('.card-url').textContent.toLowerCase();
+                    if (title.includes(val) || url.includes(val)) {
+                        card.style.display = 'flex';
+                        hasVisible = true;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                sec.style.display = hasVisible ? 'block' : 'none';
+            });
+        });
+
+        render();
+        
+        // 默认激活第一个导航
+        if (navContainer.firstChild) navContainer.firstChild.classList.add('active');
+    </script>
+</body>
+</html>

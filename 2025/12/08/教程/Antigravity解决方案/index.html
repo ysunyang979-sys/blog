@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang=zh>
+
+    <head>
+        <meta charset="utf-8">
+        
+            <title>
+                
+                    Antigravity | 
+                            ysun &amp; Blog
+            </title>
+            
+                
+                    <meta name="keywords" content="IDE,代理,教程,v2rayN,Proxifier" />
+                    
+                        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+                        <meta name="description" content="解决 Antigravity IDE 强制要求开启 TUN 模式的问题，通过 Proxifier 实现更安全、更精准的进程级分流。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Antigravity">
+<meta property="og:url" content="https://ysunyang979-sys.github.io/2025/12/08/%E6%95%99%E7%A8%8B/Antigravity%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/index.html">
+<meta property="og:site_name" content="ysun &amp; Blog">
+<meta property="og:description" content="解决 Antigravity IDE 强制要求开启 TUN 模式的问题，通过 Proxifier 实现更安全、更精准的进程级分流。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-12-08T14:50:00.000Z">
+<meta property="article:modified_time" content="2025-12-29T06:05:56.999Z">
+<meta property="article:author" content="ysun">
+<meta property="article:tag" content="IDE">
+<meta property="article:tag" content="代理">
+<meta property="article:tag" content="教程">
+<meta property="article:tag" content="v2rayN">
+<meta property="article:tag" content="Proxifier">
+<meta name="twitter:card" content="summary">
+                            
+
+                                
+                                    <link rel="alternate" href="/atom.xml"
+                                        title="ysun &amp; Blog" type="application/atom+xml" />
+                                    
+
+                                        
+                                            <link rel="icon" href="/favicon.png" />
+                                            
+
+                                                
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+                                                    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+                                                        
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+                                                            <link rel="stylesheet"
+                                                                href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css">
+                                                            <link rel="stylesheet"
+                                                                href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+                                                            <link rel="stylesheet" href="/css/pdf-tools.css">
+                                                            <link rel="stylesheet" href="/css/custom-style.css">
+
+                                                            
+<link rel="stylesheet" href="/css/style.css">
+
+                                                                
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+                                                                    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+                                                                        
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+                                                                            
+                                                                                <script async
+                                                                                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                                                                                
+    <meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                
+                <span class="site-title">ysun &amp; Blog</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+                    <a class="main-nav-link" href="/SearchFile">经验</a>
+                
+                    <a class="main-nav-link" href="/tools/Daynote.html">Daynote</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                    <td><a class="main-nav-link" href="/SearchFile">经验</a></td>
+                
+                    <td><a class="main-nav-link" href="/tools/Daynote.html">Daynote</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+    
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span id="tab-category" class="widget-tab active">分类</span>
+            <span id="tab-links" class="widget-tab">
+                <i class="fa fa-link"></i>
+            </span>
+            <a id='allExpand' href="#" style="float: right;">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        <div id="content-category">
+            
+            
+             <ul class="unstyled" id="tree" > 
+                        <li class="directory open">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder-open"></i>
+                                &nbsp;
+                                Site Features
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file active"><a href="/2025/12/08/%E6%95%99%E7%A8%8B/Antigravity%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">Antigravity</a></li>  <li class="file"><a href="/2025/12/08/%E6%95%99%E7%A8%8B/PDF%E5%8A%9F%E8%83%BD%E5%B1%95%E7%A4%BA/">博客新功能：PDF 在线阅读</a></li>  <li class="file"><a href="/2025/12/08/%E6%95%99%E7%A8%8B/%E8%A1%A8%E6%83%85%E7%AC%A6%E5%8F%B7%E5%B1%95%E7%A4%BA%20copy/">Antigravity解决方案</a></li>  <li class="file"><a href="/2025/12/08/%E6%95%99%E7%A8%8B/%E8%A1%A8%E6%83%85%E7%AC%A6%E5%8F%B7%E5%B1%95%E7%A4%BA/">博客 Emoji 表情符号大全</a></li>  <li class="file"><a href="/2025/12/08/%E6%95%99%E7%A8%8B/%E4%BB%A3%E7%A0%81%E5%9D%97%E5%8A%9F%E8%83%BD%E5%B1%95%E7%A4%BA/">代码块功能展示</a></li>  </ul> 
+                        </li> 
+                        
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                unity
+                            </a>
+                             <ul class="unstyled" id="tree" > 
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                四部曲
+                            </a>
+                             <ul class="unstyled" id="tree" > 
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                入门
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/09/29/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/001unity%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">基础知识</a></li>  <li class="file"><a href="/2024/09/29/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/0000/">条件运算</a></li>  <li class="file"><a href="/2024/09/29/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/0001/">异常捕获</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/002%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6/">三目运算符</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/000/">if</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/003Switch/">Switch</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/004While/">While</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/005Do%20While/">Do While</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/006For/">For</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/007%E6%8E%A7%E5%88%B6%E5%8F%B0/">控制台</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/008%E9%9A%8F%E6%9C%BA%E6%95%B0/">随机数</a></li>  <li class="file"><a href="/2024/11/01/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/009%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/">项目调试</a></li>  <li class="file"><a href="/2024/11/01/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/010/">需求分析</a></li>  </ul> 
+                        </li> 
+                         </ul> 
+                        </li> 
+                        
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                效率/技巧
+                            </a>
+                             <ul class="unstyled" id="tree" > 
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                3D建模
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/unity3d-model/">unity3D模型处理</a></li>  </ul> 
+                        </li> 
+                        
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                TMP设置
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/unity%E5%AD%97%E4%BD%93%E8%AE%BE%E7%BD%AE/">unity字体TMP设置</a></li>  </ul> 
+                        </li> 
+                        
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                写文章
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/Guide/">Guide</a></li>  </ul> 
+                        </li> 
+                        
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                插件
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/unityplug/">unity插件</a></li>  </ul> 
+                        </li> 
+                        
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                电脑软件
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/%E7%94%B5%E8%84%91%E8%BD%AF%E4%BB%B6/">电脑软件</a></li>  </ul> 
+                        </li> 
+                         </ul> 
+                        </li> 
+                         </ul> 
+                        </li> 
+                        
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                个人
+                            </a>
+                             <ul class="unstyled" id="tree" > 
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                AI提示词
+                            </a>
+                             <ul class="unstyled" id="tree" > 
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                AI实用提示词
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/%E4%B8%AA%E4%BA%BA/AI%E6%8F%90%E7%A4%BA%E8%AF%8D/AI%E5%AE%9E%E7%94%A8%E6%8F%90%E7%A4%BA%E8%AF%8D%20copy/">AI绘画提示词</a></li>  </ul> 
+                        </li> 
+                        
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                AI绘画
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/%E4%B8%AA%E4%BA%BA/AI%E6%8F%90%E7%A4%BA%E8%AF%8D/AI%E7%BB%98%E7%94%BB%E6%8F%90%E7%A4%BA%E8%AF%8D/">AI绘画提示词</a></li>  </ul> 
+                        </li> 
+                        
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                油猴脚本
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/%E4%B8%AA%E4%BA%BA/AI%E6%8F%90%E7%A4%BA%E8%AF%8D/%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%9C%AC%202/">油猴脚本 - 提示词管理器2</a></li>  <li class="file"><a href="/2024/05/21/%E4%B8%AA%E4%BA%BA/AI%E6%8F%90%E7%A4%BA%E8%AF%8D/%E6%B2%B9%E7%8C%B4%E8%84%9A%E6%9C%AC/">油猴脚本 - 提示词管理器1</a></li>  </ul> 
+                        </li> 
+                         </ul> 
+                        </li> 
+                        
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                临时邮箱
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2025/05/20/%E4%B8%AA%E4%BA%BA/%E6%97%A5%E8%AE%B0/%E4%B8%B4%E6%97%B6%E9%82%AE%E7%AE%B1/%E4%B8%B4%E6%97%B6%E9%82%AE%E7%AE%B1-%E4%B9%A6%E7%B1%8D%E4%B8%8B%E8%BD%BD/">临时邮箱-书籍下载</a></li>  <li class="file"><a href="/2025/05/20/%E4%B8%AA%E4%BA%BA/%E6%97%A5%E8%AE%B0/%E4%B8%B4%E6%97%B6%E9%82%AE%E7%AE%B1/%E4%B8%B4%E6%97%B6%E9%82%AE%E7%AE%B1/">临时邮箱与AI建模：无限试用神器指南</a></li>  </ul> 
+                        </li> 
+                        
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                便捷
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/20/%E4%B8%AA%E4%BA%BA/%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%EF%BC%88vercel%EF%BC%89/">个人vercel网站</a></li>  </ul> 
+                        </li> 
+                        
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                工具
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2025/12/26/%E4%B8%AA%E4%BA%BA/%E5%B7%A5%E5%85%B7%E7%AE%B1%E5%85%A5%E5%8F%A3/">🛠️ 科学上网</a></li>  </ul> 
+                        </li> 
+                        
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                感悟
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/20/%E4%B8%AA%E4%BA%BA/%E6%97%A5%E8%AE%B0/%E6%84%9F%E6%82%9F/ysun%E3%81%AE%E6%83%B3%E6%B3%95%E8%AE%B0%E5%BD%95/">ysunの想法记录</a></li>  <li class="file"><a href="/2024/05/20/%E4%B8%AA%E4%BA%BA/%E6%97%A5%E8%AE%B0/%E6%84%9F%E6%82%9F/ysun%E3%81%AE%E6%84%9F%E6%82%9F/">ysunの感悟</a></li>  </ul> 
+                        </li> 
+                        
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                日记
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/20/%E4%B8%AA%E4%BA%BA/%E6%97%A5%E8%AE%B0/2025.12.7/">2025-12-07今日日记</a></li>  </ul> 
+                        </li> 
+                         </ul> 
+                        </li> 
+                        
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                加密文章
+                            </a>
+                             <ul class="unstyled" id="tree" > 
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                网站
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/ip/">Secret</a></li>  </ul> 
+                        </li> 
+                         </ul> 
+                        </li> 
+                         </ul> 
+        </div>
+
+        <div id="content-links" style="display: none;">
+            <ul class="unstyled">
+                
+                    
+                        <li style="padding: 5px 0;">
+                            <a href="https://www.google.com/search?q=&sca_esv=233e60072d3234a0&sxsrf=AE3TifOw6Q8lXXZcbtY868xdcsYYMlV2XQ%3A1764644280560&source=hp&ei=uFUuaYTfIKmei-gPudXNwAo&iflsig=AOw8s4IAAAAAaS5jyAlCdT5VYSTJoKc_HQMXLLFGBT9m&aep=22&udm=50&ved=0ahUKEwiEm_yb9J2RAxUpzwIHHblqE6gQteYPCBI&oq=&gs_lp=Egdnd3Mtd2l6IgBIAFAAWABwAHgAkAEAmAEAoAEAqgEAuAEByAEAmAIAoAIAmAMAkgcAoAcAsgcAuAcAwgcAyAcA&sclient=gws-wiz" target="_blank">
+                                <i class="fa fa-link"></i>&nbsp;谷歌
+                            </a>
+                        </li>
+                    
+                        <li style="padding: 5px 0;">
+                            <a href="https://ysbk.vercel.app/" target="_blank">
+                                <i class="fa fa-link"></i>&nbsp;另一个朋友的博客
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+        </div>
+
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            
+            // Tab switching logic
+            $('#tab-category').click(function() {
+                $('#content-category').show();
+                $('#content-links').hide();
+                $('#allExpand').show(); // Show expand button for category
+                $(this).addClass('active');
+                $('#tab-links').removeClass('active');
+            });
+
+            $('#tab-links').click(function() {
+                $('#content-category').hide();
+                $('#content-links').show();
+                $('#allExpand').hide(); // Hide expand button for links
+                $(this).addClass('active');
+                $('#tab-category').removeClass('active');
+            });
+
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-教程/Antigravity解决方案" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Site-Features/">Site Features</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/IDE/" rel="tag">IDE</a>, <a class="tag-link-link" href="/tags/Proxifier/" rel="tag">Proxifier</a>, <a class="tag-link-link" href="/tags/v2rayN/" rel="tag">v2rayN</a>, <a class="tag-link-link" href="/tags/%E4%BB%A3%E7%90%86/" rel="tag">代理</a>, <a class="tag-link-link" href="/tags/%E6%95%99%E7%A8%8B/" rel="tag">教程</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2025/12/08/%E6%95%99%E7%A8%8B/Antigravity%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+            <time datetime="2025-12-08T14:50:00.000Z" itemprop="datePublished">2025-12-08</time>
+        </a>
+    </div>
+
+
+                        <div class="article-meta-wordcount">
+                            <i class="fa fa-file-word-o"></i>&nbsp;
+                            <span class="post-count">2k words</span>
+                        </div>
+                        <div class="article-meta-min2read">
+                            <i class="fa fa-clock-o"></i>&nbsp;
+                            <span class="post-count">1 min</span>
+                        </div>
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Antigravity
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+        
+        
+            <h1 id="🚀-告别-TUN-模式：Antigravity-IDX-IDE-精准代理终极解决方案"><a href="#🚀-告别-TUN-模式：Antigravity-IDX-IDE-精准代理终极解决方案" class="headerlink" title="🚀 告别 TUN 模式：Antigravity&#x2F;IDX IDE 精准代理终极解决方案"></a>🚀 告别 TUN 模式：Antigravity&#x2F;IDX IDE 精准代理终极解决方案</h1><h3 id="📅-背景：为何要拒绝-TUN-模式？"><a href="#📅-背景：为何要拒绝-TUN-模式？" class="headerlink" title="📅 背景：为何要拒绝 TUN 模式？"></a>📅 背景：为何要拒绝 TUN 模式？</h3><p>在开发 <strong>Antigravity (Google Project IDX)</strong> 等云端 AI IDE 时，官方通常建议开启 <strong>TUN 模式</strong>。但 TUN 模式作为“虚拟网卡”级别的全局接管，往往会带来以下痛点：</p>
+<ol>
+<li><strong>国内软件异常</strong>：微信、钉钉频繁异地登录报警，甚至导致网银插件失效。</li>
+<li><strong>流量与延迟</strong>：全系统流量强制经过代理，导致访问国内网站变慢，浪费机场流量。</li>
+<li><strong>配置冲突</strong>：虚拟网卡可能与某些开发环境（如 Docker、虚拟网桥）产生兼容性问题。</li>
+</ol>
+<p>本文将分享一套<strong>“精准分流”</strong>的终极方案：通过 <strong>v2rayN + Proxifier</strong>，实现 <strong>IDE 强制翻墙、浏览器智能分流、系统进程直连</strong>。</p>
+<hr>
+<h2 id="🛠️-第一阶段：v2rayN-的“情报预设”"><a href="#🛠️-第一阶段：v2rayN-的“情报预设”" class="headerlink" title="🛠️ 第一阶段：v2rayN 的“情报预设”"></a>🛠️ 第一阶段：v2rayN 的“情报预设”</h2><p>首先，我们需要在 v2rayN 中建立一套识别 IDE 流量的路由分流策略。</p>
+<h3 id="1-建立自定义路由规则"><a href="#1-建立自定义路由规则" class="headerlink" title="1. 建立自定义路由规则"></a>1. 建立自定义路由规则</h3><ol>
+<li>打开 <strong>v2rayN</strong> -&gt; <strong>设置</strong> -&gt; <strong>路由设置</strong> -&gt; <strong>用户自定义路由</strong>。</li>
+<li>点击 <strong>添加规则</strong>，按下图参数配置：<ul>
+<li>**别名 (Alias)**：<code>Antigravity</code></li>
+<li>**outboundTag (目标)**：<code>proxy</code></li>
+<li>**Domain (左侧域名框)**：填入以下核心域名（一行一个）<pre><code class="text">domain:com.google.antigravity
+domain:oauth2.googleapis.com
+domain:googleapis.com
+</code></pre>
+</li>
+<li>**进程名 (右侧进程框)**：<pre><code class="text">antigravity.exe
+language_server_windows_x64.exe
+</code></pre>
+</li>
+</ul>
+</li>
+<li><strong>应用路由</strong>：在 v2rayN 主界面右下角，将 <strong>路由</strong> 切换为刚刚创建的 <code>Antigravity</code> 或标准的 <code>绕过大陆 (Bypass CN)</code>。</li>
+<li><strong>系统代理</strong>：设置为 <strong>自动配置系统代理</strong>（状态栏变绿）。</li>
+</ol>
+<hr>
+<h2 id="🏗️-第二阶段：Proxifier-的“精准引流”"><a href="#🏗️-第二阶段：Proxifier-的“精准引流”" class="headerlink" title="🏗️ 第二阶段：Proxifier 的“精准引流”"></a>🏗️ 第二阶段：Proxifier 的“精准引流”</h2><p>由于 Antigravity IDE 底层通信（gRPC 等）往往不读取系统代理设置，我们需要 Proxifier 在底层强行把流量“抓”给 v2rayN。</p>
+<h3 id="1-配置代理服务器-Proxy-Server"><a href="#1-配置代理服务器-Proxy-Server" class="headerlink" title="1. 配置代理服务器 (Proxy Server)"></a>1. 配置代理服务器 (Proxy Server)</h3><ul>
+<li>菜单：<strong>Profile</strong> -&gt; <strong>Proxy Servers…</strong> -&gt; <strong>Add…</strong></li>
+<li><strong>Address</strong>: <code>127.0.0.1</code> | <strong>Port</strong>: <code>10808</code> (对应 v2rayN 的 SOCKS5 端口)</li>
+<li><strong>Protocol</strong>: <code>SOCKS Version 5</code></li>
+<li>点击 <strong>Check</strong> 确认显示绿色 <code>Proxy is ready</code>。</li>
+</ul>
+<h3 id="2-构建分流规则-Proxification-Rules"><a href="#2-构建分流规则-Proxification-Rules" class="headerlink" title="2. 构建分流规则 (Proxification Rules)"></a>2. 构建分流规则 (Proxification Rules)</h3><p>这是实现“不全局翻墙”的核心！请确保规则<strong>由上至下</strong>排列：</p>
+<table>
+<thead>
+<tr>
+<th align="left">规则名称</th>
+<th align="left">应用程序 (Applications)</th>
+<th align="left">动作 (Action)</th>
+<th align="left">作用说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Localhost</strong></td>
+<td align="left"><code>Any</code></td>
+<td align="left"><code>Direct</code></td>
+<td align="left">保证本机回环流量不走代理</td>
+</tr>
+<tr>
+<td align="left"><strong>System</strong></td>
+<td align="left"><code>MsMpEng.exe; svchost.exe</code></td>
+<td align="left"><code>Direct</code></td>
+<td align="left"><strong>彻底消除系统组件报错红字</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>Antigravity</strong></td>
+<td align="left"><code>antigravity.exe; language_server_windows_x64.exe</code></td>
+<td align="left"><strong>Proxy SOCKS5</strong></td>
+<td align="left"><strong>强制 IDE 走加密隧道</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>Default</strong></td>
+<td align="left"><code>Any</code></td>
+<td align="left"><strong><code>Direct</code></strong></td>
+<td align="left"><strong>重要：让浏览器等其他软件默认直连</strong></td>
+</tr>
+</tbody></table>
+<h3 id="3-DNS-设置"><a href="#3-DNS-设置" class="headerlink" title="3. DNS 设置"></a>3. DNS 设置</h3><ul>
+<li>菜单：<strong>Profile</strong> -&gt; <strong>Name Resolution…</strong></li>
+<li>勾选：<code>Detect DNS settings automatically</code>。</li>
+<li><em>注：若遇到无法解析，可切换为 <code>Resolve hostnames through proxy</code>。</em></li>
+</ul>
+<hr>
+<h2 id="🔍-第三阶段：深度验证与疑难排解"><a href="#🔍-第三阶段：深度验证与疑难排解" class="headerlink" title="🔍 第三阶段：深度验证与疑难排解"></a>🔍 第三阶段：深度验证与疑难排解</h2><h3 id="1-为什么我的-IP-测出来“不一致”？（这才是成功的标志！）"><a href="#1-为什么我的-IP-测出来“不一致”？（这才是成功的标志！）" class="headerlink" title="1. 为什么我的 IP 测出来“不一致”？（这才是成功的标志！）"></a>1. 为什么我的 IP 测出来“不一致”？（这才是成功的标志！）</h3><p>配置完成后，你会发现一个奇妙的“内外分流”现象：</p>
+<ul>
+<li>**访问 [百度&#x2F;cip.cc]**：显示 <strong>真实中国本地 IP</strong>（说明国内流量直连，安全且满速）。</li>
+<li><strong>访问 [Google&#x2F;YouTube]<strong>：</strong>能正常打开</strong>（说明浏览器通过 v2rayN 的路由成功翻墙）。</li>
+<li><strong>Proxifier 窗口</strong>：只有 IDE 进程变绿并跳动流量（说明 IDE 被强制接管，不受系统环境干扰）。</li>
+</ul>
+<h3 id="2-彻底消除-Proxifier-报错红字"><a href="#2-彻底消除-Proxifier-报错红字" class="headerlink" title="2. 彻底消除 Proxifier 报错红字"></a>2. 彻底消除 Proxifier 报错红字</h3><p>如果在日志中看到 <code>ecs.office.com</code> 或 <code>IPv6</code> 报错红字：</p>
+<ul>
+<li><strong>方案 A</strong>：将 <code>MsMpEng.exe</code> (Defender 杀毒) 加入 <code>System</code> 规则并设为 <code>Direct</code>。</li>
+<li><strong>方案 B</strong>：在 <code>Profile</code> -&gt; <code>Advanced</code> -&gt; <code>IPv6</code> 中取消勾选 “Handle IPv6…”。</li>
+<li><strong>方案 C</strong>：对于极度频繁的系统报错，可将规则 Action 改为 **<code>Block</code>**。</li>
+</ul>
+<hr>
+<h2 id="🏆-方案总结"><a href="#🏆-方案总结" class="headerlink" title="🏆 方案总结"></a>🏆 方案总结</h2><p>这套方案通过 <strong>双重过滤（Proxifier 进程接管 + v2rayN 智能路由）</strong> 实现了开发者的“终极梦想”：</p>
+<ol>
+<li><strong>安全合规</strong>：国内支付、银行、办公软件识别到的是你真实的本地 IP，极大降低账号异常风险。</li>
+<li><strong>性能巅峰</strong>：下 Unity 插件、下 GitHub 资源不占用虚拟网卡中转，网速直达物理上限。</li>
+<li><strong>精准打击</strong>：只给“必须翻墙”的软件开路，全系统保持清爽。</li>
+</ol>
+<p><strong>从此告别霸道的 TUN 模式，做一个能精准控制流量的优雅开发者！</strong><br><em>本文首发于 [ysun]，转载请注明出处。</em></p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/2025/12/08/%E6%95%99%E7%A8%8B/%E8%A1%A8%E6%83%85%E7%AC%A6%E5%8F%B7%E5%B1%95%E7%A4%BA/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    博客 Emoji 表情符号大全
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2025/12/08/%E6%95%99%E7%A8%8B/PDF%E5%8A%9F%E8%83%BD%E5%B1%95%E7%A4%BA/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">博客新功能：PDF 在线阅读</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; ysun 
+        </div>
+    </div>
+</footer>
+         
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+<!-- PrismJS Support -->
+<script>
+  document.querySelectorAll("pre code").forEach((block) => {
+    // Add line-numbers class to pre
+    block.parentElement.classList.add("line-numbers");
+
+    // Ensure language class has 'language-' prefix
+    block.classList.forEach((cls) => {
+      if (!cls.startsWith("language-") && cls !== "hljs") {
+        block.classList.add("language-" + cls);
+      }
+    });
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script src="/js/pdf-tools.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script>
+            <script src="/js/code-tools.js"></script>
+            <link rel="stylesheet" href="/css/code-tools.css">
+            
+            <!-- Image Collapsible Support -->
+            <link rel="stylesheet" href="/css/image-collapsible.css">
+            <script src="/js/image-collapsible.js"></script>
+
+
+
+    </div>
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z\d\-\.\+]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(t.test(e.href)||r.test(e.href))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</html>
