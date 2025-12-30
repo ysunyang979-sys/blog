@@ -29,7 +29,7 @@ comments: false
 
 搜索的核心逻辑在于：**缩小范围、精准描述、选对工具。**
 
----
+--- 
 
 <a href="/SearchFile/askai.html" class="btn">AI用法</a>
 
@@ -62,4 +62,4 @@ comments: false
 ---
 # 个人书签
 
-<a href="/tools/BookStore.html" class="btn">数智图书馆</a>
+<a href="/tools/BookStore.html" class="btn">个人书签</a>
