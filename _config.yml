@@ -127,7 +127,9 @@ theme_config:
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ""
+  type: git
+  repo: https://github.com/ysunyang979-sys/ysunyang979-sys.github.io.git
+  branch: main
 
 search:
   path: search.xml
