@@ -1,10 +1,9 @@
 ---
-title: 个人vercel网站
-date: 2024-05-20 18:00:00
-tags: [guide, efficiency, markdown]
-categories: 
-    - 个人
-    - 便捷
+title: 个人网站（vercel）
+date: 2025-12-28 23:15:00
+type: "CustomPage"
+layout: "page"
+comments: false
 ---
 # 快捷地址
 
@@ -82,29 +81,4 @@ categories:
 >## ys @ AI - LLm
 
 [**LLM学习**](https://wangrongsheng.github.io/awesome-LLM-resources)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

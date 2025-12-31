@@ -1,11 +1,9 @@
 ---
-title: Secret
-date: 2024-05-21 18:00:00
-tags: [加密文章]
-categories:
-    - 加密文章
-    - 网站
-password: 359755OoOo
+title: 资源
+date: 2025-12-28 23:15:00
+type: "CustomPage"
+layout: "page"
+comments: false
 ---
 
 ## <span class="bg-green"> 资源网站 </span>

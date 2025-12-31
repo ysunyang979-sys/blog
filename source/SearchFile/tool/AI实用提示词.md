@@ -1,11 +1,9 @@
 ---
-title: AI绘画提示词
-date: 2024-05-21 18:00:00
-tags: [guide, efficiency, markdown]
-categories: 
-    - 个人
-    - AI提示词
-    - AI实用提示词
+title: AI实用提示词
+date: 2025-12-28 23:15:00
+type: "CustomPage"
+layout: "page"
+comments: false
 ---
 
 # 实用提示词

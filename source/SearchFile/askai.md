@@ -77,3 +77,8 @@ comments: false
 
 💡 **总结：** 
 好问题的标志是**“消灭歧义”**。你给的信息越明确，AI 的回答就越像“真神”。
+
+>如果你对AI提示词不太会写可以参考这个<a href="/SearchFile/AI/prompt.html" class="btn">元AI提示词</a>让AI帮助写提示词
+
+下面还有一些实用的AI提示词：
+<a href="/SearchFile/tool/AI实用提示词.html" class="btn">AI实用提示词</a><a href="/SearchFile/tool/AI绘画提示词.html" class="btn">AI绘画提示词</a><a href="/SearchFile/tool/提示词管理油猴脚本.html" class="btn">AI提示词管理</a>
