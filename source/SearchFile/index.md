@@ -18,8 +18,7 @@ comments: false
 
 完整的分类清单与官方下载地址，请点击下方按钮进行查看：
 
-<a href="/SearchFile/computer.html" class="btn">查看完整 Windows 装机清单</a>
-<a href="/SearchFile/tool/电脑软件.html" class="btn">电脑软件</a>
+<a href="/SearchFile/computer.html" class="btn">查看完整 Windows 装机清单</a><a href="/SearchFile/tool/电脑软件.html" class="btn">电脑软件</a>
 
 ---
 # 🌐 科学上网篇
@@ -28,7 +27,7 @@ comments: false
 
 连接“外面世界”通常需要两个核心要素：
 1.  **科学上网工具**：跨平台的代理客户端。我个人在 Win 端使用 V2rayN，它支持丰富的协议和灵活的路由设置，还有其他的工具比如 Clash、Surge 等。
-    *   <a href="/tools/index.html" class="btn">查看各平台软件下载</a>       <a href="/SearchFile/v2raytun.html" class="btn">TUN 模式</a>
+    *   <a href="/tools/index.html" class="btn">查看各平台软件下载</a><a href="/tools/全平台客户端下载.html" class="btn">全平台客户端下载</a><a href="/SearchFile/v2raytun.html" class="btn">TUN 模式</a>
 2.  **优质节点线路**：没有节点，工具只是空壳。如果你追求极致稳定，我推荐了一些老牌专线机场；如果你不想额外支出，我也分享了我的个人自用节点。
     *   <a href="/SearchFile/node.html" class="btn">获取节点与订阅链接</a>
 # 资源查找篇
