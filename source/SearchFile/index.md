@@ -30,6 +30,7 @@ comments: false
     *   <a href="/tools/index.html" class="btn">查看各平台软件下载</a><a href="/tools/全平台客户端下载.html" class="btn">全平台客户端下载</a><a href="/SearchFile/v2raytun.html" class="btn">TUN 模式</a>
 2.  **优质节点线路**：没有节点，工具只是空壳。如果你追求极致稳定，我推荐了一些老牌专线机场；如果你不想额外支出，我也分享了我的个人自用节点。
     *   <a href="/SearchFile/node.html" class="btn">获取节点与订阅链接</a>
+    *   <a href="/tools/fq.html" class="btn">fq</a>
 # 资源查找篇
 
 # 🔍 资源查找篇
