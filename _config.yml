@@ -112,7 +112,7 @@ theme_config:
     归档: /archives
     关于: /about
     经验: /SearchFile
-    Daynote: /tools/Daynote.html
+    Daynote: /daynote
   comment:
     disqus: false
     duoshuo: false
