@@ -193,3 +193,367 @@ body {
   box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
 }
 
+
+/* ===== 侧边栏分类按钮样式 ===== */
+#sidebar .widget-list ul.list-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 0;
+}
+
+#sidebar .widget-list ul.list-group li.list-group-item {
+    list-style: none;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#sidebar .widget-list ul.list-group li.list-group-item a {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #667eea;
+    background: linear-gradient(145deg, #f8fafc, #eef2f7);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    border-radius: 20px;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+#sidebar .widget-list ul.list-group li.list-group-item a:hover {
+    color: white;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.35);
+}
+
+#sidebar .widget-list ul.list-group li.list-group-item a:active {
+    transform: translateY(0);
+}
+
+/* 分类树样式优化 */
+#sidebar .widget-wrap.widget-category ul li {
+    margin: 4px 0;
+}
+
+#sidebar .widget-wrap.widget-category ul li a {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #4a5568;
+    background: linear-gradient(145deg, #ffffff, #f7fafc);
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    text-decoration: none !important;
+    transition: all 0.25s ease;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+#sidebar .widget-wrap.widget-category ul li a:hover {
+    color: #667eea;
+    background: linear-gradient(145deg, #eef2ff, #e0e7ff);
+    border-color: rgba(102, 126, 234, 0.3);
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+#sidebar .widget-wrap.widget-category ul li a i {
+    margin-right: 6px;
+    font-size: 12px;
+}
+
+/* 分类小图标颜色 */
+#sidebar .widget-wrap.widget-category ul li a i.fa-link {
+    color: #667eea;
+}
+
+/* ===== 链接按钮网格样式 ===== */
+.widget-links-buttons .links-button-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 0;
+}
+
+.widget-links-buttons .link-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #667eea;
+    background: linear-gradient(145deg, #ffffff, #f0f4f8);
+    border: 1px solid rgba(102, 126, 234, 0.25);
+    border-radius: 18px;
+    text-decoration: none !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    white-space: nowrap;
+}
+
+.widget-links-buttons .link-btn:hover {
+    color: white;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-color: transparent;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.widget-links-buttons .link-btn:active {
+    transform: translateY(-1px) scale(1);
+}
+
+.widget-links-buttons .link-btn .link-name {
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 标题样式优化 */
+.widget-links-buttons .widget-title {
+    font-size: 14px;
+    color: #4a5568;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e2e8f0;
+    margin-bottom: 10px;
+}
+
+.widget-links-buttons .widget-title i {
+    color: #667eea;
+    margin-right: 6px;
+}
+
+/* ===== 分类链接切换按钮优化 ===== */
+#categories .widget-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+#categories .nav-tabs {
+    display: flex;
+    gap: 8px;
+    border: none !important;
+    margin-bottom: 0 !important;
+}
+
+#categories .nav-tabs li a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    font-size: 15px;
+    color: #667eea;
+    background: linear-gradient(145deg, #ffffff, #f0f4f8);
+    border: 2px solid rgba(102, 126, 234, 0.25) !important;
+    border-radius: 12px !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#categories .nav-tabs li a:hover {
+    color: white;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-color: transparent !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(102, 126, 234, 0.35);
+}
+
+#categories .nav-tabs li.active a,
+#categories .nav-tabs li a.active {
+    color: white;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-color: transparent !important;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+#categories .nav-tabs li a i {
+    margin: 0;
+}
+
+/* 分类展开卡片区域优化 */
+#categories .tab-content,
+#categories .widget {
+    background: linear-gradient(145deg, #ffffff, #fafbfc);
+    border-radius: 14px;
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    border: 1px solid #e8ecf1;
+}
+
+/* 分类链接列表项按钮化 */
+#categories .widget ul li a,
+#categories .tab-pane ul li a {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    margin: 3px 4px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #4a5568;
+    background: linear-gradient(145deg, #ffffff, #f7fafc);
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    text-decoration: none !important;
+    transition: all 0.25s ease;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+}
+
+#categories .widget ul li a:hover,
+#categories .tab-pane ul li a:hover {
+    color: white;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+#categories .widget ul li a i,
+#categories .tab-pane ul li a i {
+    margin-right: 6px;
+    font-size: 11px;
+    color: #667eea;
+}
+
+#categories .widget ul li a:hover i,
+#categories .tab-pane ul li a:hover i {
+    color: white;
+}
+
+/* 展开按钮美化 */
+#allExpand {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    font-size: 16px;
+    color: #667eea;
+    background: linear-gradient(145deg, #ffffff, #f0f4f8);
+    border: 2px solid rgba(102, 126, 234, 0.25);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+}
+
+#allExpand:hover {
+    color: white;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(102, 126, 234, 0.35);
+}
+
+/* ===== 分类链接列表按钮化 ===== */
+#categories .tab-pane ul,
+#sidebar .tab-pane ul {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    padding: 12px 5px !important;
+    list-style: none !important;
+}
+
+#categories .tab-pane ul li,
+#sidebar .tab-pane ul li {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+#categories .tab-pane ul li a,
+#sidebar .tab-pane ul li a {
+    display: inline-flex !important;
+    align-items: center !important;
+    padding: 8px 16px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: #667eea !important;
+    background: linear-gradient(145deg, #ffffff, #f0f4f8) !important;
+    border: 1.5px solid rgba(102, 126, 234, 0.25) !important;
+    border-radius: 20px !important;
+    text-decoration: none !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    white-space: nowrap !important;
+}
+
+#categories .tab-pane ul li a:hover,
+#sidebar .tab-pane ul li a:hover {
+    color: white !important;
+    background: linear-gradient(135deg, #667eea, #764ba2) !important;
+    border-color: transparent !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4) !important;
+}
+
+#categories .tab-pane ul li a i,
+#sidebar .tab-pane ul li a i {
+    margin-right: 6px !important;
+    font-size: 12px !important;
+}
+
+#categories .tab-pane ul li a:hover i,
+#sidebar .tab-pane ul li a:hover i {
+    color: white !important;
+}
+
+/* ===== Links Widget 按钮样式 ===== */
+#linksWidget .links-btn-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 0;
+}
+
+#linksWidget .link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #667eea;
+    background: linear-gradient(145deg, #ffffff, #f0f4f8);
+    border: 1.5px solid rgba(102, 126, 234, 0.25);
+    border-radius: 20px;
+    text-decoration: none !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    white-space: nowrap;
+}
+
+#linksWidget .link-btn:hover {
+    color: white;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-color: transparent;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+#linksWidget .link-btn i {
+    font-size: 11px;
+}
+
+#linksWidget .link-btn:hover i {
+    color: white;
+}
+
+#linksWidget .widget-title {
+    font-size: 14px;
+    color: #4a5568;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e2e8f0;
+    margin-bottom: 5px;
+}

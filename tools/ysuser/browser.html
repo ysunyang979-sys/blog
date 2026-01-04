@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浏览器与生产力工具</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* 动态背景粒子 */
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(102, 126, 234, 0.6);
+            border-radius: 50%;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* 页面标题 */
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.5)); }
+            50% { filter: drop-shadow(0 0 40px rgba(118, 75, 162, 0.8)); }
+        }
+
+        .page-header p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+        }
+
+        /* 分类标题 */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-left: 10px;
+        }
+
+        .section-title .icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .section-title h2 {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* 卡片网格 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        /* 资源卡片 */
+        .resource-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .resource-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .card-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .card-title {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .card-desc {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .card-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+            color: white;
+        }
+
+        .card-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 标签 */
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            font-size: 11px;
+            border-radius: 15px;
+            margin-left: 10px;
+        }
+
+        .tag-free { background: rgba(17, 153, 142, 0.3); color: #38ef7d; }
+        .tag-hot { background: rgba(245, 87, 108, 0.3); color: #f5576c; }
+
+        .footer {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+            padding: 40px 0 10px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .card-grid { grid-template-columns: 1fr; }
+            .page-header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-particles">
+    <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
+    <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
+    <div class="particle" style="left: 50%; animation-delay: 1s;"></div>
+    <div class="particle" style="left: 70%; animation-delay: 3s;"></div>
+    <div class="particle" style="left: 80%; animation-delay: 5s;"></div>
+    <div class="particle" style="left: 90%; animation-delay: 2.5s;"></div>
+</div>
+
+<div class="container">
+    <div class="page-header">
+        <h1>🌐 浏览器与生产力工具</h1>
+        <p>精选的浏览器、开发工具与效率软件</p>
+    </div>
+
+    <!-- 浏览器专区 -->
+    <div class="section-title">
+        <div class="icon">🌍</div>
+        <h2>浏览器专区</h2>
+    </div>
+    <div class="card-grid">
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">🔵</div>
+                <span class="card-title">Google Chrome</span>
+            </div>
+            <p class="card-desc">全球最流行的浏览器，速度快、扩展丰富</p>
+            <a href="https://www.google.com/intl/zh-CN/chrome/" target="_blank" class="card-btn btn-primary">访问官网</a>
+        </div>
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">🌐</div>
+                <span class="card-title">Floorp</span>
+            </div>
+            <p class="card-desc">一款轻量级的浏览器，支持CPU/RAM限制器</p>
+            <a href="https://floorp.app/zh-cn/" target="_blank" class="card-btn btn-download">立即下载</a>
+        </div>
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">🎮</div>
+                <span class="card-title">OperaGX <span class="tag tag-hot">游戏</span></span>
+            </div>
+            <p class="card-desc">专为游戏玩家设计，支持CPU/RAM限制器</p>
+            <a href="https://api.358966.xyz/api/download/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaWxlSWQiOjEyLCJyMktleSI6InVwbG9hZHMvMS8xNzY3NTE2Mzk1NjE3LWExOTdlNTIwLU9wZXJhR1hTZXR1cC5leGUiLCJleHAiOjQ5MjExMTY1OTZ9.yr-jTL6pJKX4d2MchdxSJiYPP-P4vARyol8i8E9tK7g" target="_blank" class="card-btn btn-download">立即下载</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">🧪</div>
+                <span class="card-title">Opera Developer</span>
+            </div>
+            <p class="card-desc">开发者版本，体验最新功能</p>
+            <a href="https://api.358966.xyz/api/download/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaWxlSWQiOjExLCJyMktleSI6InVwbG9hZHMvMS8xNzY3NTE2Mzc2NTEzLTk5M2I5OGJjLU9wZXJhU2V0dXBEZXZlbG9wZXIuZXhlIiwiZXhwIjo0OTIxMTE2NjEwfQ.P5URtBu03Ff3ldc1w7WiTtFuN3WQEmE7gLJEPZib5-I" target="_blank" class="card-btn btn-download">立即下载</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">🤖</div>
+                <span class="card-title">Perplexity <span class="tag tag-hot">AI</span></span>
+            </div>
+            <p class="card-desc">AI驱动的智能搜索浏览器</p>
+            <a href="https://www.perplexity.ai" target="_blank" class="card-btn btn-success">访问官网</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">🎨</div>
+                <span class="card-title">Kosmik</span>
+            </div>
+            <p class="card-desc">创意画布浏览器，可视化整理网页</p>
+            <a href="https://www.kosmik.app" target="_blank" class="card-btn btn-primary">访问官网</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">☁️</div>
+                <span class="card-title">BrowserOS</span>
+            </div>
+            <p class="card-desc">云端操作系统，随时随地访问</p>
+            <a href="https://www.browseros.com" target="_blank" class="card-btn btn-primary">访问官网</a>
+        </div>
+    </div>
+
+    <!-- 开发工具 -->
+    <div class="section-title">
+        <div class="icon">🛠️</div>
+        <h2>开发与效率工具</h2>
+    </div>
+    <div class="card-grid">
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">💎</div>
+                <span class="card-title">VS Code <span class="tag tag-free">免费</span></span>
+            </div>
+            <p class="card-desc">最强代码编辑器，海量插件生态</p>
+            <a href="https://code.visualstudio.com" target="_blank" class="card-btn btn-success">下载</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">🚀</div>
+                <span class="card-title">AntiGravity <span class="tag tag-hot">Google</span></span>
+            </div>
+            <p class="card-desc">Google AI编辑器，智能代码助手</p>
+            <a href="https://antigravity.google" target="_blank" class="card-btn btn-primary">访问</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">📝</div>
+                <span class="card-title">Obsidian <span class="tag tag-free">免费</span></span>
+            </div>
+            <p class="card-desc">知识管理笔记，双向链接</p>
+            <a href="https://obsidian.md" target="_blank" class="card-btn btn-success">下载</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">🦅</div>
+                <span class="card-title">Eagle</span>
+            </div>
+            <p class="card-desc">素材管理神器，设计师必备</p>
+            <a href="https://cn.eagle.cool/" target="_blank" class="card-btn btn-primary">下载</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">🗑️</div>
+                <span class="card-title">Geek Uninstaller <span class="tag tag-free">免费</span></span>
+            </div>
+            <p class="card-desc">极客卸载工具，彻底清除残留</p>
+            <a href="https://geekuninstaller.com" target="_blank" class="card-btn btn-success">下载</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">🎬</div>
+                <span class="card-title">VLC Player <span class="tag tag-free">免费</span></span>
+            </div>
+            <p class="card-desc">万能播放器，支持所有格式</p>
+            <a href="https://www.videolan.org/vlc/" target="_blank" class="card-btn btn-success">下载</a>
+        </div>
+    </div>
+
+    
+
+    <!-- 游戏平台 -->
+    <div class="section-title">
+        <div class="icon">🎮</div>
+        <h2>游戏平台</h2>
+    </div>
+    <div class="card-grid">
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">🎲</div>
+                <span class="card-title">Steam</span>
+            </div>
+            <p class="card-desc">全球最大游戏平台</p>
+            <a href="https://store.steampowered.com" target="_blank" class="card-btn btn-primary">访问</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">🎁</div>
+                <span class="card-title">Epic Games <span class="tag tag-hot">每周免费</span></span>
+            </div>
+            <p class="card-desc">每周领取免费游戏</p>
+            <a href="https://store.epicgames.com/zh-CN" target="_blank" class="card-btn btn-download">访问</a>
+        </div>
+    </div>
+
+    <div class="footer">✦ YSun の 资源导航 ✦</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>极客资源导航</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* 动态背景粒子 */
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(102, 126, 234, 0.6);
+            border-radius: 50%;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* 页面标题 */
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.5)); }
+            50% { filter: drop-shadow(0 0 40px rgba(118, 75, 162, 0.8)); }
+        }
+
+        .page-header p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+        }
+
+        /* 警示条 */
+        .warning-banner {
+            background: rgba(245, 87, 108, 0.1);
+            border: 1px solid rgba(245, 87, 108, 0.3);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #f5576c;
+        }
+
+        /* 分类标题 */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-left: 10px;
+        }
+
+        .section-title .icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .section-title h2 {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* 卡片网格 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        /* 资源卡片 */
+        .resource-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .resource-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .card-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .card-title {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .card-desc {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .card-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+            color: white;
+        }
+
+        .card-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 标签 */
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            font-size: 11px;
+            border-radius: 15px;
+            margin-left: 10px;
+        }
+
+        .tag-free { background: rgba(17, 153, 142, 0.3); color: #38ef7d; }
+        .tag-hot { background: rgba(245, 87, 108, 0.3); color: #f5576c; }
+        .tag-ru { background: rgba(255, 255, 255, 0.1); color: #aaa; }
+
+        .footer {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+            padding: 40px 0 10px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .card-grid { grid-template-columns: 1fr; }
+            .page-header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-particles">
+    <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
+    <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
+    <div class="particle" style="left: 50%; animation-delay: 1s;"></div>
+    <div class="particle" style="left: 70%; animation-delay: 3s;"></div>
+    <div class="particle" style="left: 80%; animation-delay: 5s;"></div>
+    <div class="particle" style="left: 90%; animation-delay: 2.5s;"></div>
+</div>
+
+<div class="container">
+    <div class="page-header">
+        <h1>🚀 极客资源导航</h1>
+        <p>汇聚全球顶级资源站与精品工具</p>
+    </div>
+
+    <div class="warning-banner">
+        ⚠️ 提示：本站仅供技术交流参考。请务必使用沙盒或虚拟机运行破解资源，增强安全防护。
+    </div>
+
+    <!-- 综合软件区 -->
+    <div class="section-title">
+        <div class="icon">🛠️</div>
+        <h2>综合软件与技术站</h2>
+    </div>
+    <div class="card-grid">
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">💎</div>
+                <span class="card-title">吾爱破解 <span class="tag tag-hot">国内顶尖</span></span>
+            </div>
+            <p class="card-desc">国内最大的技术论坛，专注于软件安全、脱壳破解与原创工具分享。</p>
+            <a href="https://www.52pojie.cn" target="_blank" class="card-btn btn-primary">立即进入</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">🐻</div>
+                <span class="card-title">RuTracker <span class="tag tag-ru">俄区源头</span></span>
+            </div>
+            <p class="card-desc">全球资源之王。涵盖专业工业软件、全家桶、影视与无损音乐。</p>
+            <a href="https://rutracker.org" target="_blank" class="card-btn btn-primary">立即进入</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">📦</div>
+                <span class="card-title">FileCR <span class="tag tag-free">直链下载</span></span>
+            </div>
+            <p class="card-desc">界面现代的国外资源库，提供各类专业软件的破解版直链。</p>
+            <a href="https://filecr.com" target="_blank" class="card-btn btn-success">立即进入</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">⚡</div>
+                <span class="card-title">423Down <span class="tag tag-hot">最省心</span></span>
+            </div>
+            <p class="card-desc">最省心的资源下载站，专注于软件安全、脱壳破解与原创工具。</p>
+            <a href="https://www.423down.com" target="_blank" class="card-btn btn-download">立即进入</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">🧊</div>
+                <span class="card-title">Lrepacks <span class="tag tag-free">纯净重装</span></span>
+            </div>
+            <p class="card-desc">俄罗斯著名的重装版站点，安装包极度精简纯净。</p>
+            <a href="https://lrepacks.net" target="_blank" class="card-btn btn-success">立即进入</a>
+        </div>
+    </div>
+
+    <!-- 游戏资源区 -->
+    <div class="section-title">
+        <div class="icon">🎮</div>
+        <h2>单机游戏与补丁</h2>
+    </div>
+    <div class="card-grid">
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">👧</div>
+                <span class="card-title">FitGirl Repacks <span class="tag tag-hot">极致压缩</span></span>
+            </div>
+            <p class="card-desc">全球最知名的游戏压制小组，将几十G的游戏压缩到极小。</p>
+            <a href="https://fitgirl-repacks.site" target="_blank" class="card-btn btn-download">立即进入</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">🔧</div>
+                <span class="card-title">CS.RIN.RU <span class="tag tag-ru">技术源头</span></span>
+            </div>
+            <p class="card-desc">全球最硬核的 Steam 游戏共享论坛，破解补丁的首发基地。</p>
+            <a href="https://cs.rin.ru" target="_blank" class="card-btn btn-primary">立即进入</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">🎁</div>
+                <span class="card-title">SteamUnlocked <span class="tag tag-free">解压即玩</span></span>
+            </div>
+            <p class="card-desc">提供预安装好的单机游戏，无需安装破解补丁。</p>
+            <a href="https://steamunlocked.net" target="_blank" class="card-btn btn-success">立即进入</a>
+        </div>
+    </div>
+
+    <!-- 移动端与学术 -->
+    <div class="section-title">
+        <div class="icon">📱</div>
+        <h2>移动端与知识库</h2>
+    </div>
+    <div class="card-grid">
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">📲</div>
+                <span class="card-title">Mobilism <span class="tag tag-hot">移动之王</span></span>
+            </div>
+            <p class="card-desc">全球最大的移动端资源社区，包含无数破解版安卓 APP。</p>
+            <a href="https://forum.mobilism.org" target="_blank" class="card-btn btn-download">立即进入</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">📚</div>
+                <span class="card-title">Z-Library <span class="tag tag-free">全球书库</span></span>
+            </div>
+            <p class="card-desc">全世界最大的电子图书馆，你可以找到任何已出版的书籍。</p>
+            <a href="https://singlelogin.re" target="_blank" class="card-btn btn-success">立即进入</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">🔍</div>
+                <span class="card-title">鸠摩搜索 <span class="tag tag-free">电子书</span></span>
+            </div>
+            <p class="card-desc">国内最强的电子书聚合搜索引擎，找文档、找教材的神器。</p>
+            <a href="https://www.jiumodiary.com" target="_blank" class="card-btn btn-success">立即进入</a>
+        </div>
+    </div>
+
+    <!-- 图片与美化资源 -->
+    <div class="section-title">
+        <div class="icon">🖼️</div>
+        <h2>图片与美化资源</h2>
+    </div>
+    <div class="card-grid">
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">✨</div>
+                <span class="card-title">奇迹秀 <span class="tag tag-hot">设计神器</span></span>
+            </div>
+            <p class="card-desc">PPT模板、设计素材、办公资源下载平台，海量免费资源。</p>
+            <a href="https://www.qijishow.com" target="_blank" class="card-btn btn-download">立即进入</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">🎨</div>
+                <span class="card-title">致美化 <span class="tag tag-hot">桌面美化</span></span>
+            </div>
+            <p class="card-desc">Windows 桌面美化社区，壁纸、主题、图标包应有尽有。</p>
+            <a href="https://zhutix.com" target="_blank" class="card-btn btn-download">立即进入</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">📷</div>
+                <span class="card-title">Unsplash <span class="tag tag-free">完全免费</span></span>
+            </div>
+            <p class="card-desc">全球最大的免费高清图片库，可商用，无版权限制。</p>
+            <a href="https://unsplash.com" target="_blank" class="card-btn btn-success">立即进入</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">🌄</div>
+                <span class="card-title">Pexels <span class="tag tag-free">免费可商用</span></span>
+            </div>
+            <p class="card-desc">精选高质量免费图片和视频素材，支持中文搜索。</p>
+            <a href="https://www.pexels.com/zh-cn" target="_blank" class="card-btn btn-success">立即进入</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">🖼️</div>
+                <span class="card-title">Pixabay <span class="tag tag-free">CC0协议</span></span>
+            </div>
+            <p class="card-desc">超过 400 万张免费图片、插画、矢量图、视频素材。</p>
+            <a href="https://pixabay.com/zh" target="_blank" class="card-btn btn-success">立即进入</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">🎭</div>
+                <span class="card-title">Icons8 <span class="tag tag-free">图标宝库</span></span>
+            </div>
+            <p class="card-desc">海量免费图标、插画、照片、音乐，设计师必备。</p>
+            <a href="https://icons8.com" target="_blank" class="card-btn btn-success">立即进入</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">🌌</div>
+                <span class="card-title">Wallhaven <span class="tag tag-hot">壁纸天堂</span></span>
+            </div>
+            <p class="card-desc">全球最强壁纸搜索引擎，海量 4K/8K 高清壁纸。</p>
+            <a href="https://wallhaven.cc" target="_blank" class="card-btn btn-download">立即进入</a>
+        </div>
+
+        <div class="resource-card">
+            <div class="card-header">
+                <div class="card-icon">📐</div>
+                <span class="card-title">Freepik <span class="tag tag-free">矢量素材</span></span>
+            </div>
+            <p class="card-desc">免费矢量图、PSD、图标和照片，每日有免费下载额度。</p>
+            <a href="https://www.freepik.com" target="_blank" class="card-btn btn-success">立即进入</a>
+        </div>
+    </div>
+
+    <div class="footer">✦ YSun の 资源导航 ✦</div>
+</div>
+
+</body>
+</html>

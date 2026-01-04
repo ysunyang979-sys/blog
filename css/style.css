@@ -175,6 +175,7 @@ code {
 }
 #container {
   position: relative;
+  padding-top: 94px;
 }
 #container > .outer {
   margin-bottom: 30px;
@@ -340,11 +341,13 @@ code {
   background: rgba(255,255,255,0.8);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
   -webkit-box-shadow: 0 4px 20px rgba(0,0,0,0.08);
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  z-index: 100;
+  z-index: 1000;
   border-bottom: 1px solid rgba(255,255,255,0.3);
 }
 #header a,
