@@ -1,14 +1,12 @@
-<% if (site.posts.length) { %>
-    <div class="widget-wrap widget-list">
-        <h3 class="widget-title"><span><%= __('widget.links') %></span></h3>
+﻿<% if (site.posts.length) { %>
+    <div class="widget-wrap widget-list" id="linksWidget">
+        <h3 class="widget-title"><span><i class="fa fa-link"></i></span><%= __('sidebar.links') %></h3>
         <div class="widget">
-            <ul>
+            <div class="links-btn-container">
                 <% for (var i in theme.miscellaneous.links) { %>
-                    <li>
-                        <a href="<%- theme.miscellaneous.links[i] %>"><%= i %></a>
-                    </li>
+                    <a class="link-btn" href="<%- theme.miscellaneous.links[i] %>" target="_blank" title="<%= i %>"><i class="fa fa-link"></i><%= i %></a>
                 <% } %>
-            </ul>
+            </div>
         </div>
     </div>
 <% } %>

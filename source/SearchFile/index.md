@@ -6,6 +6,10 @@ layout: "page"
 password: "358966"
 comments: false
 ---
+# 前提
+>所有的内容都先参考科学上网篇才能有更加好的体验
+
+
 # 💻 电脑软件篇
 
 >工欲善其事，必先利其器。一个干净、高效的 Windows 系统不应只有“全家桶”，而应由轻量、开源、无广告的优质工具组成。我整理了一份深度装机清单，涵盖了从底层系统优化到高层生产力工具的方方面面。这份清单的核心逻辑是：**“极简、提效、自主掌控”**。
@@ -18,7 +22,7 @@ comments: false
 
 完整的分类清单与官方下载地址，请点击下方按钮进行查看：
 
-<a href="/SearchFile/computer.html" class="btn">查看完整 Windows 装机清单</a><a href="/SearchFile/tool/电脑软件.html" class="btn">电脑软件</a>
+<a href="/SearchFile/computer.html" class="btn">查看完整 Windows 装机清单</a><a href="/SearchFile/tool/电脑软件.html" class="btn">电脑软件</a><a href="/SearchFile/ysuser.html" class="btn">个人使用工具/软件</a>
 
 ---
 # 🌐 科学上网篇
