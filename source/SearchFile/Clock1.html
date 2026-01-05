@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ 动态时钟</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0c0c1e 0%, #1a1a3a 50%, #0a0a20 100%);
+            overflow: hidden;
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+
+        /* 星空背景 */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* 流星 */
+        .meteor {
+            position: fixed;
+            width: 2px;
+            height: 80px;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.8), transparent);
+            animation: meteorFall 3s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes meteorFall {
+            0% { transform: translateY(-100px) translateX(0) rotate(45deg); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(100vh) translateX(200px) rotate(45deg); opacity: 0; }
+        }
+
+        /* 主容器 */
+        .clock-container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+
+        /* 日期显示 */
+        .date-display {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* 主时钟 */
+        .time-display {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(4rem, 15vw, 12rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed, #ff006e, #00d4ff);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 8s ease infinite;
+            text-shadow: 0 0 60px rgba(124, 58, 237, 0.3);
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .time-display::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 20px;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed);
+            filter: blur(30px);
+            opacity: 0.5;
+        }
+
+        /* 秒数进度条 */
+        .seconds-bar {
+            width: 400px;
+            max-width: 90vw;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin: 30px auto;
+            overflow: hidden;
+        }
+
+        .seconds-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #00d4ff, #7c3aed, #ff006e);
+            border-radius: 2px;
+            transition: width 0.1s linear;
+        }
+
+        /* 模拟时钟 */
+        .analog-clock {
+            width: 250px;
+            height: 250px;
+            margin: 40px auto;
+            position: relative;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 0 50px rgba(124, 58, 237, 0.2),
+                inset 0 0 50px rgba(0, 212, 255, 0.1);
+        }
+
+        .clock-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .clock-mark {
+            position: absolute;
+            width: 2px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            left: 50%;
+            transform-origin: 50% 125px;
+        }
+
+        .clock-mark.hour-mark {
+            height: 15px;
+            width: 3px;
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .clock-number {
+            position: absolute;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: 50% 100%;
+            border-radius: 10px;
+        }
+
+        .hour-hand {
+            width: 4px;
+            height: 60px;
+            background: linear-gradient(to top, #7c3aed, #a855f7);
+            margin-left: -2px;
+            box-shadow: 0 0 15px rgba(124, 58, 237, 0.8);
+        }
+
+        .minute-hand {
+            width: 3px;
+            height: 85px;
+            background: linear-gradient(to top, #00d4ff, #22d3ee);
+            margin-left: -1.5px;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.8);
+        }
+
+        .second-hand {
+            width: 2px;
+            height: 100px;
+            background: linear-gradient(to top, #ff006e, #ff4d94);
+            margin-left: -1px;
+            box-shadow: 0 0 15px rgba(255, 0, 110, 0.8);
+        }
+
+        .center-dot {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #ff006e, #7c3aed);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 20px rgba(255, 0, 110, 0.5);
+        }
+
+        /* 信息卡片 */
+        .info-cards {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px 30px;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .info-card .label {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .info-card .value {
+            color: white;
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* 问候语 */
+        .greeting {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 30px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 切换按钮 */
+        .toggle-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            color: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .toggle-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* 全屏模式 */
+        .fullscreen .info-cards,
+        .fullscreen .date-display,
+        .fullscreen .greeting,
+        .fullscreen .analog-clock,
+        .fullscreen .seconds-bar {
+            display: none;
+        }
+
+        .fullscreen .time-display {
+            font-size: clamp(6rem, 25vw, 20rem);
+        }
+
+        /* 脉冲动画 */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .time-separator {
+            animation: pulse 1s ease infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- 星空背景 -->
+    <div class="stars" id="stars"></div>
+    
+    <!-- 流星 -->
+    <div class="meteor" id="meteor1" style="left: 20%; animation-delay: 0s;"></div>
+    <div class="meteor" id="meteor2" style="left: 50%; animation-delay: 1.5s;"></div>
+    <div class="meteor" id="meteor3" style="left: 80%; animation-delay: 0.8s;"></div>
+
+    <div class="clock-container">
+        <!-- 日期 -->
+        <div class="date-display" id="date"></div>
+        
+        <!-- 数字时钟 -->
+        <div class="time-display" id="time">00:00:00</div>
+        
+        <!-- 秒数进度条 -->
+        <div class="seconds-bar">
+            <div class="seconds-progress" id="seconds-progress"></div>
+        </div>
+
+        <!-- 模拟时钟 -->
+        <div class="analog-clock">
+            <div class="clock-face" id="clock-face"></div>
+            <div class="hand hour-hand" id="hour-hand"></div>
+            <div class="hand minute-hand" id="minute-hand"></div>
+            <div class="hand second-hand" id="second-hand"></div>
+            <div class="center-dot"></div>
+        </div>
+
+        <!-- 信息卡片 -->
+        <div class="info-cards">
+            <div class="info-card">
+                <div class="label">周几</div>
+                <div class="value" id="weekday">--</div>
+            </div>
+            <div class="info-card">
+                <div class="label">本年进度</div>
+                <div class="value" id="year-progress">--%</div>
+            </div>
+            <div class="info-card">
+                <div class="label">今日剩余</div>
+                <div class="value" id="day-remaining">--:--</div>
+            </div>
+        </div>
+
+        <!-- 问候语 -->
+        <div class="greeting" id="greeting"></div>
+    </div>
+
+    <!-- 切换按钮 -->
+    <button class="toggle-btn" id="toggle-btn">🌙 极简模式</button>
+
+    <script>
+        // 生成星空
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 150; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                star.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // 生成时钟刻度
+        function createClockMarks() {
+            const clockFace = document.getElementById('clock-face');
+            const numbers = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+            const radius = 95;
+
+            for (let i = 0; i < 60; i++) {
+                const mark = document.createElement('div');
+                mark.className = 'clock-mark' + (i % 5 === 0 ? ' hour-mark' : '');
+                mark.style.transform = `rotate(${i * 6}deg)`;
+                clockFace.appendChild(mark);
+            }
+
+            // 添加数字
+            numbers.forEach((num, index) => {
+                const angle = (index * 30 - 90) * (Math.PI / 180);
+                const numEl = document.createElement('div');
+                numEl.className = 'clock-number';
+                numEl.textContent = num;
+                numEl.style.left = `${125 + radius * Math.cos(angle) - 15}px`;
+                numEl.style.top = `${125 + radius * Math.sin(angle) - 15}px`;
+                clockFace.appendChild(numEl);
+            });
+        }
+
+        // 获取问候语
+        function getGreeting(hour) {
+            if (hour >= 5 && hour < 12) return '🌅 早上好，新的一天开始了！';
+            if (hour >= 12 && hour < 14) return '☀️ 中午好，记得休息一下！';
+            if (hour >= 14 && hour < 18) return '🌤️ 下午好，继续加油！';
+            if (hour >= 18 && hour < 22) return '🌙 晚上好，辛苦了一天！';
+            return '🌌 夜深了，注意休息哦！';
+        }
+
+        // 星期几
+        const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+
+        // 更新时钟
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+            const milliseconds = now.getMilliseconds();
+
+            // 数字时钟
+            const timeStr = [
+                hours.toString().padStart(2, '0'),
+                minutes.toString().padStart(2, '0'),
+                seconds.toString().padStart(2, '0')
+            ].join(':');
+            document.getElementById('time').textContent = timeStr;
+
+            // 日期
+            const dateStr = `${now.getFullYear()}年${(now.getMonth() + 1).toString().padStart(2, '0')}月${now.getDate().toString().padStart(2, '0')}日`;
+            document.getElementById('date').textContent = dateStr;
+
+            // 秒数进度条
+            const secondsProgress = ((seconds * 1000 + milliseconds) / 60000) * 100;
+            document.getElementById('seconds-progress').style.width = secondsProgress + '%';
+
+            // 模拟时钟指针
+            const secondDeg = seconds * 6 + milliseconds * 0.006;
+            const minuteDeg = minutes * 6 + seconds * 0.1;
+            const hourDeg = (hours % 12) * 30 + minutes * 0.5;
+
+            document.getElementById('second-hand').style.transform = `rotate(${secondDeg}deg)`;
+            document.getElementById('minute-hand').style.transform = `rotate(${minuteDeg}deg)`;
+            document.getElementById('hour-hand').style.transform = `rotate(${hourDeg}deg)`;
+
+            // 信息卡片
+            document.getElementById('weekday').textContent = weekdays[now.getDay()];
+
+            // 本年进度
+            const startOfYear = new Date(now.getFullYear(), 0, 1);
+            const endOfYear = new Date(now.getFullYear() + 1, 0, 1);
+            const yearProgress = ((now - startOfYear) / (endOfYear - startOfYear) * 100).toFixed(1);
+            document.getElementById('year-progress').textContent = yearProgress + '%';
+
+            // 今日剩余
+            const endOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+            const remaining = endOfDay - now;
+            const remainingHours = Math.floor(remaining / (1000 * 60 * 60));
+            const remainingMinutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById('day-remaining').textContent = 
+                `${remainingHours.toString().padStart(2, '0')}:${remainingMinutes.toString().padStart(2, '0')}`;
+
+            // 问候语
+            document.getElementById('greeting').textContent = getGreeting(hours);
+        }
+
+        // 极简模式切换
+        let isFullscreen = false;
+        document.getElementById('toggle-btn').addEventListener('click', () => {
+            isFullscreen = !isFullscreen;
+            document.body.classList.toggle('fullscreen', isFullscreen);
+            document.getElementById('toggle-btn').textContent = isFullscreen ? '🌟 完整模式' : '🌙 极简模式';
+        });
+
+        // 初始化
+        createStars();
+        createClockMarks();
+        updateClock();
+        setInterval(updateClock, 50);
+    </script>
+</body>
+</html>

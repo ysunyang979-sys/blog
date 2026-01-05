@@ -78,3 +78,5 @@ vless://b8176957-8414-49f2-931a-52d3cdcd517f@csgo.com:80?encryption=none&securit
     * 在 v2rayN 中双击该服务器进入编辑页面。
     * 将 **“地址(address)”** 栏中的内容（如 `time.is` 或 `csgo.com`）替换为刚刚优选出来的**绿色/黄色 IP 地址**。
     * 点击确定保存，设为活动服务器即可。
+
+<a href="/SearchFile/ynode.html" class="btn">.</a>
