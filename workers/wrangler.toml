@@ -1,0 +1,10 @@
+name = "diary-upload"
+main = "diary-upload-worker.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+GITHUB_REPO = "ysunyang979-sys/blog"
+
+# 注意：以下环境变量需要通过 Cloudflare Dashboard 或 wrangler secret 设置
+# GITHUB_TOKEN = "你的GitHub PAT"
+# DIARY_PASSWORD = "358966OoOo"
