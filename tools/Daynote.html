@@ -60,7 +60,7 @@
             font-weight: bold;
             font-size: 1.2rem;
             cursor: pointer;
-            list-style: none; /* 隐藏默认箭头 */
+            list-style: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -68,7 +68,6 @@
             user-select: none;
         }
 
-        /* 自定义箭头 */
         summary::after {
             content: "＋";
             color: var(--primary-color);
@@ -84,7 +83,6 @@
             background-color: #f0f7ff;
         }
 
-        /* 内容区样式 */
         .content {
             padding: 0 20px 20px 20px;
             border-top: 1px solid #eee;
@@ -103,7 +101,6 @@
             color: #888;
         }
 
-        /* 时间戳样式 */
         .date {
             font-size: 0.8rem;
             color: #999;
@@ -176,6 +173,177 @@
             filter: blur(5px);
             transition: filter 0.5s;
         }
+
+        /* ========== 编辑器样式 ========== */
+        .editor-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            z-index: 100;
+            display: none;
+        }
+
+        .editor-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .editor-toggle.active {
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+        }
+
+        #editor-panel {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            animation: slideDown 0.3s ease-out;
+        }
+
+        #editor-panel h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #editor-panel input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 18px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        #editor-panel input[type="text"]:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        #editor-panel textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: inherit;
+            line-height: 1.8;
+            resize: vertical;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        #editor-panel textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .editor-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #666;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        /* 状态提示 */
+        #upload-status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        #upload-status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        #upload-status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        #upload-status.loading {
+            background: #e7f3ff;
+            color: #004085;
+            border: 1px solid #b8daff;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .editor-toggle {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+            .editor-actions {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -197,7 +365,29 @@
             <p>记录生活中的点滴思考与成长</p>
         </header>
         
-        
+        <!-- 编辑器面板 -->
+        <div id="editor-panel">
+            <h2>✏️ 写新日记</h2>
+            <input type="text" id="diary-title" placeholder="日记标题（如：今日感悟）">
+            <textarea id="diary-content" placeholder="写下今天的内容...
+
+支持 Markdown 格式：
+- **粗体** 和 *斜体*
+- 列表项
+- > 引用
+
+尽情记录吧！"></textarea>
+            <div class="editor-actions">
+                <button class="btn btn-primary" id="upload-btn" onclick="uploadDiary()">
+                    📤 上传到 GitHub
+                </button>
+                <button class="btn btn-secondary" onclick="clearEditor()">
+                    🗑️ 清空
+                </button>
+            </div>
+            <div id="upload-status"></div>
+        </div>
+
         <!-- 感悟条目 1 -->
         <details>
             <summary>
@@ -230,18 +420,26 @@
             </div>
         </details>
         
-        
 
     </div>
+
+    <!-- 编辑器切换按钮 -->
+    <button class="editor-toggle" id="editor-toggle" onclick="toggleEditor()" title="写新日记">
+        ✏️
+    </button>
 
     <footer>
         &copy; YSunの日记 &copy;
     </footer>
 
     <script>
+        // ========== 配置 ==========
         const CORRECT_PASSWORD = "358966OoOo";
         const SESSION_KEY = "daynote_unlocked";
+        // TODO: 部署 Worker 后替换为你的 Worker URL
+        const WORKER_URL = "https://diary-upload.ysunyang979-sys.workers.dev";
 
+        // ========== 密码验证 ==========
         if (sessionStorage.getItem(SESSION_KEY) === "true") {
             unlockPage();
         }
@@ -269,12 +467,102 @@
         function unlockPage() {
             const overlay = document.getElementById('password-overlay');
             const content = document.getElementById('main-content');
+            const toggleBtn = document.getElementById('editor-toggle');
             
             overlay.style.opacity = '0';
             setTimeout(() => {
                 overlay.style.display = 'none';
                 content.style.filter = 'none';
+                toggleBtn.style.display = 'block'; // 显示编辑按钮
             }, 500);
+        }
+
+        // ========== 编辑器功能 ==========
+        let editorVisible = false;
+
+        function toggleEditor() {
+            const panel = document.getElementById('editor-panel');
+            const toggle = document.getElementById('editor-toggle');
+            
+            editorVisible = !editorVisible;
+            panel.style.display = editorVisible ? 'block' : 'none';
+            toggle.textContent = editorVisible ? '✖️' : '✏️';
+            toggle.classList.toggle('active', editorVisible);
+            
+            if (editorVisible) {
+                document.getElementById('diary-title').focus();
+            }
+        }
+
+        function clearEditor() {
+            document.getElementById('diary-title').value = '';
+            document.getElementById('diary-content').value = '';
+            hideStatus();
+        }
+
+        function showStatus(message, type) {
+            const status = document.getElementById('upload-status');
+            status.textContent = message;
+            status.className = type;
+            status.style.display = 'block';
+        }
+
+        function hideStatus() {
+            document.getElementById('upload-status').style.display = 'none';
+        }
+
+        // ========== 上传日记 ==========
+        async function uploadDiary() {
+            const title = document.getElementById('diary-title').value.trim();
+            const content = document.getElementById('diary-content').value.trim();
+            const uploadBtn = document.getElementById('upload-btn');
+
+            // 验证
+            if (!title) {
+                showStatus('⚠️ 请输入日记标题', 'error');
+                document.getElementById('diary-title').focus();
+                return;
+            }
+            if (!content) {
+                showStatus('⚠️ 请输入日记内容', 'error');
+                document.getElementById('diary-content').focus();
+                return;
+            }
+
+            // 禁用按钮，显示加载状态
+            uploadBtn.disabled = true;
+            uploadBtn.textContent = '⏳ 上传中...';
+            showStatus('📡 正在连接服务器...', 'loading');
+
+            try {
+                const response = await fetch(WORKER_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        title: title,
+                        content: content,
+                        password: CORRECT_PASSWORD
+                    })
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    showStatus(`✅ ${result.message} 文件：${result.file}`, 'success');
+                    // 清空编辑器
+                    clearEditor();
+                    showStatus(`✅ 日记上传成功！博客将在几分钟后自动更新。`, 'success');
+                } else {
+                    showStatus(`❌ 上传失败：${result.error || '未知错误'}`, 'error');
+                }
+            } catch (error) {
+                showStatus(`❌ 网络错误：${error.message}`, 'error');
+            } finally {
+                uploadBtn.disabled = false;
+                uploadBtn.textContent = '📤 上传到 GitHub';
+            }
         }
     </script>
 </body>
