@@ -1,569 +1,1491 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的感悟笔记</title>
+    <title>YSun の 日记</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #4a90e2;
-            --bg-color: #f4f7f6;
-            --text-color: #333;
-            --card-bg: #ffffff;
+            --primary: #667eea;
+            --primary-dark: #5a67d8;
+            --secondary: #764ba2;
+            --accent: #f093fb;
+            --success: #38ef7d;
+            --danger: #f5576c;
+            --warning: #ffecd2;
+            --bg-dark: #1a1a2e;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-muted: rgba(255, 255, 255, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            margin: 0;
+            font-family: 'Noto Sans SC', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: var(--text-primary);
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* 动态背景 */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(240, 147, 251, 0.1) 0%, transparent 40%);
+            z-index: 0;
+            animation: bgShift 20s ease-in-out infinite;
+        }
+
+        @keyframes bgShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* 浮动粒子 */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: floatUp 15s infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
         }
 
         .container {
             max-width: 800px;
-            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
         }
 
+        /* 页面头部 */
         header {
             text-align: center;
             margin-bottom: 40px;
+            padding: 40px 20px;
+        }
+
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         h1 {
-            color: var(--primary-color);
             font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-shadow: 0 0 40px rgba(102, 126, 234, 0.5);
         }
 
-        /* 折叠框样式 */
-        details {
-            background: var(--card-bg);
-            border-radius: 8px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            overflow: hidden;
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 300;
         }
 
-        details[open] {
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        /* 标题栏样式 */
-        summary {
-            padding: 15px 20px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            cursor: pointer;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            outline: none;
-            user-select: none;
-        }
-
-        summary::after {
-            content: "＋";
-            color: var(--primary-color);
-            transition: transform 0.3s;
-        }
-
-        details[open] summary::after {
-            content: "－";
-            transform: rotate(180deg);
-        }
-
-        summary:hover {
-            background-color: #f0f7ff;
-        }
-
-        .content {
-            padding: 0 20px 20px 20px;
-            border-top: 1px solid #eee;
-            color: #555;
-            animation: slideDown 0.3s ease-out;
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        footer {
-            margin-top: 50px;
-            font-size: 0.9rem;
-            color: #888;
-        }
-
-        .date {
-            font-size: 0.8rem;
-            color: #999;
-            font-weight: normal;
-        }
-
-        /* 密码遮罩层 */
+        /* 密码层 */
         #password-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 1000;
+            backdrop-filter: blur(20px);
         }
 
         .login-box {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            backdrop-filter: blur(20px);
+            padding: 50px;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.1);
             text-align: center;
             width: 90%;
             max-width: 400px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
         }
 
         .login-box h2 {
-            margin-top: 0;
-            color: #333;
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .login-box p {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
         }
 
         .login-box input {
             width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 2px solid #eee;
-            border-radius: 8px;
+            padding: 16px 20px;
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
             font-size: 16px;
-            box-sizing: border-box;
+            background: rgba(255,255,255,0.05);
+            color: white;
             outline: none;
-            transition: border-color 0.3s;
+            transition: all 0.3s;
+            margin-bottom: 20px;
         }
 
         .login-box input:focus {
-            border-color: var(--primary-color);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
         }
 
         .login-box button {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            font-size: 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s;
             width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
         .login-box button:hover {
-            background: #357abd;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
         }
 
-        .container {
-            filter: blur(5px);
-            transition: filter 0.5s;
+        #error-msg {
+            color: var(--danger);
+            margin-top: 15px;
+            font-size: 14px;
         }
 
-        /* ========== 编辑器样式 ========== */
-        .editor-toggle {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            font-size: 28px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-            transition: all 0.3s ease;
-            z-index: 100;
-            display: none;
+        .container.locked {
+            filter: blur(10px);
+            pointer-events: none;
         }
 
-        .editor-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-        }
-
-        .editor-toggle.active {
-            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
-        }
-
+        /* 编辑器面板 */
         #editor-panel {
             display: none;
-            background: white;
-            border-radius: 15px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
             padding: 30px;
             margin-bottom: 30px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-            animation: slideDown 0.3s ease-out;
+            animation: slideDown 0.4s ease-out;
         }
 
-        #editor-panel h2 {
-            margin-top: 0;
-            color: var(--primary-color);
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .editor-header {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
-        #editor-panel input[type="text"] {
+        .editor-header h2 {
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .editor-header .icon {
+            font-size: 2rem;
+        }
+
+        #diary-title {
             width: 100%;
-            padding: 15px;
-            border: 2px solid #eee;
-            border-radius: 10px;
+            padding: 18px 20px;
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
             font-size: 18px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-            transition: border-color 0.3s;
-        }
-
-        #editor-panel input[type="text"]:focus {
-            border-color: var(--primary-color);
+            font-weight: 500;
+            background: rgba(255,255,255,0.05);
+            color: white;
             outline: none;
+            transition: all 0.3s;
+            margin-bottom: 20px;
         }
 
-        #editor-panel textarea {
+        #diary-title:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.2);
+        }
+
+        #diary-content {
             width: 100%;
-            min-height: 200px;
-            padding: 15px;
-            border: 2px solid #eee;
-            border-radius: 10px;
+            min-height: 180px;
+            padding: 18px 20px;
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
             font-size: 16px;
             font-family: inherit;
             line-height: 1.8;
-            resize: vertical;
-            box-sizing: border-box;
-            transition: border-color 0.3s;
-        }
-
-        #editor-panel textarea:focus {
-            border-color: var(--primary-color);
+            background: rgba(255,255,255,0.05);
+            color: white;
             outline: none;
+            resize: vertical;
+            transition: all 0.3s;
         }
 
+        #diary-content:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.2);
+        }
+
+        /* 图片上传区域 */
+        .image-upload-area {
+            margin: 20px 0;
+            padding: 30px;
+            border: 2px dashed rgba(255,255,255,0.2);
+            border-radius: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .image-upload-area:hover {
+            border-color: var(--primary);
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .image-upload-area.has-image {
+            border-style: solid;
+            border-color: var(--success);
+        }
+
+        .image-upload-area .upload-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            opacity: 0.6;
+        }
+
+        .image-upload-area p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        #image-preview {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 12px;
+            margin-top: 15px;
+            display: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .image-upload-area input[type="file"] {
+            display: none;
+        }
+
+        /* 按钮组 */
         .editor-actions {
             display: flex;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 25px;
             flex-wrap: wrap;
         }
 
         .btn {
-            padding: 12px 30px;
+            padding: 14px 28px;
             border: none;
-            border-radius: 25px;
-            font-size: 16px;
+            border-radius: 50px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
         }
 
         .btn-primary:disabled {
-            opacity: 0.6;
+            opacity: 0.5;
             cursor: not-allowed;
-            transform: none;
         }
 
         .btn-secondary {
-            background: #f0f0f0;
-            color: #666;
+            background: rgba(255,255,255,0.1);
+            color: var(--text-secondary);
         }
 
         .btn-secondary:hover {
-            background: #e0e0e0;
+            background: rgba(255,255,255,0.15);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, var(--danger), #ff6b6b);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(245, 87, 108, 0.4);
         }
 
         /* 状态提示 */
         #upload-status {
             margin-top: 20px;
-            padding: 15px;
-            border-radius: 10px;
+            padding: 15px 20px;
+            border-radius: 12px;
             display: none;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         #upload-status.success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+            background: linear-gradient(135deg, rgba(56, 239, 125, 0.2), rgba(17, 153, 142, 0.2));
+            border: 1px solid rgba(56, 239, 125, 0.3);
+            color: var(--success);
         }
 
         #upload-status.error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
+            background: linear-gradient(135deg, rgba(245, 87, 108, 0.2), rgba(255, 107, 107, 0.2));
+            border: 1px solid rgba(245, 87, 108, 0.3);
+            color: var(--danger);
         }
 
         #upload-status.loading {
-            background: #e7f3ff;
-            color: #004085;
-            border: 1px solid #b8daff;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            color: var(--primary);
         }
 
-        /* 移动端适配 */
+        /* 日记条目 */
+        .diary-entry {
+            background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .diary-entry:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .diary-entry.new-entry {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.1));
+            border: 2px solid rgba(102, 126, 234, 0.4);
+        }
+
+        .entry-header {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .entry-header:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .entry-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .entry-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .entry-title .has-image {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .entry-meta {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .entry-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .entry-tag {
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .tag-new {
+            background: linear-gradient(135deg, var(--success), #11998e);
+            color: white;
+        }
+
+        .tag-has-image {
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            color: white;
+        }
+
+        .entry-toggle {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            transition: transform 0.3s;
+        }
+
+        .diary-entry.open .entry-toggle {
+            transform: rotate(45deg);
+        }
+
+        .entry-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+
+        .diary-entry.open .entry-content {
+            max-height: 1000px;
+        }
+
+        .entry-body {
+            padding: 0 25px 25px;
+        }
+
+        .entry-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .entry-text {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .entry-text p {
+            margin-bottom: 15px;
+        }
+
+        .entry-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .entry-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .entry-btn-edit {
+            background: rgba(102, 126, 234, 0.2);
+            color: var(--primary);
+        }
+
+        .entry-btn-edit:hover {
+            background: rgba(102, 126, 234, 0.3);
+        }
+
+        .entry-btn-delete {
+            background: rgba(245, 87, 108, 0.2);
+            color: var(--danger);
+        }
+
+        .entry-btn-delete:hover {
+            background: rgba(245, 87, 108, 0.3);
+        }
+
+        /* 无图片占位 */
+        .no-image-placeholder {
+            background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 1px dashed rgba(255,255,255,0.1);
+        }
+
+        .no-image-placeholder .icon {
+            font-size: 3rem;
+            opacity: 0.3;
+            margin-bottom: 10px;
+        }
+
+        .no-image-placeholder p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* 悬浮按钮 */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+            transition: all 0.3s;
+            z-index: 100;
+            display: none;
+        }
+
+        .fab:hover {
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+        }
+
+        .fab.active {
+            background: linear-gradient(135deg, var(--danger), #ff6b6b);
+            transform: rotate(45deg);
+        }
+
+        .fab.active:hover {
+            transform: scale(1.1) rotate(135deg);
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 40px 0 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer span {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* 删除确认模态框 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, rgba(30,30,50,0.95), rgba(20,20,40,0.95));
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .modal-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .modal-text {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* 图片预览弹窗 */
+        .image-lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 3000;
+            cursor: zoom-out;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .image-lightbox img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: zoomIn 0.3s ease-out;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+            z-index: 3001;
+        }
+
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+
+        /* 可点击查看的图片 */
+        .entry-image {
+            cursor: zoom-in;
+            transition: transform 0.3s;
+        }
+
+        .entry-image:hover {
+            transform: scale(1.02);
+        }
+
+        /* 上传进度 */
+        .upload-progress {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            margin-top: 15px;
+            overflow: hidden;
+            display: none;
+        }
+
+        .upload-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 3px;
+            transition: width 0.3s;
+            animation: progressPulse 1.5s infinite;
+        }
+
+        @keyframes progressPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* 日记工具栏 */
+        .diary-toolbar {
+            background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .stats-bar {
+            display: flex;
+            gap: 25px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stat-icon {
+            font-size: 1.3rem;
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .search-box input {
+            padding: 12px 18px;
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 50px;
+            font-size: 14px;
+            background: rgba(255,255,255,0.05);
+            color: white;
+            outline: none;
+            width: 200px;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+            width: 250px;
+        }
+
+        .search-box input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* 空状态 */
+        .empty-state {
+            text-align: center;
+            padding: 60px 30px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+            border-radius: 24px;
+            border: 2px dashed rgba(255,255,255,0.1);
+        }
+
+        .empty-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .empty-state p {
+            color: var(--text-muted);
+        }
+
+        /* 响应式 */
         @media (max-width: 600px) {
             h1 { font-size: 1.8rem; }
-            .editor-toggle {
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-                font-size: 24px;
-            }
-            .editor-actions {
-                flex-direction: column;
-            }
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
+            .login-box { padding: 30px; }
+            .editor-actions { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+            .fab { bottom: 20px; right: 20px; width: 55px; height: 55px; font-size: 1.5rem; }
+            .entry-header { padding: 15px 20px; }
+            .entry-body { padding: 0 20px 20px; }
+            .lightbox-close { top: 10px; right: 15px; font-size: 2rem; }
+            .diary-toolbar { flex-direction: column; align-items: stretch; }
+            .stats-bar { justify-content: space-around; }
+            .search-box input { width: 100%; }
+            .search-box input:focus { width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 密码输入框 -->
-    <div id="password-overlay">
-        <div class="login-box">
-            <h2>🔒 私密日记</h2>
-            <p style="color: #666; margin-bottom: 20px;">请输入密码查看内容</p>
-            <input type="password" id="password-input" placeholder="输入访问密码" onkeypress="if(event.keyCode==13) checkPassword()">
-            <button onclick="checkPassword()">解锁 Access</button>
-            <p id="error-msg" style="color: red; margin-top: 10px; display: none; font-size: 14px;">密码错误，请重试</p>
+<div class="bg-gradient"></div>
+<div class="particles">
+    <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
+    <div class="particle" style="left: 35%; animation-delay: 4s;"></div>
+    <div class="particle" style="left: 50%; animation-delay: 1s;"></div>
+    <div class="particle" style="left: 65%; animation-delay: 3s;"></div>
+    <div class="particle" style="left: 80%; animation-delay: 5s;"></div>
+    <div class="particle" style="left: 90%; animation-delay: 2.5s;"></div>
+</div>
+
+<!-- 密码层 -->
+<div id="password-overlay">
+    <div class="login-box">
+        <h2>🔐 私密空间</h2>
+        <p>输入密码解锁你的日记</p>
+        <input type="password" id="password-input" placeholder="请输入密码" onkeypress="if(event.keyCode==13) checkPassword()">
+        <button onclick="checkPassword()">解锁</button>
+        <p id="error-msg" style="display: none;">密码错误，请重试</p>
+    </div>
+</div>
+
+<!-- 删除确认模态框 -->
+<div class="modal" id="delete-modal">
+    <div class="modal-content">
+        <div class="modal-icon">⚠️</div>
+        <h3 class="modal-title">确认删除？</h3>
+        <p class="modal-text">删除后无法恢复，确定要删除这篇日记吗？</p>
+        <div class="modal-actions">
+            <button class="btn btn-secondary" onclick="closeDeleteModal()">取消</button>
+            <button class="btn btn-danger" onclick="confirmDelete()">删除</button>
+        </div>
+    </div>
+</div>
+
+<!-- 图片预览弹窗 -->
+<div class="image-lightbox" id="image-lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+    <img id="lightbox-image" src="" alt="图片预览">
+</div>
+
+<div class="container locked" id="main-content">
+    <header>
+        <div class="logo">📔</div>
+        <h1>YSun の 日记</h1>
+        <p class="subtitle">记录生活中的点滴思考与成长</p>
+    </header>
+
+    <!-- 编辑器 -->
+    <div id="editor-panel">
+        <div class="editor-header">
+            <span class="icon">✨</span>
+            <h2 id="editor-title">写新日记</h2>
+        </div>
+        
+        <input type="text" id="diary-title" placeholder="今天想写点什么？">
+        <textarea id="diary-content" placeholder="在这里记录你的想法..."></textarea>
+        
+        <div class="image-upload-area" id="image-upload" onclick="document.getElementById('image-input').click()">
+            <div class="upload-icon">🖼️</div>
+            <p>点击上传图片（可选）</p>
+            <input type="file" id="image-input" accept="image/*" onchange="handleImageUpload(event)">
+            <img id="image-preview" alt="预览">
+        </div>
+        
+        <div class="editor-actions">
+            <button class="btn btn-primary" id="upload-btn" onclick="uploadDiary()">
+                📤 发布日记
+            </button>
+            <button class="btn btn-secondary" onclick="clearEditor()">
+                🗑️ 清空
+            </button>
+        </div>
+        
+        <div id="upload-status"></div>
+    </div>
+
+    <!-- 日记统计和搜索 -->
+    <div class="diary-toolbar">
+        <div class="stats-bar">
+            <div class="stat-item">
+                <span class="stat-icon">📝</span>
+                <span class="stat-value" id="diary-count">0</span>
+                <span class="stat-label">篇日记</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">🖼️</span>
+                <span class="stat-value" id="image-count">0</span>
+                <span class="stat-label">张图片</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">📅</span>
+                <span class="stat-value" id="latest-date">-</span>
+                <span class="stat-label">最近更新</span>
+            </div>
+        </div>
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="🔍 搜索日记..." onkeyup="searchDiaries()">
         </div>
     </div>
 
-    <div class="container" id="main-content">
-        <header>
-            <h1>YSunの日记</h1>
-            <p>记录生活中的点滴思考与成长</p>
-        </header>
-        
-        <!-- 编辑器面板 -->
-        <div id="editor-panel">
-            <h2>✏️ 写新日记</h2>
-            <input type="text" id="diary-title" placeholder="日记标题（如：今日感悟）">
-            <textarea id="diary-content" placeholder="写下今天的内容...
-
-支持 Markdown 格式：
-- **粗体** 和 *斜体*
-- 列表项
-- > 引用
-
-尽情记录吧！"></textarea>
-            <div class="editor-actions">
-                <button class="btn btn-primary" id="upload-btn" onclick="uploadDiary()">
-                    📤 上传到 GitHub
-                </button>
-                <button class="btn btn-secondary" onclick="clearEditor()">
-                    🗑️ 清空
-                </button>
-            </div>
-            <div id="upload-status"></div>
-        </div>
-
-        <!-- 感悟条目 1 -->
-        <details>
-            <summary>
-                <span>如何面对焦虑 <span class="date">2023-10-15</span></span>
-            </summary>
-            <div class="content">
-                <p>焦虑的核心在于：想得太多，做得太少。</p>
-                <ul>
-                    <li>设定一个小目标，立刻去执行。</li>
-                    <li>关注当下，而不是未知的未来。</li>
-                    <li>接受自己的不完美。</li>
-                </ul>
-                <p>行动是击碎焦虑最有效的武器。</p>
-            </div>
-        </details>
-        
-        <!-- 感悟条目 2 -->
-        <details>
-            <summary>
-                <span>如何面对焦虑 <span class="date">2023-10-15</span></span>
-            </summary>
-            <div class="content">
-                <p>焦虑的核心在于：想得太多，做得太少。</p>
-                <ul>
-                    <li>设定一个小目标，立刻去执行。</li>
-                    <li>关注当下，而不是未知的未来。</li>
-                    <li>接受自己的不完美。</li>
-                </ul>
-                <p>行动是击碎焦虑最有效的武器。</p>
-            </div>
-        </details>
-        
-
+    <!-- 日记列表 -->
+    <div id="diary-list">
+        <!-- 动态加载的日记会显示在这里 -->
     </div>
 
-    <!-- 编辑器切换按钮 -->
-    <button class="editor-toggle" id="editor-toggle" onclick="toggleEditor()" title="写新日记">
-        ✏️
-    </button>
+    <!-- 空状态提示 -->
+    <div class="empty-state" id="empty-state">
+        <div class="empty-icon">📔</div>
+        <h3>还没有日记</h3>
+        <p>点击右下角的 ✏️ 开始记录你的第一篇日记</p>
+    </div>
 
-    <footer>
-        &copy; YSunの日记 &copy;
-    </footer>
+</div>
 
-    <script>
-        // ========== 配置 ==========
-        const CORRECT_PASSWORD = "358966OoOo";
-        const SESSION_KEY = "daynote_unlocked";
-        // TODO: 部署 Worker 后替换为你的 Worker URL
-        const WORKER_URL = "https://diary-upload.ysunyang979-sys.workers.dev";
+<!-- 悬浮按钮 -->
+<button class="fab" id="fab" onclick="toggleEditor()" title="写日记">✏️</button>
 
-        // ========== 密码验证 ==========
-        if (sessionStorage.getItem(SESSION_KEY) === "true") {
-            unlockPage();
-        }
+<footer>
+    <p>✦ <span>YSun の 日记</span> ✦</p>
+</footer>
 
-        function checkPassword() {
-            const input = document.getElementById('password-input');
-            const errorMsg = document.getElementById('error-msg');
+<script>
+    // ========== 配置 ==========
+    const CORRECT_PASSWORD = "358966OoOo";
+    const SESSION_KEY = "daynote_unlocked";
+    const WORKER_URL = "https://diary-upload.3589665628.workers.dev";
+    
+    let currentEditId = null;
+    let selectedImage = null;
+    let deleteTargetId = null;
+    let deleteTargetFileName = null;
+    let deleteTargetSha = null;
+    let allDiaries = []; // 存储所有日记用于搜索
+
+    // ========== 从 GitHub 加载日记 ==========
+    async function loadDiariesFromGitHub() {
+        showStatus('📡 正在加载日记...', 'loading');
+        
+        try {
+            const response = await fetch(WORKER_URL + '/list', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password: CORRECT_PASSWORD })
+            });
             
-            if (input.value === CORRECT_PASSWORD) {
-                sessionStorage.setItem(SESSION_KEY, "true");
-                unlockPage();
+            const result = await response.json();
+            
+            if (response.ok && result.success) {
+                allDiaries = result.diaries;
+                renderDiaryList(result.diaries);
+                updateStats(result.diaries);
+                hideStatus();
             } else {
-                errorMsg.style.display = 'block';
-                input.value = '';
-                input.focus();
-                
-                // 震动效果
-                const box = document.querySelector('.login-box');
-                box.style.transform = 'translateX(10px)';
-                setTimeout(() => box.style.transform = 'translateX(-10px)', 100);
-                setTimeout(() => box.style.transform = 'translateX(0)', 200);
+                showStatus(`⚠️ ${result.error || '加载失败'}`, 'error');
             }
+        } catch (error) {
+            showStatus(`❌ 网络错误: ${error.message}`, 'error');
         }
+    }
 
-        function unlockPage() {
-            const overlay = document.getElementById('password-overlay');
-            const content = document.getElementById('main-content');
-            const toggleBtn = document.getElementById('editor-toggle');
+    function renderDiaryList(diaries) {
+        const container = document.getElementById('diary-list');
+        const emptyState = document.getElementById('empty-state');
+        
+        container.innerHTML = '';
+        
+        if (diaries.length === 0) {
+            emptyState.style.display = 'block';
+            return;
+        }
+        
+        emptyState.style.display = 'none';
+        
+        diaries.forEach(diary => {
+            renderEntry(diary.id, diary.title, diary.content, diary.imageUrl, diary.date, false, diary.fileName, diary.id);
+        });
+    }
+
+    function updateStats(diaries) {
+        document.getElementById('diary-count').textContent = diaries.length;
+        document.getElementById('image-count').textContent = diaries.filter(d => d.imageUrl).length;
+        document.getElementById('latest-date').textContent = diaries[0]?.date || '-';
+    }
+
+    // ========== 搜索日记 ==========
+    function searchDiaries() {
+        const query = document.getElementById('search-input').value.toLowerCase().trim();
+        
+        if (!query) {
+            renderDiaryList(allDiaries);
+            return;
+        }
+        
+        const filtered = allDiaries.filter(d => 
+            d.title.toLowerCase().includes(query) || 
+            d.content.toLowerCase().includes(query)
+        );
+        
+        renderDiaryList(filtered);
+    }
+
+    // ========== 密码验证 ==========
+    if (sessionStorage.getItem(SESSION_KEY) === "true") {
+        unlockPage();
+    }
+
+    function checkPassword() {
+        const input = document.getElementById('password-input');
+        const errorMsg = document.getElementById('error-msg');
+        
+        if (input.value === CORRECT_PASSWORD) {
+            sessionStorage.setItem(SESSION_KEY, "true");
+            unlockPage();
+        } else {
+            errorMsg.style.display = 'block';
+            input.value = '';
+            input.focus();
             
-            overlay.style.opacity = '0';
-            setTimeout(() => {
-                overlay.style.display = 'none';
-                content.style.filter = 'none';
-                toggleBtn.style.display = 'block'; // 显示编辑按钮
-            }, 500);
+            const box = document.querySelector('.login-box');
+            box.style.animation = 'shake 0.5s';
+            setTimeout(() => box.style.animation = '', 500);
+        }
+    }
+
+    function unlockPage() {
+        const overlay = document.getElementById('password-overlay');
+        const content = document.getElementById('main-content');
+        const fab = document.getElementById('fab');
+        
+        overlay.style.opacity = '0';
+        overlay.style.transition = 'opacity 0.5s';
+        setTimeout(() => {
+            overlay.style.display = 'none';
+            content.classList.remove('locked');
+            fab.style.display = 'block';
+            // 从 GitHub 加载日记
+            loadDiariesFromGitHub();
+        }, 500);
+    }
+
+    // ========== 编辑器 ==========
+    let editorVisible = false;
+
+    function toggleEditor() {
+        const panel = document.getElementById('editor-panel');
+        const fab = document.getElementById('fab');
+        
+        editorVisible = !editorVisible;
+        panel.style.display = editorVisible ? 'block' : 'none';
+        fab.classList.toggle('active', editorVisible);
+        fab.textContent = editorVisible ? '✕' : '✏️';
+        
+        if (editorVisible) {
+            document.getElementById('diary-title').focus();
+            panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+            resetEditor();
+        }
+    }
+
+    function resetEditor() {
+        currentEditId = null;
+        document.getElementById('editor-title').textContent = '写新日记';
+        clearEditor();
+    }
+
+    function clearEditor() {
+        document.getElementById('diary-title').value = '';
+        document.getElementById('diary-content').value = '';
+        clearImage();
+        hideStatus();
+    }
+
+    // ========== 图片上传 ==========
+    function handleImageUpload(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        if (file.size > 5 * 1024 * 1024) {
+            showStatus('⚠️ 图片大小不能超过 5MB', 'error');
+            return;
         }
 
-        // ========== 编辑器功能 ==========
-        let editorVisible = false;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            selectedImage = e.target.result;
+            const preview = document.getElementById('image-preview');
+            preview.src = selectedImage;
+            preview.style.display = 'block';
+            document.getElementById('image-upload').classList.add('has-image');
+        };
+        reader.readAsDataURL(file);
+    }
 
-        function toggleEditor() {
-            const panel = document.getElementById('editor-panel');
-            const toggle = document.getElementById('editor-toggle');
+    function clearImage() {
+        selectedImage = null;
+        document.getElementById('image-preview').style.display = 'none';
+        document.getElementById('image-preview').src = '';
+        document.getElementById('image-input').value = '';
+        document.getElementById('image-upload').classList.remove('has-image');
+    }
+
+    // ========== 状态提示 ==========
+    function showStatus(message, type) {
+        const status = document.getElementById('upload-status');
+        status.textContent = message;
+        status.className = type;
+        status.style.display = 'block';
+    }
+
+    function hideStatus() {
+        document.getElementById('upload-status').style.display = 'none';
+    }
+
+    // ========== 日记操作 ==========
+    function toggleEntry(entry) {
+        entry.classList.toggle('open');
+    }
+
+    function addNewEntry(title, content, imageUrl = null, fileName = null, sha = null) {
+        const today = new Date().toISOString().split('T')[0];
+        const id = sha || ('entry-' + Date.now());
+        
+        // 添加到本地数组
+        allDiaries.unshift({ id, title, content, imageUrl, date: today, fileName, sha: id });
+        updateStats(allDiaries);
+        
+        // 渲染到页面
+        renderEntry(id, title, content, imageUrl, today, true, fileName, id);
+        
+        // 隐藏空状态
+        document.getElementById('empty-state').style.display = 'none';
+    }
+
+    function renderEntry(id, title, content, imageUrl, date, isNew = false, fileName = null, sha = null) {
+        const container = document.getElementById('diary-list');
+        
+        const entry = document.createElement('div');
+        entry.className = 'diary-entry' + (isNew ? ' new-entry open' : '');
+        entry.dataset.id = id;
+        entry.dataset.fileName = fileName || '';
+        entry.dataset.sha = sha || '';
+        
+        const imageHtml = imageUrl 
+            ? `<img src="${imageUrl}" class="entry-image" alt="日记图片" onclick="openLightbox('${imageUrl}')">`
+            : `<div class="no-image-placeholder"><div class="icon">📝</div><p>纯文字记录</p></div>`;
+        
+        const imageTags = imageUrl 
+            ? `<span class="entry-tag tag-has-image">有图片</span>` 
+            : '';
+        
+        const newTag = isNew ? `<span class="entry-tag tag-new">刚刚发布</span>` : '';
+        
+        entry.innerHTML = `
+            <div class="entry-header" onclick="toggleEntry(this.parentElement)">
+                <div class="entry-info">
+                    <div class="entry-title">
+                        ${imageUrl ? '<span class="has-image"></span>' : ''}
+                        ${title}
+                    </div>
+                    <div class="entry-meta">
+                        <span class="entry-date">📅 ${date}</span>
+                        ${newTag}
+                        ${imageTags}
+                    </div>
+                </div>
+                <span class="entry-toggle">+</span>
+            </div>
+            <div class="entry-content">
+                <div class="entry-body">
+                    ${imageHtml}
+                    <div class="entry-text">
+                        <p>${content.replace(/\n/g, '</p><p>')}</p>
+                    </div>
+                    <div class="entry-actions">
+                        <button class="entry-btn entry-btn-delete" onclick="showDeleteModal('${id}', '${fileName || ''}', '${sha || ''}')">
+                            🗑️ 删除
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        if (isNew) {
+            container.insertBefore(entry, container.firstChild);
+        } else {
+            container.appendChild(entry);
+        }
+    }
+
+    function editEntry(id) {
+        const entry = document.querySelector(`[data-id="${id}"]`);
+        if (!entry) return;
+        
+        const title = entry.querySelector('.entry-title').textContent.trim();
+        const content = entry.querySelector('.entry-text').textContent.trim();
+        
+        currentEditId = id;
+        document.getElementById('editor-title').textContent = '编辑日记';
+        document.getElementById('diary-title').value = title;
+        document.getElementById('diary-content').value = content;
+        
+        if (!editorVisible) toggleEditor();
+        document.getElementById('diary-title').focus();
+    }
+
+    // ========== 删除功能 ==========
+    function showDeleteModal(id, fileName, sha) {
+        deleteTargetId = id;
+        deleteTargetFileName = fileName;
+        deleteTargetSha = sha;
+        document.getElementById('delete-modal').style.display = 'flex';
+    }
+
+    function closeDeleteModal() {
+        deleteTargetId = null;
+        deleteTargetFileName = null;
+        deleteTargetSha = null;
+        document.getElementById('delete-modal').style.display = 'none';
+    }
+
+    async function confirmDelete() {
+        if (!deleteTargetId) return;
+        
+        const entry = document.querySelector(`[data-id="${deleteTargetId}"]`);
+        
+        // 如果有 fileName 和 sha，调用 GitHub API 删除
+        if (deleteTargetFileName && deleteTargetSha) {
+            showStatus('🗑️ 正在删除...', 'loading');
             
-            editorVisible = !editorVisible;
-            panel.style.display = editorVisible ? 'block' : 'none';
-            toggle.textContent = editorVisible ? '✖️' : '✏️';
-            toggle.classList.toggle('active', editorVisible);
-            
-            if (editorVisible) {
-                document.getElementById('diary-title').focus();
-            }
-        }
-
-        function clearEditor() {
-            document.getElementById('diary-title').value = '';
-            document.getElementById('diary-content').value = '';
-            hideStatus();
-        }
-
-        function showStatus(message, type) {
-            const status = document.getElementById('upload-status');
-            status.textContent = message;
-            status.className = type;
-            status.style.display = 'block';
-        }
-
-        function hideStatus() {
-            document.getElementById('upload-status').style.display = 'none';
-        }
-
-        // ========== 上传日记 ==========
-        async function uploadDiary() {
-            const title = document.getElementById('diary-title').value.trim();
-            const content = document.getElementById('diary-content').value.trim();
-            const uploadBtn = document.getElementById('upload-btn');
-
-            // 验证
-            if (!title) {
-                showStatus('⚠️ 请输入日记标题', 'error');
-                document.getElementById('diary-title').focus();
-                return;
-            }
-            if (!content) {
-                showStatus('⚠️ 请输入日记内容', 'error');
-                document.getElementById('diary-content').focus();
-                return;
-            }
-
-            // 禁用按钮，显示加载状态
-            uploadBtn.disabled = true;
-            uploadBtn.textContent = '⏳ 上传中...';
-            showStatus('📡 正在连接服务器...', 'loading');
-
             try {
-                const response = await fetch(WORKER_URL, {
+                const response = await fetch(WORKER_URL + '/delete', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        title: title,
-                        content: content,
+                        fileName: deleteTargetFileName,
+                        sha: deleteTargetSha,
                         password: CORRECT_PASSWORD
                     })
                 });
-
+                
                 const result = await response.json();
-
+                
                 if (response.ok && result.success) {
-                    showStatus(`✅ ${result.message} 文件：${result.file}`, 'success');
-                    // 清空编辑器
-                    clearEditor();
-                    showStatus(`✅ 日记上传成功！博客将在几分钟后自动更新。`, 'success');
+                    showStatus('✅ 日记已删除', 'success');
                 } else {
-                    showStatus(`❌ 上传失败：${result.error || '未知错误'}`, 'error');
+                    showStatus(`❌ 删除失败: ${result.error}`, 'error');
                 }
             } catch (error) {
-                showStatus(`❌ 网络错误：${error.message}`, 'error');
-            } finally {
-                uploadBtn.disabled = false;
-                uploadBtn.textContent = '📤 上传到 GitHub';
+                showStatus(`❌ 网络错误: ${error.message}`, 'error');
             }
         }
-    </script>
+        
+        // 从本地数组删除
+        allDiaries = allDiaries.filter(d => d.id !== deleteTargetId);
+        updateStats(allDiaries);
+        
+        // 从页面删除
+        if (entry) {
+            entry.style.animation = 'fadeOut 0.3s forwards';
+            setTimeout(() => entry.remove(), 300);
+        }
+        
+        // 检查是否为空
+        if (allDiaries.length === 0) {
+            document.getElementById('empty-state').style.display = 'block';
+        }
+        
+        closeDeleteModal();
+    }
+
+    // ========== 图片预览功能 ==========
+    function openLightbox(imageUrl) {
+        const lightbox = document.getElementById('image-lightbox');
+        const img = document.getElementById('lightbox-image');
+        img.src = imageUrl;
+        lightbox.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        document.getElementById('image-lightbox').style.display = 'none';
+        document.body.style.overflow = '';
+    }
+
+    // ESC 键关闭预览
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox();
+    });
+
+    // ========== 上传图片到 GitHub ==========
+    async function uploadImageToGitHub(base64Data) {
+        showStatus('🖼️ 正在上传图片...', 'loading');
+        
+        try {
+            const response = await fetch(WORKER_URL + '/image', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    imageData: base64Data,
+                    password: CORRECT_PASSWORD
+                })
+            });
+            
+            const result = await response.json();
+            
+            if (response.ok && result.success) {
+                return result.url;
+            } else {
+                throw new Error(result.error || '图片上传失败');
+            }
+        } catch (error) {
+            console.error('Image upload error:', error);
+            return null;
+        }
+    }
+
+    // ========== 上传日记 ==========
+    async function uploadDiary() {
+        const title = document.getElementById('diary-title').value.trim();
+        const content = document.getElementById('diary-content').value.trim();
+        const uploadBtn = document.getElementById('upload-btn');
+
+        if (!title) {
+            showStatus('⚠️ 请输入日记标题', 'error');
+            document.getElementById('diary-title').focus();
+            return;
+        }
+        if (!content) {
+            showStatus('⚠️ 请输入日记内容', 'error');
+            document.getElementById('diary-content').focus();
+            return;
+        }
+
+        uploadBtn.disabled = true;
+        uploadBtn.textContent = '⏳ 发布中...';
+        
+        let imageUrl = null;
+        
+        // 如果有图片，先上传到 GitHub
+        if (selectedImage) {
+            showStatus('🖼️ 正在上传图片...', 'loading');
+            imageUrl = await uploadImageToGitHub(selectedImage);
+            if (!imageUrl) {
+                showStatus('⚠️ 图片上传失败，将发布纯文字日记', 'error');
+                await new Promise(r => setTimeout(r, 1500));
+            }
+        }
+        
+        showStatus('📡 正在发布日记...', 'loading');
+
+        try {
+            const response = await fetch(WORKER_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    title: title,
+                    content: content,
+                    imageUrl: imageUrl,
+                    password: CORRECT_PASSWORD
+                })
+            });
+
+            const result = await response.json();
+
+            if (response.ok && result.success) {
+                addNewEntry(title, content, imageUrl || selectedImage);
+                toggleEditor();
+                showStatus('✅ 发布成功！博客将在几分钟后更新', 'success');
+            } else {
+                showStatus(`❌ 发布失败：${result.error || '未知错误'}`, 'error');
+            }
+        } catch (error) {
+            showStatus(`❌ 网络错误：${error.message}`, 'error');
+        } finally {
+            uploadBtn.disabled = false;
+            uploadBtn.textContent = '📤 发布日记';
+        }
+    }
+
+    // 添加 CSS 动画
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        @keyframes fadeOut {
+            to { opacity: 0; transform: translateX(-50px); }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
 </body>
 </html>
