@@ -22,7 +22,7 @@ comments: false
 
 完整的分类清单与官方下载地址，请点击下方按钮进行查看：
 
-<a href="/SearchFile/computer.html" class="btn">查看完整 Windows 装机清单</a><a href="/SearchFile/tool/电脑软件.html" class="btn">电脑软件</a><a href="/SearchFile/ysuser.html" class="btn">个人使用工具/软件</a>
+<a href="/SearchFile/computer.html" class="btn">查看完整 Windows 装机清单</a><a href="/SearchFile/tool/电脑软件.html" class="btn">电脑软件</a><a href="/SearchFile/mobile.html" class="btn">手机软件</a><a href="/SearchFile/ysuser.html" class="btn">个人使用工具/软件</a>
 
 ---
 # 🌐 科学上网篇

@@ -111,7 +111,7 @@ theme_config:
     首页: /
     归档: /archives
     关于: /about
-    经验: /SearchFile
+    Ysun: /SearchFile
     Daynote: /daynote
   comment:
     disqus: false
