@@ -66,7 +66,7 @@ export default {
  */
 async function handleListDiaries(data, env, corsHeaders) {
   const repo = env.GITHUB_REPO || "ysunyang979-sys/blog";
-  const path = "source/_posts";
+  const path = "source/_diary";
   
   try {
     // 获取 _posts 目录下的文件列表
@@ -174,7 +174,7 @@ async function handleDeleteDiary(data, env, corsHeaders) {
   }
 
   const repo = env.GITHUB_REPO || "ysunyang979-sys/blog";
-  const path = `source/_posts/${fileName}`;
+  const path = `source/_diary/${fileName}`;
   const url = `https://api.github.com/repos/${repo}/contents/${path}`;
 
   const response = await fetch(url, {
@@ -224,33 +224,21 @@ async function handleDiaryUpload(data, env, corsHeaders) {
   const dateStr = now.toISOString().split("T")[0];
   const timeStr = now.toISOString().split("T")[1].substring(0, 8);
   const fileName = `diary-${dateStr}-${Date.now()}.md`;
-  const filePath = `source/_posts/${fileName}`;
+  const filePath = `source/_diary/${fileName}`;
 
-  // 如果有图片，添加到内容中
+  // 日记内容（不需要 front matter，因为不会被 Hexo 渲染）
   let finalContent = content;
   if (imageUrl) {
-    finalContent = `![日记配图](${imageUrl})\n\n${content}`;
+    finalContent = `![${title}](${imageUrl})\n\n${content}`;
   }
 
-  const frontMatter = `---
-title: ${title}
-date: ${dateStr} ${timeStr}
-tags:
-  - 日记
-categories:
-  - 日记
-cover: ${imageUrl || ''}
----
-
-`;
-
-  const fullContent = frontMatter + finalContent;
+  const diaryContent = `# ${title}\n\ndate: ${dateStr} ${timeStr}\ncover: ${imageUrl || ''}\n\n---\n\n${finalContent}`;
 
   const githubResponse = await createGitHubFile(
     env.GITHUB_TOKEN,
     env.GITHUB_REPO || "ysunyang979-sys/blog",
     filePath,
-    fullContent,
+    diaryContent,
     `📝 添加日记: ${title}`
   );
 
