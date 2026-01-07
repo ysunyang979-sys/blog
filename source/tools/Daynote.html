@@ -1236,11 +1236,31 @@
         entry.dataset.fileName = fileName || '';
         entry.dataset.sha = sha || '';
         
-        const imageHtml = imageUrl 
-            ? `<img src="${imageUrl}" class="entry-image" alt="日记图片" onclick="openLightbox('${imageUrl}')">`
-            : `<div class="no-image-placeholder"><div class="icon">📝</div><p>纯文字记录</p></div>`;
+        // 处理内容：提取图片，清理元数据
+        let cleanContent = content || '';
+        let extractedImage = imageUrl;
         
-        const imageTags = imageUrl 
+        // 从内容中提取图片 ![xxx](url)
+        const imgMatch = cleanContent.match(/!\[.*?\]\((.*?)\)/);
+        if (imgMatch) {
+            extractedImage = extractedImage || imgMatch[1];
+            cleanContent = cleanContent.replace(/!\[.*?\]\(.*?\)\s*/g, '').trim();
+        }
+        
+        // 清理元数据行（# 标题, date:, cover:, ---）
+        cleanContent = cleanContent
+            .replace(/^#\s+.+\n*/gm, '')
+            .replace(/^date:\s*.+\n*/gm, '')
+            .replace(/^cover:\s*.*\n*/gm, '')
+            .replace(/^---\s*\n*/gm, '')
+            .trim();
+        
+        // 图片区域：只有有图片时才显示
+        const imageHtml = extractedImage 
+            ? `<img src="${extractedImage}" class="entry-image" alt="日记图片" onclick="openLightbox('${extractedImage}')">`
+            : '';
+        
+        const imageTags = extractedImage 
             ? `<span class="entry-tag tag-has-image">有图片</span>` 
             : '';
         
@@ -1250,7 +1270,7 @@
             <div class="entry-header" onclick="toggleEntry(this.parentElement)">
                 <div class="entry-info">
                     <div class="entry-title">
-                        ${imageUrl ? '<span class="has-image"></span>' : ''}
+                        ${extractedImage ? '<span class="has-image"></span>' : ''}
                         ${title}
                     </div>
                     <div class="entry-meta">
@@ -1265,7 +1285,7 @@
                 <div class="entry-body">
                     ${imageHtml}
                     <div class="entry-text">
-                        <p>${content.replace(/\n/g, '</p><p>')}</p>
+                        <p>${cleanContent.replace(/\n/g, '</p><p>')}</p>
                     </div>
                     <div class="entry-actions">
                         <button class="entry-btn entry-btn-delete" onclick="showDeleteModal('${id}', '${fileName || ''}', '${sha || ''}')">

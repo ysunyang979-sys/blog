@@ -99,8 +99,8 @@ async function handleListDiaries(data, env, corsHeaders) {
         const contentResponse = await fetch(file.download_url);
         const content = await contentResponse.text();
         
-        // 解析 Front Matter
-        const parsed = parseFrontMatter(content);
+        // 解析日记内容
+        const parsed = parseDiaryContent(content);
         diaries.push({
           id: file.sha,
           fileName: file.name,
@@ -131,24 +131,46 @@ async function handleListDiaries(data, env, corsHeaders) {
 }
 
 /**
- * 解析 Front Matter
+ * 解析日记内容
+ * 新格式: # 标题\n\ndate: xxx\ncover: xxx\n\n---\n\n内容
+ * 旧格式: ---\nfront matter\n---\n\n内容
  */
-function parseFrontMatter(content) {
-  const match = content.match(/^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/);
-  if (!match) return { content };
+function parseDiaryContent(content) {
+  // 尝试新格式: # 标题
+  const newFormatMatch = content.match(/^#\s*(.+?)\s*\n\ndate:\s*(.+?)\ncover:\s*(.*)\n\n---\n\n([\s\S]*)$/);
+  if (newFormatMatch) {
+    return {
+      title: newFormatMatch[1].trim(),
+      date: newFormatMatch[2].trim().split(" ")[0],
+      cover: newFormatMatch[3].trim() || null,
+      content: newFormatMatch[4].trim(),
+    };
+  }
   
-  const frontMatter = match[1];
-  const body = match[2].trim();
+  // 尝试旧格式: ---\nfront matter\n---
+  const oldFormatMatch = content.match(/^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/);
+  if (oldFormatMatch) {
+    const frontMatter = oldFormatMatch[1];
+    const body = oldFormatMatch[2].trim();
+    
+    const titleMatch = frontMatter.match(/title:\s*(.+)/);
+    const dateMatch = frontMatter.match(/date:\s*(.+)/);
+    const coverMatch = frontMatter.match(/cover:\s*(.+)/);
+    
+    return {
+      title: titleMatch ? titleMatch[1].trim() : "",
+      date: dateMatch ? dateMatch[1].trim().split(" ")[0] : "",
+      cover: coverMatch ? coverMatch[1].trim() : null,
+      content: body,
+    };
+  }
   
-  const titleMatch = frontMatter.match(/title:\s*(.+)/);
-  const dateMatch = frontMatter.match(/date:\s*(.+)/);
-  const coverMatch = frontMatter.match(/cover:\s*(.+)/);
-  
-  return {
-    title: titleMatch ? titleMatch[1].trim() : "",
-    date: dateMatch ? dateMatch[1].trim().split(" ")[0] : "",
-    cover: coverMatch ? coverMatch[1].trim() : "",
-    content: body,
+  // 无法解析，返回原始内容
+  return { 
+    title: "未知标题",
+    date: "",
+    cover: null,
+    content: content 
   };
 }
 
