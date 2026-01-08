@@ -33,7 +33,7 @@ comments: false
 1.  **科学上网工具**：跨平台的代理客户端。我个人在 Win 端使用 V2rayN，它支持丰富的协议和灵活的路由设置，还有其他的工具比如 Clash、Surge 等。
     *   <a href="/tools/index.html" class="btn">查看各平台软件下载</a><a href="/tools/全平台客户端下载.html" class="btn">全平台客户端下载</a><a href="/SearchFile/v2raytun.html" class="btn">TUN 模式</a>
 2.  **优质节点线路**：没有节点，工具只是空壳。如果你追求极致稳定，我推荐了一些老牌专线机场；如果你不想额外支出，我也分享了我的个人自用节点。
-    *   <a href="/SearchFile/node.html" class="btn">获取节点与订阅链接</a>       <a href="/tools/fq.html" class="btn">教程博主</a>
+    *   <a href="/SearchFile/node.html" class="btn">获取节点与订阅链接</a>       <a href="/tools/fq.html" class="btn">.</a>
 # 资源查找篇
 
 # 🔍 资源查找篇
@@ -48,7 +48,8 @@ comments: false
 掌握 `site:`、`filetype:` 等指令，能让你从搜索引擎中过滤掉 90% の 无效广告和水文，直接触达原始文档。
 <a href="/SearchFile/usebrowser.html" class="btn">搜索引擎 の 高级用法</a><a href="/SearchFile/plugin.html" class="btn">浏览器插件</a>
 
-
+### 现成的资源库
+<a href="/SearchFile/网站/ssit.html" class="btn">网站</a>
 ---
 ## ✈️ 电报 (Telegram) 篇
 
@@ -71,4 +72,6 @@ Telegram 不仅仅是一个聊天软件，它更是全球最大的**去中心化
 
 # 📚 白嫖策略
 
-<a href="/SearchFile/tool/临时邮箱.html" class="btn">临时邮箱</a><a href="/SearchFile/tool/临时邮箱-书籍下载.html" class="btn">临时邮箱-书籍下载</a><a href="/SearchFile/tool/个人网站（vercel）.html" class="btn">个人网站（vercel）</a><a href="/SearchFile/tool/表情符号展示.html" class="btn">表情符号展示</a>
+<a href="/SearchFile/tool/临时邮箱.html" class="btn">临时邮箱</a><a href="/SearchFile/tool/临时邮箱-书籍下载.html" class="btn">临时邮箱-书籍下载</a><a href="/SearchFile/tool/表情符号展示.html" class="btn">表情符号展示</a>
+
+

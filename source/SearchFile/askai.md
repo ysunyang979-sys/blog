@@ -81,4 +81,4 @@ comments: false
 >如果你对AI提示词不太会写可以参考这个<a href="/SearchFile/AI/prompt.html" class="btn">元AI提示词</a>让AI帮助写提示词
 
 下面还有一些实用的AI提示词：
-<a href="/SearchFile/tool/AI实用提示词.html" class="btn">AI实用提示词</a><a href="/SearchFile/tool/AI绘画提示词.html" class="btn">AI绘画提示词</a><a href="/SearchFile/tool/提示词管理油猴脚本.html" class="btn">AI提示词管理</a><a href="/SearchFile/AIPrompt.html" class="btn">高级AI提示词</a>
+<a href="/SearchFile/tool/AI实用提示词.html" class="btn">AI实用提示词</a><a href="/SearchFile/tool/AI绘画提示词.html" class="btn">AI绘画提示词</a><a href="/SearchFile/tool/提示词管理油猴脚本.html" class="btn">AI提示词管理</a><a href="/SearchFile/AIPrompt.html" class="btn">高级AI提示词</a><a href="https://neon.opera.com/cards/" class="btn">Opera高级提示词</a>
