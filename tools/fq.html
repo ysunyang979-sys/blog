@@ -526,7 +526,7 @@
     </div>
 </div>
 
-<div class="footer">✦ Built with ♥ ✦</div>
+<div class="footer">✦ Built with Ysun ✦</div>
 
 <!-- 添加书签的弹窗 -->
 <div id="modal">
@@ -666,7 +666,6 @@
             card.target = '_blank';
             card.style.animationDelay = `${index * 0.1}s`;
             card.innerHTML = `
-                <span class="delete-btn" onclick="deleteBookmark(event, ${index})">✕</span>
                 <div class="icon-wrapper">
                     <img src="${iconUrl}" alt="${bm.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🌐</text></svg>'">
                 </div>
