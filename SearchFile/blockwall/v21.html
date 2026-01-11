@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang=zh>
+
+    <head>
+        <meta charset="utf-8">
+        
+            <title>
+                
+                    代码1 | 
+                            ysun &amp; Blog
+            </title>
+            
+                
+                    <meta name="keywords" content="代码1" />
+                    
+                        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+                        <meta name="description" content="&#x2F;&#x2F; @ts-ignore import &#123; connect &#125; from &#39;cloudflare:sockets&#39;;  &#x2F;&#x2F; How to generate your own UUID: &#x2F;&#x2F; [Windows] Press &quot;Win + R&quot;, input cmd and run:  Powershell -NoExit -Command">
+<meta property="og:type" content="website">
+<meta property="og:title" content="代码1">
+<meta property="og:url" content="https://ysunyang979-sys.github.io/SearchFile/blockwall/v21.html">
+<meta property="og:site_name" content="ysun &amp; Blog">
+<meta property="og:description" content="&#x2F;&#x2F; @ts-ignore import &#123; connect &#125; from &#39;cloudflare:sockets&#39;;  &#x2F;&#x2F; How to generate your own UUID: &#x2F;&#x2F; [Windows] Press &quot;Win + R&quot;, input cmd and run:  Powershell -NoExit -Command">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-12-28T15:15:00.000Z">
+<meta property="article:modified_time" content="2026-01-11T09:47:00.280Z">
+<meta property="article:author" content="ysun">
+<meta name="twitter:card" content="summary">
+                            
+
+                                
+                                    <link rel="alternate" href="/atom.xml"
+                                        title="ysun &amp; Blog" type="application/atom+xml" />
+                                    
+
+                                        
+                                            <link rel="icon" href="/favicon.png" />
+                                            
+
+                                                
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+                                                    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+                                                        
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+                                                            <link rel="stylesheet"
+                                                                href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css">
+                                                            <link rel="stylesheet"
+                                                                href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css">
+                                                            <link rel="stylesheet" href="/css/pdf-tools.css">
+                                                            <link rel="stylesheet" href="/css/custom-style.css">
+
+                                                            
+<link rel="stylesheet" href="/css/style.css">
+
+                                                                
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+                                                                    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+                                                                        
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+                                                                            
+                                                                                <script async
+                                                                                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+                                                                                
+    <meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                
+                <span class="site-title">ysun &amp; Blog</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+                    <a class="main-nav-link" href="/SearchFile">Ysun</a>
+                
+                    <a class="main-nav-link" href="/daynote">Daynote</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                    <td><a class="main-nav-link" href="/SearchFile">Ysun</a></td>
+                
+                    <td><a class="main-nav-link" href="/daynote">Daynote</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+    
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span id="tab-category" class="widget-tab active">分类</span>
+            <span id="tab-links" class="widget-tab">
+                <i class="fa fa-link"></i>
+            </span>
+            <a id='allExpand' href="#" style="float: right;">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        <div id="content-category">
+            
+            
+             <ul class="unstyled" id="tree" > 
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                unity
+                            </a>
+                             <ul class="unstyled" id="tree" > 
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                四部曲
+                            </a>
+                             <ul class="unstyled" id="tree" > 
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                入门
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/09/29/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/001unity%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">基础知识</a></li>  <li class="file"><a href="/2024/09/29/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/0000/">条件运算</a></li>  <li class="file"><a href="/2024/09/29/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/0001/">异常捕获</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/002%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6/">三目运算符</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/000/">if</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/003Switch/">Switch</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/004While/">While</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/005Do%20While/">Do While</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/006For/">For</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/007%E6%8E%A7%E5%88%B6%E5%8F%B0/">控制台</a></li>  <li class="file"><a href="/2024/10/31/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/008%E9%9A%8F%E6%9C%BA%E6%95%B0/">随机数</a></li>  <li class="file"><a href="/2024/11/01/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/009%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/">项目调试</a></li>  <li class="file"><a href="/2024/11/01/%E5%9B%9B%E9%83%A8%E6%9B%B2/%E5%85%A5%E9%97%A8/010/">需求分析</a></li>  </ul> 
+                        </li> 
+                         </ul> 
+                        </li> 
+                        
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                效率/技巧
+                            </a>
+                             <ul class="unstyled" id="tree" > 
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                3D建模
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/unity3d-model/">unity3D模型处理</a></li>  </ul> 
+                        </li> 
+                        
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                TMP设置
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/unity%E5%AD%97%E4%BD%93%E8%AE%BE%E7%BD%AE/">unity字体TMP设置</a></li>  </ul> 
+                        </li> 
+                        
+                        <li class="directory">
+                            <a href="#" data-role="directory">
+                                <i class="fa fa-folder"></i>
+                                &nbsp;
+                                插件
+                            </a>
+                             <ul class="unstyled" id="tree" >  <li class="file"><a href="/2024/05/21/unityplug/">unity插件</a></li>  </ul> 
+                        </li> 
+                         </ul> 
+                        </li> 
+                         </ul> 
+                        </li> 
+                         </ul> 
+        </div>
+
+        <div id="content-links" style="display: none;">
+            <ul class="unstyled">
+                
+                    
+                        <li style="padding: 5px 0;">
+                            <a href="https://ray2v.ysunyang.dpdns.org/admin" target="_blank">
+                                <i class="fa fa-link"></i>&nbsp;优选IP
+                            </a>
+                        </li>
+                    
+                        <li style="padding: 5px 0;">
+                            <a href="https://dashboard.katabump.com/dashboard" target="_blank">
+                                <i class="fa fa-link"></i>&nbsp;科学上网VPS（Discord登录）
+                            </a>
+                        </li>
+                    
+                        <li style="padding: 5px 0;">
+                            <a href="https://mail.proton.me/u/0/inbox" target="_blank">
+                                <i class="fa fa-link"></i>&nbsp;Proton邮箱
+                            </a>
+                        </li>
+                    
+                        <li style="padding: 5px 0;">
+                            <a href="https://www.youtube.com" target="_blank">
+                                <i class="fa fa-link"></i>&nbsp;油管
+                            </a>
+                        </li>
+                    
+                        <li style="padding: 5px 0;">
+                            <a href="https://www.spaceship.com/zh/auth/?returnUrl=%2Fapplication%2Fdomain-list-application%2F" target="_blank">
+                                <i class="fa fa-link"></i>&nbsp;域名
+                            </a>
+                        </li>
+                    
+                        <li style="padding: 5px 0;">
+                            <a href="https://my.dnshe.com/index.php?m=domain_hub" target="_blank">
+                                <i class="fa fa-link"></i>&nbsp;免费域名dnshe
+                            </a>
+                        </li>
+                    
+                        <li style="padding: 5px 0;">
+                            <a href="https://picx.xpoet.cn/#/?jump=0" target="_blank">
+                                <i class="fa fa-link"></i>&nbsp;图床（GitHub登录）
+                            </a>
+                        </li>
+                    
+                        <li style="padding: 5px 0;">
+                            <a href="https://temp-mail-worker.3589665628.workers.dev/" target="_blank">
+                                <i class="fa fa-link"></i>&nbsp;无限马甲邮箱
+                            </a>
+                        </li>
+                    
+                        <li style="padding: 5px 0;">
+                            <a href="https://todo-snowy-rho.vercel.app/index-zh.html" target="_blank">
+                                <i class="fa fa-link"></i>&nbsp;ToDOList
+                            </a>
+                        </li>
+                    
+                        <li style="padding: 5px 0;">
+                            <a href="https://demo2apk.lasuo.ai/" target="_blank">
+                                <i class="fa fa-link"></i>&nbsp;APK打包
+                            </a>
+                        </li>
+                    
+                        <li style="padding: 5px 0;">
+                            <a href="https://www.scribd.com/home" target="_blank">
+                                <i class="fa fa-link"></i>&nbsp;Scribd书籍下载
+                            </a>
+                        </li>
+                    
+                        <li style="padding: 5px 0;">
+                            <a href="https://ysite74.vercel.app/" target="_blank">
+                                <i class="fa fa-link"></i>&nbsp;聚合网站
+                            </a>
+                        </li>
+                    
+                        <li style="padding: 5px 0;">
+                            <a href="https://uplugin.vercel.app/" target="_blank">
+                                <i class="fa fa-link"></i>&nbsp;Unity插件
+                            </a>
+                        </li>
+                    
+                
+            </ul>
+        </div>
+
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            
+            // Tab switching logic
+            $('#tab-category').click(function() {
+                $('#content-category').show();
+                $('#content-links').hide();
+                $('#allExpand').show(); // Show expand button for category
+                $(this).addClass('active');
+                $('#tab-links').removeClass('active');
+            });
+
+            $('#tab-links').click(function() {
+                $('#content-category').hide();
+                $('#content-links').show();
+                $('#allExpand').hide(); // Hide expand button for links
+                $(this).addClass('active');
+                $('#tab-category').removeClass('active');
+            });
+
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            代码1
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+        
+        
+            <pre><code class="py">// @ts-ignore
+import &#123; connect &#125; from &#39;cloudflare:sockets&#39;;
+
+// How to generate your own UUID:
+// [Windows] Press &quot;Win + R&quot;, input cmd and run:  Powershell -NoExit -Command &quot;[guid]::NewGuid()&quot;
+let userID = &#39;d342d11e-d424-4583-b36e-524ab1f0afa4&#39;;
+
+const พร็อกซีไอพีs = [&#39;cdn.xn--b6gac.eu.org&#39;, &#39;cdn-all.xn--b6gac.eu.org&#39;, &#39;workers.cloudflare.cyou&#39;];
+
+// if you want to use ipv6 or single พร็อกซีไอพี, please add comment at this line and remove comment at the next line
+let พร็อกซีไอพี = พร็อกซีไอพีs[Math.floor(Math.random() * พร็อกซีไอพีs.length)];
+// use single พร็อกซีไอพี instead of random
+// let พร็อกซีไอพี = &#39;cdn.xn--b6gac.eu.org&#39;;
+// ipv6 พร็อกซีไอพี example remove comment to use
+// let พร็อกซีไอพี = &quot;[2a01:4f8:c2c:123f:64:5:6810:c55a]&quot;
+
+let dohURL = &#39;https://freedns.controld.com/p0&#39;; // https://github.com/serverless-dns/serverless-dns OR xxx.xxx.workers.dev [README.md]
+
+if (!isValidUUID(userID)) &#123;
+    throw new Error(&#39;uuid is invalid&#39;);
+&#125;
+
+export default &#123;
+    /**
+     * @param &#123;import(&quot;@cloudflare/workers-types&quot;).Request&#125; request
+     * @param &#123;&#123;UUID: string, พร็อกซีไอพี: string, DNS_RESOLVER_URL: string, NODE_ID: int, API_HOST: string, API_TOKEN: string&#125;&#125; env
+     * @param &#123;import(&quot;@cloudflare/workers-types&quot;).ExecutionContext&#125; ctx
+     * @returns &#123;Promise&lt;Response&gt;&#125;
+     */
+    async fetch(request, env, ctx) &#123;
+        // uuid_validator(request);
+        try &#123;
+            userID = env.UUID || userID;
+            พร็อกซีไอพี = env.พร็อกซีไอพี || พร็อกซีไอพี;
+            dohURL = env.DNS_RESOLVER_URL || dohURL;
+            let userID_Path = userID;
+            if (userID.includes(&#39;,&#39;)) &#123;
+                userID_Path = userID.split(&#39;,&#39;)[0];
+            &#125;
+            const upgradeHeader = request.headers.get(&#39;Upgrade&#39;);
+            if (!upgradeHeader || upgradeHeader !== &#39;websocket&#39;) &#123;
+                const url = new URL(request.url);
+                switch (url.pathname) &#123;
+                    case `/cf`: &#123;
+                        return new Response(JSON.stringify(request.cf, null, 4), &#123;
+                            status: 200,
+                            headers: &#123;
+                                &quot;Content-Type&quot;: &quot;application/json;charset=utf-8&quot;,
+                            &#125;,
+                        &#125;);
+                    &#125;
+                    case `/$&#123;userID_Path&#125;`: &#123;
+                        const วเลสConfig = getวเลสConfig(userID, request.headers.get(&#39;Host&#39;));
+                        return new Response(`$&#123;วเลสConfig&#125;`, &#123;
+                            status: 200,
+                            headers: &#123;
+                                &quot;Content-Type&quot;: &quot;text/html; charset=utf-8&quot;,
+                            &#125;
+                        &#125;);
+                    &#125;;
+                    case `/sub/$&#123;userID_Path&#125;`: &#123;
+                        const url = new URL(request.url);
+                        const searchParams = url.searchParams;
+                        const วเลสSubConfig = สร้างวเลสSub(userID, request.headers.get(&#39;Host&#39;));
+                        // Construct and return response object
+                        return new Response(btoa(วเลสSubConfig), &#123;
+                            status: 200,
+                            headers: &#123;
+                                &quot;Content-Type&quot;: &quot;text/plain;charset=utf-8&quot;,
+                            &#125;
+                        &#125;);
+                    &#125;;
+                    case `/bestip/$&#123;userID_Path&#125;`: &#123;
+                        const headers = request.headers;
+                        const url = `https://sub.xf.free.hr/auto?host=$&#123;request.headers.get(&#39;Host&#39;)&#125;&amp;uuid=$&#123;userID&#125;&amp;path=/`;
+                        const bestSubConfig = await fetch(url, &#123; headers: headers &#125;);
+                        return bestSubConfig;
+                    &#125;;
+                    default:
+                        // return new Response(&#39;Not found&#39;, &#123; status: 404 &#125;);
+                        // For any other path, reverse proxy to &#39;ramdom website&#39; and return the original response, caching it in the process
+                        const randomHostname = cn_hostnames[Math.floor(Math.random() * cn_hostnames.length)];
+                        const newHeaders = new Headers(request.headers);
+                        newHeaders.set(&#39;cf-connecting-ip&#39;, &#39;1.2.3.4&#39;);
+                        newHeaders.set(&#39;x-forwarded-for&#39;, &#39;1.2.3.4&#39;);
+                        newHeaders.set(&#39;x-real-ip&#39;, &#39;1.2.3.4&#39;);
+                        newHeaders.set(&#39;referer&#39;, &#39;https://www.google.com/search?q=edtunnel&#39;);
+                        // Use fetch to proxy the request to 15 different domains
+                        const proxyUrl = &#39;https://&#39; + randomHostname + url.pathname + url.search;
+                        let modifiedRequest = new Request(proxyUrl, &#123;
+                            method: request.method,
+                            headers: newHeaders,
+                            body: request.body,
+                            redirect: &#39;manual&#39;,
+                        &#125;);
+                        const proxyResponse = await fetch(modifiedRequest, &#123; redirect: &#39;manual&#39; &#125;);
+                        // Check for 302 or 301 redirect status and return an error response
+                        if ([301, 302].includes(proxyResponse.status)) &#123;
+                            return new Response(`Redirects to $&#123;randomHostname&#125; are not allowed.`, &#123;
+                                status: 403,
+                                statusText: &#39;Forbidden&#39;,
+                            &#125;);
+                        &#125;
+                        // Return the response from the proxy server
+                        return proxyResponse;
+                &#125;
+            &#125; else &#123;
+                return await วเลสOverWSHandler(request);
+            &#125;
+        &#125; catch (err) &#123;
+            /** @type &#123;Error&#125; */ let e = err;
+            return new Response(e.toString());
+        &#125;
+    &#125;,
+&#125;;
+
+export async function uuid_validator(request) &#123;
+    const hostname = request.headers.get(&#39;Host&#39;);
+    const currentDate = new Date();
+
+    const subdomain = hostname.split(&#39;.&#39;)[0];
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, &#39;0&#39;);
+    const day = String(currentDate.getDate()).padStart(2, &#39;0&#39;);
+
+    const formattedDate = `$&#123;year&#125;-$&#123;month&#125;-$&#123;day&#125;`;
+
+    // const daliy_sub = formattedDate + subdomain
+    const hashHex = await hashHex_f(subdomain);
+    // subdomain string contains timestamps utc and uuid string TODO.
+    console.log(hashHex, subdomain, formattedDate);
+&#125;
+
+export async function hashHex_f(string) &#123;
+    const encoder = new TextEncoder();
+    const data = encoder.encode(string);
+    const hashBuffer = await crypto.subtle.digest(&#39;SHA-256&#39;, data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(byte =&gt; byte.toString(16).padStart(2, &#39;0&#39;)).join(&#39;&#39;);
+    return hashHex;
+&#125;
+
+/**
+ * Handles วเลส over WebSocket requests by creating a WebSocket pair, accepting the WebSocket connection, and processing the วเลส header.
+ * @param &#123;import(&quot;@cloudflare/workers-types&quot;).Request&#125; request The incoming request object.
+ * @returns &#123;Promise&lt;Response&gt;&#125; A Promise that resolves to a WebSocket response object.
+ */
+async function วเลสOverWSHandler(request) &#123;
+    const webSocketPair = new WebSocketPair();
+    const [client, webSocket] = Object.values(webSocketPair);
+    webSocket.accept();
+
+    let address = &#39;&#39;;
+    let portWithRandomLog = &#39;&#39;;
+    let currentDate = new Date();
+    const log = (/** @type &#123;string&#125; */ info, /** @type &#123;string | undefined&#125; */ event) =&gt; &#123;
+        console.log(`[$&#123;currentDate&#125; $&#123;address&#125;:$&#123;portWithRandomLog&#125;] $&#123;info&#125;`, event || &#39;&#39;);
+    &#125;;
+    const earlyDataHeader = request.headers.get(&#39;sec-websocket-protocol&#39;) || &#39;&#39;;
+
+    const readableWebSocketStream = makeReadableWebSocketStream(webSocket, earlyDataHeader, log);
+
+    /** @type &#123;&#123; value: import("@cloudflare/workers-types").Socket | null&#125;&#125;*/
+    let remoteSocketWapper = &#123;
+        value: null,
+    &#125;;
+    let udpStreamWrite = null;
+    let isDns = false;
+
+    // ws --&gt; remote
+    readableWebSocketStream.pipeTo(new WritableStream(&#123;
+        async write(chunk, controller) &#123;
+            if (isDns &amp;&amp; udpStreamWrite) &#123;
+                return udpStreamWrite(chunk);
+            &#125;
+            if (remoteSocketWapper.value) &#123;
+                const writer = remoteSocketWapper.value.writable.getWriter()
+                await writer.write(chunk);
+                writer.releaseLock();
+                return;
+            &#125;
+
+            const &#123;
+                hasError,
+                message,
+                portRemote = 443,
+                addressRemote = &#39;&#39;,
+                rawDataIndex,
+                วเลสVersion = new Uint8Array([0, 0]),
+                isUDP,
+            &#125; = processวเลสHeader(chunk, userID);
+            address = addressRemote;
+            portWithRandomLog = `$&#123;portRemote&#125; $&#123;isUDP ? &#39;udp&#39; : &#39;tcp&#39;&#125; `;
+            if (hasError) &#123;
+                // controller.error(message);
+                throw new Error(message); // cf seems has bug, controller.error will not end stream
+            &#125;
+
+            // If UDP and not DNS port, close it
+            if (isUDP &amp;&amp; portRemote !== 53) &#123;
+                throw new Error(&#39;UDP proxy only enabled for DNS which is port 53&#39;);
+                // cf seems has bug, controller.error will not end stream
+            &#125;
+
+            if (isUDP &amp;&amp; portRemote === 53) &#123;
+                isDns = true;
+            &#125;
+
+            // [&quot;version&quot;, &quot;附加信息长度 N&quot;]
+            const วเลสResponseHeader = new Uint8Array([วเลสVersion[0], 0]);
+            const rawClientData = chunk.slice(rawDataIndex);
+
+            // TODO: support udp here when cf runtime has udp support
+            if (isDns) &#123;
+                const &#123; write &#125; = await handleUDPOutBound(webSocket, วเลสResponseHeader, log);
+                udpStreamWrite = write;
+                udpStreamWrite(rawClientData);
+                return;
+            &#125;
+            handleTCPOutBound(remoteSocketWapper, addressRemote, portRemote, rawClientData, webSocket, วเลสResponseHeader, log);
+        &#125;,
+        close() &#123;
+            log(`readableWebSocketStream is close`);
+        &#125;,
+        abort(reason) &#123;
+            log(`readableWebSocketStream is abort`, JSON.stringify(reason));
+        &#125;,
+    &#125;)).catch((err) =&gt; &#123;
+        log(&#39;readableWebSocketStream pipeTo error&#39;, err);
+    &#125;);
+
+    return new Response(null, &#123;
+        status: 101,
+        webSocket: client,
+    &#125;);
+&#125;
+
+/**
+ * Handles outbound TCP connections.
+ *
+ * @param &#123;any&#125; remoteSocket 
+ * @param &#123;string&#125; addressRemote The remote address to connect to.
+ * @param &#123;number&#125; portRemote The remote port to connect to.
+ * @param &#123;Uint8Array&#125; rawClientData The raw client data to write.
+ * @param &#123;import(&quot;@cloudflare/workers-types&quot;).WebSocket&#125; webSocket The WebSocket to pass the remote socket to.
+ * @param &#123;Uint8Array&#125; วเลสResponseHeader The วเลส response header.
+ * @param &#123;function&#125; log The logging function.
+ * @returns &#123;Promise&lt;void&gt;&#125; The remote socket.
+ */
+async function handleTCPOutBound(remoteSocket, addressRemote, portRemote, rawClientData, webSocket, วเลสResponseHeader, log,) &#123;
+
+    /**
+     * Connects to a given address and port and writes data to the socket.
+     * @param &#123;string&#125; address The address to connect to.
+     * @param &#123;number&#125; port The port to connect to.
+     * @returns &#123;Promise&lt;import(&quot;@cloudflare/workers-types&quot;).Socket&gt;&#125; A Promise that resolves to the connected socket.
+     */
+    async function connectAndWrite(address, port) &#123;
+        /** @type &#123;import(&quot;@cloudflare/workers-types&quot;).Socket&#125; */
+        const tcpSocket = connect(&#123;
+            hostname: address,
+            port: port,
+        &#125;);
+        remoteSocket.value = tcpSocket;
+        log(`connected to $&#123;address&#125;:$&#123;port&#125;`);
+        const writer = tcpSocket.writable.getWriter();
+        await writer.write(rawClientData); // first write, nomal is tls client hello
+        writer.releaseLock();
+        return tcpSocket;
+    &#125;
+
+    /**
+     * Retries connecting to the remote address and port if the Cloudflare socket has no incoming data.
+     * @returns &#123;Promise&lt;void&gt;&#125; A Promise that resolves when the retry is complete.
+     */
+    async function retry() &#123;
+        const tcpSocket = await connectAndWrite(พร็อกซีไอพี || addressRemote, portRemote)
+        tcpSocket.closed.catch(error =&gt; &#123;
+            console.log(&#39;retry tcpSocket closed error&#39;, error);
+        &#125;).finally(() =&gt; &#123;
+            safeCloseWebSocket(webSocket);
+        &#125;)
+        remoteSocketToWS(tcpSocket, webSocket, วเลสResponseHeader, null, log);
+    &#125;
+
+    const tcpSocket = await connectAndWrite(addressRemote, portRemote);
+
+    // when remoteSocket is ready, pass to websocket
+    // remote--&gt; ws
+    remoteSocketToWS(tcpSocket, webSocket, วเลสResponseHeader, retry, log);
+&#125;
+
+/**
+ * Creates a readable stream from a WebSocket server, allowing for data to be read from the WebSocket.
+ * @param &#123;import(&quot;@cloudflare/workers-types&quot;).WebSocket&#125; webSocketServer The WebSocket server to create the readable stream from.
+ * @param &#123;string&#125; earlyDataHeader The header containing early data for WebSocket 0-RTT.
+ * @param &#123;(info: string)=&gt; void&#125; log The logging function.
+ * @returns &#123;ReadableStream&#125; A readable stream that can be used to read data from the WebSocket.
+ */
+function makeReadableWebSocketStream(webSocketServer, earlyDataHeader, log) &#123;
+    let readableStreamCancel = false;
+    const stream = new ReadableStream(&#123;
+        start(controller) &#123;
+            webSocketServer.addEventListener(&#39;message&#39;, (event) =&gt; &#123;
+                const message = event.data;
+                controller.enqueue(message);
+            &#125;);
+
+            webSocketServer.addEventListener(&#39;close&#39;, () =&gt; &#123;
+                safeCloseWebSocket(webSocketServer);
+                controller.close();
+            &#125;);
+
+            webSocketServer.addEventListener(&#39;error&#39;, (err) =&gt; &#123;
+                log(&#39;webSocketServer has error&#39;);
+                controller.error(err);
+            &#125;);
+            const &#123; earlyData, error &#125; = base64ToArrayBuffer(earlyDataHeader);
+            if (error) &#123;
+                controller.error(error);
+            &#125; else if (earlyData) &#123;
+                controller.enqueue(earlyData);
+            &#125;
+        &#125;,
+
+        pull(controller) &#123;
+            // if ws can stop read if stream is full, we can implement backpressure
+            // https://streams.spec.whatwg.org/#example-rs-push-backpressure
+        &#125;,
+
+        cancel(reason) &#123;
+            log(`ReadableStream was canceled, due to $&#123;reason&#125;`)
+            readableStreamCancel = true;
+            safeCloseWebSocket(webSocketServer);
+        &#125;
+    &#125;);
+
+    return stream;
+&#125;
+
+// https://xtls.github.io/development/protocols/วเลส.html
+// https://github.com/zizifn/excalidraw-backup/blob/main/v2ray-protocol.excalidraw
+
+/**
+ * Processes the วเลส header buffer and returns an object with the relevant information.
+ * @param &#123;ArrayBuffer&#125; วเลสBuffer The วเลส header buffer to process.
+ * @param &#123;string&#125; userID The user ID to validate against the UUID in the วเลส header.
+ * @returns &#123;&#123;
+ *  hasError: boolean,
+ *  message?: string,
+ *  addressRemote?: string,
+ *  addressType?: number,
+ *  portRemote?: number,
+ *  rawDataIndex?: number,
+ *  วเลสVersion?: Uint8Array,
+ *  isUDP?: boolean
+ * &#125;&#125; An object with the relevant information extracted from the วเลส header buffer.
+ */
+function processวเลสHeader(วเลสBuffer, userID) &#123;
+    if (วเลสBuffer.byteLength &lt; 24) &#123;
+        return &#123;
+            hasError: true,
+            message: &#39;invalid data&#39;,
+        &#125;;
+    &#125;
+
+    const version = new Uint8Array(วเลสBuffer.slice(0, 1));
+    let isValidUser = false;
+    let isUDP = false;
+    const slicedBuffer = new Uint8Array(วเลสBuffer.slice(1, 17));
+    const slicedBufferString = stringify(slicedBuffer);
+    // check if userID is valid uuid or uuids split by , and contains userID in it otherwise return error message to console
+    const uuids = userID.includes(&#39;,&#39;) ? userID.split(&quot;,&quot;) : [userID];
+    // uuid_validator(hostName, slicedBufferString);
+
+
+    // isValidUser = uuids.some(userUuid =&gt; slicedBufferString === userUuid.trim());
+    isValidUser = uuids.some(userUuid =&gt; slicedBufferString === userUuid.trim()) || uuids.length === 1 &amp;&amp; slicedBufferString === uuids[0].trim();
+
+    console.log(`userID: $&#123;slicedBufferString&#125;`);
+
+    if (!isValidUser) &#123;
+        return &#123;
+            hasError: true,
+            message: &#39;invalid user&#39;,
+        &#125;;
+    &#125;
+
+    const optLength = new Uint8Array(วเลสBuffer.slice(17, 18))[0];
+    //skip opt for now
+
+    const command = new Uint8Array(
+        วเลสBuffer.slice(18 + optLength, 18 + optLength + 1)
+    )[0];
+
+    // 0x01 TCP
+    // 0x02 UDP
+    // 0x03 MUX
+    if (command === 1) &#123;
+        isUDP = false;
+    &#125; else if (command === 2) &#123;
+        isUDP = true;
+    &#125; else &#123;
+        return &#123;
+            hasError: true,
+            message: `command $&#123;command&#125; is not support, command 01-tcp,02-udp,03-mux`,
+        &#125;;
+    &#125;
+    const portIndex = 18 + optLength + 1;
+    const portBuffer = วเลสBuffer.slice(portIndex, portIndex + 2);
+    // port is big-Endian in raw data etc 80 == 0x005d
+    const portRemote = new DataView(portBuffer).getUint16(0);
+
+    let addressIndex = portIndex + 2;
+    const addressBuffer = new Uint8Array(
+        วเลสBuffer.slice(addressIndex, addressIndex + 1)
+    );
+
+    // 1--&gt; ipv4  addressLength =4
+    // 2--&gt; domain name addressLength=addressBuffer[1]
+    // 3--&gt; ipv6  addressLength =16
+    const addressType = addressBuffer[0];
+    let addressLength = 0;
+    let addressValueIndex = addressIndex + 1;
+    let addressValue = &#39;&#39;;
+    switch (addressType) &#123;
+        case 1:
+            addressLength = 4;
+            addressValue = new Uint8Array(
+                วเลสBuffer.slice(addressValueIndex, addressValueIndex + addressLength)
+            ).join(&#39;.&#39;);
+            break;
+        case 2:
+            addressLength = new Uint8Array(
+                วเลสBuffer.slice(addressValueIndex, addressValueIndex + 1)
+            )[0];
+            addressValueIndex += 1;
+            addressValue = new TextDecoder().decode(
+                วเลสBuffer.slice(addressValueIndex, addressValueIndex + addressLength)
+            );
+            break;
+        case 3:
+            addressLength = 16;
+            const dataView = new DataView(
+                วเลสBuffer.slice(addressValueIndex, addressValueIndex + addressLength)
+            );
+            // 2001:0db8:85a3:0000:0000:8a2e:0370:7334
+            const ipv6 = [];
+            for (let i = 0; i &lt; 8; i++) &#123;
+                ipv6.push(dataView.getUint16(i * 2).toString(16));
+            &#125;
+            addressValue = ipv6.join(&#39;:&#39;);
+            // seems no need add [] for ipv6
+            break;
+        default:
+            return &#123;
+                hasError: true,
+                message: `invild  addressType is $&#123;addressType&#125;`,
+            &#125;;
+    &#125;
+    if (!addressValue) &#123;
+        return &#123;
+            hasError: true,
+            message: `addressValue is empty, addressType is $&#123;addressType&#125;`,
+        &#125;;
+    &#125;
+
+    return &#123;
+        hasError: false,
+        addressRemote: addressValue,
+        addressType,
+        portRemote,
+        rawDataIndex: addressValueIndex + addressLength,
+        วเลสVersion: version,
+        isUDP,
+    &#125;;
+&#125;
+
+
+/**
+ * Converts a remote socket to a WebSocket connection.
+ * @param &#123;import(&quot;@cloudflare/workers-types&quot;).Socket&#125; remoteSocket The remote socket to convert.
+ * @param &#123;import(&quot;@cloudflare/workers-types&quot;).WebSocket&#125; webSocket The WebSocket to connect to.
+ * @param &#123;ArrayBuffer | null&#125; วเลสResponseHeader The วเลส response header.
+ * @param &#123;(() =&gt; Promise&lt;void&gt;) | null&#125; retry The function to retry the connection if it fails.
+ * @param &#123;(info: string) =&gt; void&#125; log The logging function.
+ * @returns &#123;Promise&lt;void&gt;&#125; A Promise that resolves when the conversion is complete.
+ */
+async function remoteSocketToWS(remoteSocket, webSocket, วเลสResponseHeader, retry, log) &#123;
+    // remote--&gt; ws
+    let remoteChunkCount = 0;
+    let chunks = [];
+    /** @type &#123;ArrayBuffer | null&#125; */
+    let วเลสHeader = วเลสResponseHeader;
+    let hasIncomingData = false; // check if remoteSocket has incoming data
+    await remoteSocket.readable
+        .pipeTo(
+            new WritableStream(&#123;
+                start() &#123;
+                &#125;,
+                /**
+                 * 
+                 * @param &#123;Uint8Array&#125; chunk 
+                 * @param &#123;*&#125; controller 
+                 */
+                async write(chunk, controller) &#123;
+                    hasIncomingData = true;
+                    remoteChunkCount++;
+                    if (webSocket.readyState !== WS_READY_STATE_OPEN) &#123;
+                        controller.error(
+                            &#39;webSocket.readyState is not open, maybe close&#39;
+                        );
+                    &#125;
+                    if (วเลสHeader) &#123;
+                        webSocket.send(await new Blob([วเลสHeader, chunk]).arrayBuffer());
+                        วเลสHeader = null;
+                    &#125; else &#123;
+                        // console.log(`remoteSocketToWS send chunk $&#123;chunk.byteLength&#125;`);
+                        // seems no need rate limit this, CF seems fix this??..
+                        // if (remoteChunkCount &gt; 20000) &#123;
+                        // 	// cf one package is 4096 byte(4kb),  4096 * 20000 = 80M
+                        // 	await delay(1);
+                        // &#125;
+                        webSocket.send(chunk);
+                    &#125;
+                &#125;,
+                close() &#123;
+                    log(`remoteConnection!.readable is close with hasIncomingData is $&#123;hasIncomingData&#125;`);
+                    // safeCloseWebSocket(webSocket); // no need server close websocket frist for some case will casue HTTP ERR_CONTENT_LENGTH_MISMATCH issue, client will send close event anyway.
+                &#125;,
+                abort(reason) &#123;
+                    console.error(`remoteConnection!.readable abort`, reason);
+                &#125;,
+            &#125;)
+        )
+        .catch((error) =&gt; &#123;
+            console.error(
+                `remoteSocketToWS has exception `,
+                error.stack || error
+            );
+            safeCloseWebSocket(webSocket);
+        &#125;);
+
+    // seems is cf connect socket have error,
+    // 1. Socket.closed will have error
+    // 2. Socket.readable will be close without any data coming
+    if (hasIncomingData === false &amp;&amp; retry) &#123;
+        log(`retry`)
+        retry();
+    &#125;
+&#125;
+
+/**
+ * Decodes a base64 string into an ArrayBuffer.
+ * @param &#123;string&#125; base64Str The base64 string to decode.
+ * @returns &#123;&#123;earlyData: ArrayBuffer|null, error: Error|null&#125;&#125; An object containing the decoded ArrayBuffer or null if there was an error, and any error that occurred during decoding or null if there was no error.
+ */
+function base64ToArrayBuffer(base64Str) &#123;
+    if (!base64Str) &#123;
+        return &#123; earlyData: null, error: null &#125;;
+    &#125;
+    try &#123;
+        // go use modified Base64 for URL rfc4648 which js atob not support
+        base64Str = base64Str.replace(/-/g, &#39;+&#39;).replace(/_/g, &#39;/&#39;);
+        const decode = atob(base64Str);
+        const arryBuffer = Uint8Array.from(decode, (c) =&gt; c.charCodeAt(0));
+        return &#123; earlyData: arryBuffer.buffer, error: null &#125;;
+    &#125; catch (error) &#123;
+        return &#123; earlyData: null, error &#125;;
+    &#125;
+&#125;
+
+/**
+ * Checks if a given string is a valid UUID.
+ * Note: This is not a real UUID validation.
+ * @param &#123;string&#125; uuid The string to validate as a UUID.
+ * @returns &#123;boolean&#125; True if the string is a valid UUID, false otherwise.
+ */
+function isValidUUID(uuid) &#123;
+    const uuidRegex = /^[0-9a-f]&#123;8&#125;-[0-9a-f]&#123;4&#125;-[4][0-9a-f]&#123;3&#125;-[89ab][0-9a-f]&#123;3&#125;-[0-9a-f]&#123;12&#125;$/i;
+    return uuidRegex.test(uuid);
+&#125;
+
+const WS_READY_STATE_OPEN = 1;
+const WS_READY_STATE_CLOSING = 2;
+/**
+ * Closes a WebSocket connection safely without throwing exceptions.
+ * @param &#123;import(&quot;@cloudflare/workers-types&quot;).WebSocket&#125; socket The WebSocket connection to close.
+ */
+function safeCloseWebSocket(socket) &#123;
+    try &#123;
+        if (socket.readyState === WS_READY_STATE_OPEN || socket.readyState === WS_READY_STATE_CLOSING) &#123;
+            socket.close();
+        &#125;
+    &#125; catch (error) &#123;
+        console.error(&#39;safeCloseWebSocket error&#39;, error);
+    &#125;
+&#125;
+
+const byteToHex = [];
+
+for (let i = 0; i &lt; 256; ++i) &#123;
+    byteToHex.push((i + 256).toString(16).slice(1));
+&#125;
+
+function unsafeStringify(arr, offset = 0) &#123;
+    return (byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + &quot;-&quot; + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + &quot;-&quot; + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + &quot;-&quot; + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + &quot;-&quot; + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]]).toLowerCase();
+&#125;
+
+function stringify(arr, offset = 0) &#123;
+    const uuid = unsafeStringify(arr, offset);
+    if (!isValidUUID(uuid)) &#123;
+        throw TypeError(&quot;Stringified UUID is invalid&quot;);
+    &#125;
+    return uuid;
+&#125;
+
+
+/**
+ * Handles outbound UDP traffic by transforming the data into DNS queries and sending them over a WebSocket connection.
+ * @param &#123;import(&quot;@cloudflare/workers-types&quot;).WebSocket&#125; webSocket The WebSocket connection to send the DNS queries over.
+ * @param &#123;ArrayBuffer&#125; วเลสResponseHeader The วเลส response header.
+ * @param &#123;(string) =&gt; void&#125; log The logging function.
+ * @returns &#123;&#123;write: (chunk: Uint8Array) => void&#125;&#125; An object with a write method that accepts a Uint8Array chunk to write to the transform stream.
+ */
+async function handleUDPOutBound(webSocket, วเลสResponseHeader, log) &#123;
+
+    let isวเลสHeaderSent = false;
+    const transformStream = new TransformStream(&#123;
+        start(controller) &#123;
+
+        &#125;,
+        transform(chunk, controller) &#123;
+            // udp message 2 byte is the the length of udp data
+            // TODO: this should have bug, beacsue maybe udp chunk can be in two websocket message
+            for (let index = 0; index &lt; chunk.byteLength;) &#123;
+                const lengthBuffer = chunk.slice(index, index + 2);
+                const udpPakcetLength = new DataView(lengthBuffer).getUint16(0);
+                const udpData = new Uint8Array(
+                    chunk.slice(index + 2, index + 2 + udpPakcetLength)
+                );
+                index = index + 2 + udpPakcetLength;
+                controller.enqueue(udpData);
+            &#125;
+        &#125;,
+        flush(controller) &#123;
+        &#125;
+    &#125;);
+
+    // only handle dns udp for now
+    transformStream.readable.pipeTo(new WritableStream(&#123;
+        async write(chunk) &#123;
+            const resp = await fetch(dohURL, // dns server url
+                &#123;
+                    method: &#39;POST&#39;,
+                    headers: &#123;
+                        &#39;content-type&#39;: &#39;application/dns-message&#39;,
+                    &#125;,
+                    body: chunk,
+                &#125;)
+            const dnsQueryResult = await resp.arrayBuffer();
+            const udpSize = dnsQueryResult.byteLength;
+            // console.log([...new Uint8Array(dnsQueryResult)].map((x) =&gt; x.toString(16)));
+            const udpSizeBuffer = new Uint8Array([(udpSize &gt;&gt; 8) &amp; 0xff, udpSize &amp; 0xff]);
+            if (webSocket.readyState === WS_READY_STATE_OPEN) &#123;
+                log(`doh success and dns message length is $&#123;udpSize&#125;`);
+                if (isวเลสHeaderSent) &#123;
+                    webSocket.send(await new Blob([udpSizeBuffer, dnsQueryResult]).arrayBuffer());
+                &#125; else &#123;
+                    webSocket.send(await new Blob([วเลสResponseHeader, udpSizeBuffer, dnsQueryResult]).arrayBuffer());
+                    isวเลสHeaderSent = true;
+                &#125;
+            &#125;
+        &#125;
+    &#125;)).catch((error) =&gt; &#123;
+        log(&#39;dns udp has error&#39; + error)
+    &#125;);
+
+    const writer = transformStream.writable.getWriter();
+
+    return &#123;
+        /**
+         * 
+         * @param &#123;Uint8Array&#125; chunk 
+         */
+        write(chunk) &#123;
+            writer.write(chunk);
+        &#125;
+    &#125;;
+&#125;
+
+const at = &#39;QA==&#39;;
+const pt = &#39;dmxlc3M=&#39;;
+const ed = &#39;RUR0dW5uZWw=&#39;;
+/**
+ *
+ * @param &#123;string&#125; userID - single or comma separated userIDs
+ * @param &#123;string | null&#125; hostName
+ * @returns &#123;string&#125;
+ */
+function getวเลสConfig(userIDs, hostName) &#123;
+    const commonUrlPart = `:443?encryption=none&amp;security=tls&amp;sni=$&#123;hostName&#125;&amp;fp=randomized&amp;type=ws&amp;host=$&#123;hostName&#125;&amp;path=%2F%3Fed%3D2048#$&#123;hostName&#125;`;
+    const hashSeparator = &quot;################################################################&quot;;
+
+    // Split the userIDs into an array
+    const userIDArray = userIDs.split(&quot;,&quot;);
+
+    // Prepare output string for each userID
+    const output = userIDArray.map((userID) =&gt; &#123;
+        const วเลสMain = atob(pt) + &#39;://&#39; + userID + atob(at) + hostName + commonUrlPart;
+        const วเลสSec = atob(pt) + &#39;://&#39; + userID + atob(at) + พร็อกซีไอพี + commonUrlPart;
+        return `&lt;h2&gt;UUID: $&#123;userID&#125;&lt;/h2&gt;$&#123;hashSeparator&#125;\nv2ray default ip
+---------------------------------------------------------------
+$&#123;วเลสMain&#125;
+&lt;button onclick=&#39;copyToClipboard(&quot;$&#123;วเลสMain&#125;&quot;)&#39;&gt;&lt;i class=&quot;fa fa-clipboard&quot;&gt;&lt;/i&gt; Copy วเลสMain&lt;/button&gt;
+---------------------------------------------------------------
+v2ray with bestip
+---------------------------------------------------------------
+$&#123;วเลสSec&#125;
+&lt;button onclick=&#39;copyToClipboard(&quot;$&#123;วเลสSec&#125;&quot;)&#39;&gt;&lt;i class=&quot;fa fa-clipboard&quot;&gt;&lt;/i&gt; Copy วเลสSec&lt;/button&gt;
+---------------------------------------------------------------`;
+    &#125;).join(&#39;\n&#39;);
+    const sublink = `https://$&#123;hostName&#125;/sub/$&#123;userIDArray[0]&#125;?format=clash`
+    const subbestip = `https://$&#123;hostName&#125;/bestip/$&#123;userIDArray[0]&#125;`;
+    const clash_link = `https://api.v1.mk/sub?target=clash&amp;url=$&#123;encodeURIComponent(sublink)&#125;&amp;insert=false&amp;emoji=true&amp;list=false&amp;tfo=false&amp;scv=true&amp;fdn=false&amp;sort=false&amp;new_name=true`;
+    // Prepare header string
+    const header = `
+&lt;p align=&#39;center&#39;&gt;&lt;img src=&#39;https://cloudflare-ipfs.com/ipfs/bafybeigd6i5aavwpr6wvnwuyayklq3omonggta4x2q7kpmgafj357nkcky&#39; alt=&#39;图片描述&#39; style=&#39;margin-bottom: -50px;&#39;&gt;
+&lt;b style=&#39;font-size: 15px;&#39;&gt;Welcome! This function generates configuration for วเลส protocol. If you found this useful, please check our GitHub project for more:&lt;/b&gt;
+&lt;b style=&#39;font-size: 15px;&#39;&gt;欢迎！这是生成 วเลส 协议的配置。如果您发现这个项目很好用，请查看我们的 GitHub 项目给我一个star：&lt;/b&gt;
+&lt;a href=&#39;https://github.com/3Kmfi6HP/EDtunnel&#39; target=&#39;_blank&#39;&gt;EDtunnel - https://github.com/3Kmfi6HP/EDtunnel&lt;/a&gt;
+&lt;iframe src=&#39;https://ghbtns.com/github-btn.html?user=USERNAME&amp;repo=REPOSITORY&amp;type=star&amp;count=true&amp;size=large&#39; frameborder=&#39;0&#39; scrolling=&#39;0&#39; width=&#39;170&#39; height=&#39;30&#39; title=&#39;GitHub&#39;&gt;&lt;/iframe&gt;
+&lt;a href=&#39;//$&#123;hostName&#125;/sub/$&#123;userIDArray[0]&#125;&#39; target=&#39;_blank&#39;&gt;วเลส 节点订阅连接&lt;/a&gt;
+&lt;a href=&#39;clash://install-config?url=$&#123;encodeURIComponent(`https://$&#123;hostName&#125;/sub/$&#123;userIDArray[0]&#125;?format=clash`)&#125;&#125;&#39; target=&#39;_blank&#39;&gt;Clash for Windows 节点订阅连接&lt;/a&gt;
+&lt;a href=&#39;$&#123;clash_link&#125;&#39; target=&#39;_blank&#39;&gt;Clash 节点订阅连接&lt;/a&gt;
+&lt;a href=&#39;$&#123;subbestip&#125;&#39; target=&#39;_blank&#39;&gt;优选IP自动节点订阅&lt;/a&gt;
+&lt;a href=&#39;clash://install-config?url=$&#123;encodeURIComponent(subbestip)&#125;&#39; target=&#39;_blank&#39;&gt;Clash优选IP自动&lt;/a&gt;
+&lt;a href=&#39;sing-box://import-remote-profile?url=$&#123;encodeURIComponent(subbestip)&#125;&#39; target=&#39;_blank&#39;&gt;singbox优选IP自动&lt;/a&gt;
+&lt;a href=&#39;sn://subscription?url=$&#123;encodeURIComponent(subbestip)&#125;&#39; target=&#39;_blank&#39;&gt;nekobox优选IP自动&lt;/a&gt;
+&lt;a href=&#39;v2rayng://install-config?url=$&#123;encodeURIComponent(subbestip)&#125;&#39; target=&#39;_blank&#39;&gt;v2rayNG优选IP自动&lt;/a&gt;&lt;/p&gt;`;
+
+    // HTML Head with CSS and FontAwesome library
+    const htmlHead = `
+  &lt;head&gt;
+    &lt;title&gt;EDtunnel: วเลส configuration&lt;/title&gt;
+    &lt;meta name=&#39;description&#39; content=&#39;This is a tool for generating วเลส protocol configurations. Give us a star on GitHub https://github.com/3Kmfi6HP/EDtunnel if you found it useful!&#39;&gt;
+    &lt;meta name=&#39;keywords&#39; content=&#39;EDtunnel, cloudflare pages, cloudflare worker, severless&#39;&gt;
+    &lt;meta name=&#39;viewport&#39; content=&#39;width=device-width, initial-scale=1&#39;&gt;
+    &lt;meta property=&#39;og:site_name&#39; content=&#39;EDtunnel: วเลส configuration&#39; /&gt;
+    &lt;meta property=&#39;og:type&#39; content=&#39;website&#39; /&gt;
+    &lt;meta property=&#39;og:title&#39; content=&#39;EDtunnel - วเลส configuration and subscribe output&#39; /&gt;
+    &lt;meta property=&#39;og:description&#39; content=&#39;Use cloudflare pages and worker severless to implement วเลส protocol&#39; /&gt;
+    &lt;meta property=&#39;og:url&#39; content=&#39;https://$&#123;hostName&#125;/&#39; /&gt;
+    &lt;meta property=&#39;og:image&#39; content=&#39;https://api.qrserver.com/v1/create-qr-code/?size=500x500&amp;data=$&#123;encodeURIComponent(`วเลส://$&#123;userIDs.split(&quot;,&quot;)[0]&#125;@$&#123;hostName&#125;$&#123;commonUrlPart&#125;`)&#125;&#39; /&gt;
+    &lt;meta name=&#39;twitter:card&#39; content=&#39;summary_large_image&#39; /&gt;
+    &lt;meta name=&#39;twitter:title&#39; content=&#39;EDtunnel - วเลส configuration and subscribe output&#39; /&gt;
+    &lt;meta name=&#39;twitter:description&#39; content=&#39;Use cloudflare pages and worker severless to implement วเลส protocol&#39; /&gt;
+    &lt;meta name=&#39;twitter:url&#39; content=&#39;https://$&#123;hostName&#125;/&#39; /&gt;
+    &lt;meta name=&#39;twitter:image&#39; content=&#39;https://cloudflare-ipfs.com/ipfs/bafybeigd6i5aavwpr6wvnwuyayklq3omonggta4x2q7kpmgafj357nkcky&#39; /&gt;
+    &lt;meta property=&#39;og:image:width&#39; content=&#39;1500&#39; /&gt;
+    &lt;meta property=&#39;og:image:height&#39; content=&#39;1500&#39; /&gt;
+
+    &lt;style&gt;
+    body &#123;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      color: #333;
+      padding: 10px;
+    &#125;
+
+    a &#123;
+      color: #1a0dab;
+      text-decoration: none;
+    &#125;
+    img &#123;
+      max-width: 100%;
+      height: auto;
+    &#125;
+
+    pre &#123;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin: 10px 0;
+    &#125;
+    /* Dark mode */
+    @media (prefers-color-scheme: dark) &#123;
+      body &#123;
+        background-color: #333;
+        color: #f0f0f0;
+      &#125;
+
+      a &#123;
+        color: #9db4ff;
+      &#125;
+
+      pre &#123;
+        background-color: #282a36;
+        border-color: #6272a4;
+      &#125;
+    &#125;
+    &lt;/style&gt;
+
+    &lt;!-- Add FontAwesome library --&gt;
+    &lt;link rel=&#39;stylesheet&#39; href=&#39;https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css&#39;&gt;
+  &lt;/head&gt;
+  `;
+
+    // Join output with newlines, wrap inside &lt;html&gt; and &lt;body&gt;
+    return `
+  &lt;html&gt;
+  $&#123;htmlHead&#125;
+  &lt;body&gt;
+  &lt;pre style=&#39;background-color: transparent; border: none;&#39;&gt;$&#123;header&#125;&lt;/pre&gt;
+  &lt;pre&gt;$&#123;output&#125;&lt;/pre&gt;
+  &lt;/body&gt;
+  &lt;script&gt;
+    function copyToClipboard(text) &#123;
+      navigator.clipboard.writeText(text)
+        .then(() =&gt; &#123;
+          alert(&quot;Copied to clipboard&quot;);
+        &#125;)
+        .catch((err) =&gt; &#123;
+          console.error(&quot;Failed to copy to clipboard:&quot;, err);
+        &#125;);
+    &#125;
+  &lt;/script&gt;
+  &lt;/html&gt;`;
+&#125;
+
+const เซ็ตพอร์ตHttp = new Set([80, 8080, 8880, 2052, 2086, 2095, 2082]);
+const เซ็ตพอร์ตHttps = new Set([443, 8443, 2053, 2096, 2087, 2083]);
+
+function สร้างวเลสSub(ไอดีผู้ใช้_เส้นทาง, ชื่อโฮสต์) &#123;
+    const อาร์เรย์ไอดีผู้ใช้ = ไอดีผู้ใช้_เส้นทาง.includes(&#39;,&#39;) ? ไอดีผู้ใช้_เส้นทาง.split(&#39;,&#39;) : [ไอดีผู้ใช้_เส้นทาง];
+    const ส่วนUrlทั่วไปHttp = `?encryption=none&amp;security=none&amp;fp=random&amp;type=ws&amp;host=$&#123;ชื่อโฮสต์&#125;&amp;path=%2F%3Fed%3D2048#`;
+    const ส่วนUrlทั่วไปHttps = `?encryption=none&amp;security=tls&amp;sni=$&#123;ชื่อโฮสต์&#125;&amp;fp=random&amp;type=ws&amp;host=$&#123;ชื่อโฮสต์&#125;&amp;path=%2F%3Fed%3D2048#`;
+
+    const ผลลัพธ์ = อาร์เรย์ไอดีผู้ใช้.flatMap((ไอดีผู้ใช้) =&gt; &#123;
+        const การกำหนดค่าHttp = Array.from(เซ็ตพอร์ตHttp).flatMap((พอร์ต) =&gt; &#123;
+            if (!ชื่อโฮสต์.includes(&#39;pages.dev&#39;)) &#123;
+                const ส่วนUrl = `$&#123;ชื่อโฮสต์&#125;-HTTP-$&#123;พอร์ต&#125;`;
+                const วเลสหลักHttp = atob(pt) + &#39;://&#39; + ไอดีผู้ใช้ + atob(at) + ชื่อโฮสต์ + &#39;:&#39; + พอร์ต + ส่วนUrlทั่วไปHttp + ส่วนUrl;
+                return พร็อกซีไอพีs.flatMap((พร็อกซีไอพี) =&gt; &#123;
+                    const วเลสรองHttp = atob(pt) + &#39;://&#39; + ไอดีผู้ใช้ + atob(at) + พร็อกซีไอพี + &#39;:&#39; + พอร์ต + ส่วนUrlทั่วไปHttp + ส่วนUrl + &#39;-&#39; + พร็อกซีไอพี + &#39;-&#39; + atob(ed);
+                    return [วเลสหลักHttp, วเลสรองHttp];
+                &#125;);
+            &#125;
+            return [];
+        &#125;);
+
+        const การกำหนดค่าHttps = Array.from(เซ็ตพอร์ตHttps).flatMap((พอร์ต) =&gt; &#123;
+            const ส่วนUrl = `$&#123;ชื่อโฮสต์&#125;-HTTPS-$&#123;พอร์ต&#125;`;
+            const วเลสหลักHttps = atob(pt) + &#39;://&#39; + ไอดีผู้ใช้ + atob(at) + ชื่อโฮสต์ + &#39;:&#39; + พอร์ต + ส่วนUrlทั่วไปHttps + ส่วนUrl;
+            return พร็อกซีไอพีs.flatMap((พร็อกซีไอพี) =&gt; &#123;
+                const วเลสรองHttps = atob(pt) + &#39;://&#39; + ไอดีผู้ใช้ + atob(at) + พร็อกซีไอพี + &#39;:&#39; + พอร์ต + ส่วนUrlทั่วไปHttps + ส่วนUrl + &#39;-&#39; + พร็อกซีไอพี + &#39;-&#39; + atob(ed);
+                return [วเลสหลักHttps, วเลสรองHttps];
+            &#125;);
+        &#125;);
+
+        return [...การกำหนดค่าHttp, ...การกำหนดค่าHttps];
+    &#125;);
+
+    return ผลลัพธ์.join(&#39;\n&#39;);
+&#125;
+
+const cn_hostnames = [
+    // &quot;account.zula.ir&quot;,
+    // &quot;zula.com&quot;,
+    // &quot;telewebion.com&quot;,
+    &#39;cdn.appsflyer.com&#39;,
+    // &#39;alibaba.ir&#39;,
+    // &#39;soft98.ir&#39;,
+    // &#39;yasdl.com&#39;,
+    // &#39;uplod.ir&#39;,
+];
+</code></pre>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+
+
+
+
+    
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; ysun 
+        </div>
+    </div>
+</footer>
+         
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+<!-- PrismJS Support -->
+<script>
+  document.querySelectorAll("pre code").forEach((block) => {
+    // Add line-numbers class to pre
+    block.parentElement.classList.add("line-numbers");
+
+    // Ensure language class has 'language-' prefix
+    block.classList.forEach((cls) => {
+      if (!cls.startsWith("language-") && cls !== "hljs") {
+        block.classList.add("language-" + cls);
+      }
+    });
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script src="/js/pdf-tools.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script>
+            <script src="/js/code-tools.js"></script>
+            <link rel="stylesheet" href="/css/code-tools.css">
+            
+            <!-- Image Collapsible Support -->
+            <link rel="stylesheet" href="/css/image-collapsible.css">
+            <script src="/js/image-collapsible.js"></script>
+
+
+
+    </div>
+
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z\d\-\.\+]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(t.test(e.href)||r.test(e.href))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body>
+</html>
