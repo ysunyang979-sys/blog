@@ -11,7 +11,7 @@ Telegram（电报）不仅是聊天工具，更是全球最大的“去中心化
 
 ---
 ###### 下载：
-<a href="https://www.telegrammy.com/" class="btn">TG下载</a>
+<a href="https://telegram.org" class="btn">TG下载</a>
 
 ## 1. 基础篇：活用内置搜索（打破“搜不到”的魔咒）
 
