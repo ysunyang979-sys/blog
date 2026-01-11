@@ -7,6 +7,3 @@ comments: false
 ---
 
 # Grop
-``` Grop
-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  
-```
