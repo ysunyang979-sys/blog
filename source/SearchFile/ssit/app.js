@@ -12,7 +12,6 @@ const API_CONFIGS = {
         baseURL: 'https://api.groq.com/openai/v1/chat/completions',
         model: 'meta-llama/llama-4-scout-17b-16e-instruct',
         apiKey: localStorage.getItem('groq_key') || '',
-        //apiKey: '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',
         supportsVision: true,
     },
     siliconflow: {
@@ -20,15 +19,13 @@ const API_CONFIGS = {
         baseURL: 'https://api.siliconflow.cn/v1/chat/completions',
         model: 'Qwen/Qwen2-VL-72B-Instruct',
         apiKey: localStorage.getItem('siliconflow_key') || '',
-        //apiKey: 'sk-...', 
         supportsVision: true,
     },
-    sambanova: {
+    sambanova: { 
         name: 'SambaNova (Llama)',
         baseURL: 'https://api.sambanova.ai/v1/chat/completions',
         model: 'Meta-Llama-3.3-70B-Instruct',
         apiKey: localStorage.getItem('sambanova_key') || '',
-        //apiKey: 'e2891e21-3f00-47b2-8b03-a06d88818ced',
         supportsVision: false,
     },
 };
