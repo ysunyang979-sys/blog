@@ -9,6 +9,6 @@ comments: true
 
 欢迎交换友链！
 
-*   **名称**: ysun & Blog
+*   **名称**: Sunny
 *   **地址**: https://ysunyang979.github.io/blog/
 *   **描述**: 记录学习历程
