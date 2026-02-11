@@ -27,7 +27,7 @@ comments: false
 | :--- | :--- | :--- | :--- |
 | **🌱 轻度用户** | 偶尔查阅资料、看视频 | <a href="/SearchFile/blockwall/Low.html" class="btn">⬇️ ChromGo</a> <br> *(点击 .cmd 即可启动)* | ❌ 不建议登录 |
 | **🌿 中度用户** | 日常学习、工作主力 | <a href="/SearchFile/blockwall/Mid.html" class="btn">⬇️ 自建节点</a> <br> *(掌握服务器控制权)* | ✅ 可以登录 |
-| **🌳 重度用户** | 追求极致稳定与速度 | <a href="/SearchFile/node.html" class="btn">⬇️ 购买专线节点</a> <br> *(纯净 IP，省心省力)* | ✅ 可以登录 |
+| **🌳 重度用户** | 追求极致稳定与速度 | <a href="/SearchFile/node.html" class="btn">⬇️ 购买专线节点</a>/<a href="/SearchFile/et.html" class="btn">⬇️ 自己搭建</a> <br> *(纯净 IP，省心省力)* | ✅ 可以登录 |
 
 ### 🛠️ 客户端下载与配置
 跨平台的代理客户端是网络的桥梁。个人推荐 Win 端使用 **v2rayN**，Mac 端使用 **ClashX Pro** 或 **Surge**。
@@ -38,8 +38,6 @@ comments: false
     <a href="/SearchFile/v2raytun.html" class="btn">⚙️ TUN 模式开启教程</a>
     <a href="https://v2sub.ycu.de5.net" class="btn">🔄 订阅转换/生成器</a>
 </div>
-
----
 
 # 💻 Windows 极致装机指南
 

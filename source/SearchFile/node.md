@@ -1,5 +1,5 @@
 ---
-title: High
+title: 机场节点购买
 date: 2025-12-28 23:15:00
 type: "CustomPage"
 layout: "page"
@@ -46,4 +46,19 @@ comments: false
 *   **Windows/Mac/Android/iOS**: <a href="/tools/index.html" class="btn">科学上网软件</a>
   
 
+---
 
+# 个人节点分享
+
+### 🛠️ 优选 IP 教程
+您可以进入我的工具站进行 IP 优选：<a href="https://ray2v.ysunyang.dpdns.org/login" class="btn">点击进入优选IP网站</a>
+
+**操作步骤：**
+1.  进入页面点击 **“优选订阅生成”** -> **“优选订阅模式(自定义优选)”** -> **“在线优选”**。
+2.  **IP库选择** ：可以选择反代的 IP。
+3.  **设置线程** ：建议设置为 **32** 以获得最快速度。
+4.  **开始优选** ：点击“优选开始”。推荐使用 **黄色或绿色** 的 IP，红色不推荐。
+5.  ⚠️ **注意** ：进行优选操作时请 **关闭 VPN**，优选完成后再开启。
+
+
+<a href="/SearchFile/index.html" class="btn">🔙 返回首页</a>
