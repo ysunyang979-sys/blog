@@ -1,5 +1,5 @@
 ---
-title: 域名注册
+title: 域名注册并托管CF
 date: 2025-12-28 23:15:00
 type: "CustomPage"
 layout: "page"
