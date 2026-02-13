@@ -37,7 +37,9 @@ comments: false
     <a href="/tools/全平台客户端下载.html" class="btn">⬇️ 全平台客户端下载</a>
     <a href="/SearchFile/v2raytun.html" class="btn">⚙️ TUN 模式开启教程</a>
     <a href="https://v2sub.ycu.de5.net" class="btn">🔄 订阅转换/生成器</a>
+    <a href="/SearchFile/coet.html" class="btn">视频教程</a>
 </div>
+
 
 # 💻 Windows 极致装机指南
 
@@ -94,7 +96,10 @@ TG 不仅仅是聊天软件，它是全球最大的**开放式资源库**。只�
 # 🏃‍♀️ Run
 
 <a href="/SearchFile/run/lowrun.html" class="btn">🏃 Run</a>
+---
+<a href="https://202052.vercel.app" class="btn">202052吾爱破解</a>
 
+ 
 ---
 
 # ⚡ 零成本解决方案

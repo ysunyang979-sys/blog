@@ -8,4 +8,4 @@ comments: true
 
 这里记录了我的学习历程，相信你在这里能够获得很多的内容，在看过我的<a href="/SearchFile/index.html" class="btn">分享</a>后相信你有很多的收获。
 *   **喜欢名言**：Good good study,Day day up!
-*   **联系方式**：ysun74480@gmail.com <a href="/SearchFile/catalog.html" class="btn">.</a><a href="/SearchFile/logh.html" class="btn">.</a>
+*   **联系方式**：`ysun74480@gmail.com` <a href="/SearchFile/catalog.html" class="btn">.</a><a href="/SearchFile/logh.html" class="btn">.</a>
