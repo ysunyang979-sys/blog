@@ -86,13 +86,12 @@ comments: false
 ### 白嫖策略  
 
 <details>
-<summary>ChromGo</summary>
+<summary>无限续杯</summary>
 
->点击cmd文件即可，所有的内核都是这样，点击后即可使用访问谷歌
-
+##### 书籍下载
 <video width="100%" controls>
-  <source src="./video/mp3.mp4" type="video/mp4">
+  <source src="./video/mp6.mp4" type="video/mp4">
   您的浏览器不支持 HTML5 视频。
 </video>
-</details>
 
+</details>
