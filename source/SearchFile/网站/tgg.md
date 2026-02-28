@@ -39,16 +39,6 @@ comments: false
 </details>
 
 ---
-###### 视频教程
+###### 路径
 
-<details>
-<summary>Tg</summary>
-
-##### TG
-<video width="100%" controls>
-  <source src="./video/mp7.mp4" type="video/mp4">
-  您的浏览器不支持 HTML5 视频。
-</video>
-
-
-</details>
+<img src="https://raw.githubusercontent.com/ysunyang979-sys/picx-images-hosting/master/image.4cldjwzz54.webp" alt="名称必须是tdata" width="100%" />
