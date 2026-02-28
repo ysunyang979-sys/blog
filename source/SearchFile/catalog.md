@@ -8,7 +8,7 @@ password: 358966
 ---
 
 >##### 网站
-<a href="https://358966.xyz" class="btn">伊苏存储</a><a href="https://yisu-storage.pages.dev" class="btn">伊苏存储(备用)</a><a href="/SearchFile/ssit/index.html" class="btn">合同检查器</a><a href="/tools/fq.html" class="btn">翻墙博主</a><a href="/SearchFile/ynode.html" class="btn">翻墙节点</a><a href="https://relay.firefox.com/accounts/profile/?" class="btn">马甲邮箱</a><a href="/SearchFile/secret.html" class="btn">私密网站</a><a href="https://pinboard.opera.com/view/fca66a9b-0c2a-44b9-b870-d3eb5b9104c0" class="btn">AI【Pinboard】</a><a href="https://pinboard.opera.com/view/660f5bba-e710-4041-b516-c80cec3dbd0d" class="btn">Gmail【Pinboard】</a><a href="https://pinboard.opera.com/view/f892bfc7-0fe4-428f-83f3-959b817f7096" class="btn">网站【Pinboard】</a><a href="/SearchFile/网站/password.html" class="btn">密码</a>
+<a href="https://358966.xyz" class="btn">伊苏存储</a><a href="https://yisu-storage.pages.dev" class="btn">伊苏存储(备用)</a><a href="/SearchFile/ssit/index.html" class="btn">合同检查器</a><a href="/tools/fq.html" class="btn">翻墙博主</a><a href="/SearchFile/ynode.html" class="btn">翻墙节点</a><a href="https://relay.firefox.com/accounts/profile/?" class="btn">马甲邮箱</a><a href="https://pinboard.opera.com/view/fca66a9b-0c2a-44b9-b870-d3eb5b9104c0" class="btn">AI【Pinboard】</a><a href="https://pinboard.opera.com/view/660f5bba-e710-4041-b516-c80cec3dbd0d" class="btn">Gmail【Pinboard】</a><a href="https://pinboard.opera.com/view/f892bfc7-0fe4-428f-83f3-959b817f7096" class="btn">网站【Pinboard】</a><a href="/SearchFile/网站/password.html" class="btn">账户数据【需密码】</a><a href="/SearchFile/secret.html" class="btn">私密网站【需密码】</a>
 
 ---
 

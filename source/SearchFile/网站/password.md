@@ -22,3 +22,11 @@ comments: false
 <a href="/SearchFile/网站/qq.html" class="btn">QQ</a> 
 
 </details>
+
+
+<details>
+<summary>TG</summary>
+
+<a href="/SearchFile/网站/tgg.html" class="btn">TG</a> 
+
+</details>

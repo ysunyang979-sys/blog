@@ -5,3 +5,15 @@ db.json
 node_modules/
 public/
 .deploy_git/
+
+# --- 额外添加的防错项 ---
+# 忽略视频大文件
+*.mp4
+*.mov
+*.avi
+*.wmv
+
+# 忽略编译文件夹
+obj/
+bin/
+.vs/
