@@ -7,9 +7,6 @@ password: "358966"
 comments: false
 ---
 
-<details>
-<summary>TG</summary>
-
 ### 下载地址
 
 <a href="https://github.com/ysunyang979-sys/ttt" class="btn">YTG</a>
@@ -23,20 +20,14 @@ comments: false
 | 03 | +44 7781539530 | 备用 |
 
 
-</details>
-
-
-<details>
-<summary>TG 密码</summary>
+###### TG 密码
 
 >358966OoOo
 
-<summary>Proton 辅助邮箱</summary>
+###### Proton 辅助邮箱
 
 >账号 358966OoOo@proton.me
 >密码 358966OoOo
-
-</details>
 
 ---
 ###### 路径
