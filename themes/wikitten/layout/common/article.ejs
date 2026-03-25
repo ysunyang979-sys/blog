@@ -41,7 +41,7 @@
             </header>
         <% } %>
         <%- partial('post/gallery') %>
-        <div class="article-entry" itemprop="articleBody">
+        <div class="article-entry <%= post.auto_copy ? 'enable-auto-copy' : '' %>" itemprop="articleBody">
         <% var show_all_content = true %>
         <% if (index) { %>
             <% if (post.excerpt || post.description) { %>
