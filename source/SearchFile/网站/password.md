@@ -21,7 +21,8 @@ comments: false
 | 8 | ☁️ CloudFlare | <a href="/SearchFile/网站/CF.html" class="btn">CloudFlare</a> |
 | 9 | 🌐 HF | <a href="/SearchFile/网站/HF.html" class="btn">HF</a> |
 | 10 | 🎮 Unity | <a href="/SearchFile/网站/unity.html" class="btn">Unity</a> |
-| 11 | 网站合集 | <a href="/SearchFile/网站/ssiit.html" class="btn">ssiit</a> |
-| 12 | 网站合集 | <a href="/SearchFile/网站/szy.html" class="btn">szy</a> |
-| 13 | 网站合集 | <a href="/SearchFile/网站/ms.html" class="btn">ms</a> |
+| 11 | bot AI | <a href="/SearchFile/网站/ai.html" class="btn">AI</a> |
+| 12 | 网站合集 | <a href="/SearchFile/网站/ssiit.html" class="btn">ssiit</a> |
+| 13 | 网站合集 | <a href="/SearchFile/网站/szy.html" class="btn">szy</a> |
+| 14 | 网站合集 | <a href="/SearchFile/网站/ms.html" class="btn">ms</a> |
 
